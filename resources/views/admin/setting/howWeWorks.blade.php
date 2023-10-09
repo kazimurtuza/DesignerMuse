@@ -99,13 +99,13 @@
             </div>
             <div class="mb-3 col-sm-6">
                 <label for="exampleInputEmail1" class="form-label">How It Works One description English</label>
-                <textarea name="work_process_two_details_en" class="form-control" id="" cols="1" rows="1"
-                          >{{$howWork?$howWork->work_process_two_details_en:''}}</textarea>
+                <textarea name="work_process_one_details_en" class="form-control" id="" cols="1" rows="1"
+                          >{{$howWork?$howWork->work_process_one_details_en:''}}</textarea>
             </div>
             <div class="mb-3 col-sm-6">
                 <label for="exampleInputEmail1" class="form-label">How It Works One description Arabic</label>
-                <textarea dir="rtl" name="work_process_two_details_ar" class="form-control" id="" cols="1" rows="1"
-                          >{{$howWork?$howWork->work_process_two_details_ar:''}}</textarea>
+                <textarea dir="rtl" name="work_process_one_details_ar" class="form-control" id="" cols="1" rows="1"
+                          >{{$howWork?$howWork->work_process_one_details_ar:''}}</textarea>
             </div>
         </div>
         <div class="row">

@@ -33,7 +33,7 @@
 
         <div class="header__nav u-flex u-flex--item-center">
             <ul class="header__nav__main u-flex u-flex--items-center">
-                <li><a href="{{route('frontend.how.we.work')}}">How it Work</a></li>
+                <li><a href="{{route('frontend.how.we.work',['type'=>2])}}">How it Work</a></li>
 {{--                <li><a href="{{route('designer.list')}}">Freelancers</a></li>--}}
                 <li><a href="{{route('shop.list')}}">Shop</a></li>
                 <li><a href="{{route('frontend.about.ous')}}">About</a></li>

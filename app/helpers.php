@@ -9,6 +9,11 @@ function getUploadPath()
     return public_path('storage');
 }
 
+function languageGet(){
+    $language='en';
+    return $language;
+}
+
 function baseUrl(){
 //    return 'http://127.0.0.1:8000';
     return 'https://designermusekuwait.com';

@@ -232,6 +232,8 @@ Route::post('milestone/after/payment/result/store', [\App\Http\Controllers\Api\A
 Route::post('notification/token/store', [\App\Http\Controllers\Api\ApiNotificationController::class, 'notificationStore']);
 Route::post('notification/token/delete', [\App\Http\Controllers\Api\ApiNotificationController::class, 'notificationTokenDelete']);
 
+Route::get('how/it/work', [\App\Http\Controllers\Api\ApiPageController::class, 'howItWork']);
+
 
 
 
