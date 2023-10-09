@@ -112,8 +112,8 @@ Route::get('all/chat/list', [\App\Http\Controllers\Frontend\FrontendChatControll
 
 Route::get('designer/payment/success', [\App\Http\Controllers\Admin\PaymentController::class, 'successPayment'])->name('success.payment');
 
-Route::get('frontend/about/ous', [\App\Http\Controllers\Frontend\FrontendChatController::class, 'aboutOus'])->name('frontend.about.ous');
-Route::get('how/we/work', [\App\Http\Controllers\Frontend\FrontendChatController::class, 'howWeWork'])->name('frontend.how.we.work');
+Route::get('frontend/about/ous', [\App\Http\Controllers\PageController::class, 'aboutOus'])->name('frontend.about.ous');
+Route::get('how/we/work', [\App\Http\Controllers\PageController::class, 'howWeWork'])->name('frontend.how.we.work');
 
 
 

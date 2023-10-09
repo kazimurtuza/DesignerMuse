@@ -5,12 +5,9 @@
     <section class="hero how-it-works-hero">
         <div class="container">
             <div class="hero__text">
-                <h1 class="hero__title">How it works</h1>
+                <h1 class="hero__title">{{$howItWork->how_it_work_head_title}}</h1>
                 <p class="hero__para">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.
+                    {{$howItWork->how_it_work_head_title}}
                 </p>
             </div>
         </div>
@@ -21,12 +18,12 @@
         <nav class="tab__menu">
             <ul class="tab__menu-list">
                 <li>
-                    <a href="#designer" class="tab__menu-link active">Designer</a>
+                    <a href="{{route('frontend.how.we.work',['type'=>2])}}" class="tab__menu-link active">Designer</a>
                 </li>
-                <li><a href="#company" class="tab__menu-link">Company</a></li>
-                <li><a href="#customer" class="tab__menu-link">Customer</a></li>
-                <li><a href="#shop" class="tab__menu-link">Shop</a></li>
-                <li><a href="#designer2" class="tab__menu-link">Designer</a></li>
+                <li><a href="{{route('frontend.how.we.work',['type'=>1])}}" class="tab__menu-link">Shop</a></li>
+                <li><a href="{{route('frontend.how.we.work',['type'=>3])}}" class="tab__menu-link">Company</a></li>
+{{--                <li><a href="#customer" class="tab__menu-link">Customer</a></li>--}}
+{{--                <li><a href="#designer2" class="tab__menu-link">Designer</a></li>--}}
             </ul>
         </nav>
 
@@ -41,124 +38,109 @@
                         </h2>
                     </div>
                     <ul class="feature__list">
+                        @if($howItWork->work_process_one_title)
+                            <li class="feature__list-item flex-wrap">
+                                <div class="feature__list-item__icon">
+                                    <img src="{{asset($howItWork->work_process_one_img)}}" alt=""/>
+                                </div>
+                                <div class="feature__list-item__text">
+                                    <h3 class="feature__list-item__title">{{$howItWork->work_process_one_title}}</h3>
+                                    <p class="feature__list-item__para">
+                                        {{$howItWork->work_process_one_details}}
+                                    </p>
+                                </div>
+                            </li>
+                        @endif
+                        @if($howItWork->work_process_two_title)
+                            <li class="feature__list-item flex-wrap">
+                                <div class="feature__list-item__icon">
+                                    <img src="{{asset($howItWork->work_process_two_img)}}" alt=""/>
+                                </div>
+                                <div class="feature__list-item__text">
+                                    <h3 class="feature__list-item__title">{{$howItWork->work_process_two_title}}</h3>
+                                    <p class="feature__list-item__para">
+                                        {{$howItWork->work_process_two_details}}
+                                    </p>
+                                </div>
+                            </li>
+                        @endif
+                        @if($howItWork->work_process_three_title)
+                            <li class="feature__list-item flex-wrap">
+                                <div class="feature__list-item__icon">
+                                    <img src="{{asset($howItWork->work_process_three_img)}}" alt=""/>
+                                </div>
+                                <div class="feature__list-item__text">
+                                    <h3 class="feature__list-item__title">{{$howItWork->work_process_three_title}}</h3>
+                                    <p class="feature__list-item__para">
+                                        {{$howItWork->work_process_three_details}}
+                                    </p>
+                                </div>
+                            </li>
+                        @endif
+                        @if($howItWork->work_process_four_title)
+                            <li class="feature__list-item flex-wrap">
+                                <div class="feature__list-item__icon">
+                                    <img src="{{asset($howItWork->work_process_four_title)}}" alt=""/>
+                                </div>
+                                <div class="feature__list-item__text">
+                                    <h3 class="feature__list-item__title">{{$howItWork->work_process_four_title}}</h3>
+                                    <p class="feature__list-item__para">
+                                        {{$howItWork->work_process_four_details}}
+                                    </p>
+                                </div>
+                            </li>
+                        @endif
+                        @if($howItWork->work_process_five_title)
+                            <li class="feature__list-item flex-wrap">
+                                <div class="feature__list-item__icon">
+                                    <img src="{{asset($howItWork->work_process_five_title)}}" alt=""/>
+                                </div>
+                                <div class="feature__list-item__text">
+                                    <h3 class="feature__list-item__title">{{$howItWork->work_process_five_title}}</h3>
+                                    <p class="feature__list-item__para">
+                                        {{$howItWork->work_process_five_details}}
+                                    </p>
+                                </div>
+                            </li>
+                        @endif
+                            @if($howItWork->work_process_six_title)
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon.png" alt="" />
+{{--                                <img src="{{asset('img')}}/img/feature-icon3.png" alt=""/>--}}
+                                <img src="{{asset($howItWork->work_process_six_title)}}" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
-                                <h3 class="feature__list-item__title">Schedule manage</h3>
+                                <h3 class="feature__list-item__title">{{$howItWork->work_process_six_title}}</h3>
                                 <p class="feature__list-item__para">
-                                    But I must explain to you how all this mistaken idea of
-                                    denouncing pleasure and praising pain. Sed ut perspiciatis
-                                    unde omnis iste natus error sit voluptatem accusantium
-                                    doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore veritatis et quasi architecto beatae vitae
-                                    dicta sunt explicabo.
+                                    {{$howItWork->work_process_six_details}}
                                 </p>
                             </div>
                         </li>
-                        <li class="feature__list-item flex-wrap">
-                            <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon2.png" alt="" />
-                            </div>
-                            <div class="feature__list-item__text">
-                                <h3 class="feature__list-item__title">Meeting with client</h3>
-                                <p class="feature__list-item__para">
-                                    Was born and I will give you a complete account of the
-                                    system, and expound the actual teachings. Nemo enim ipsam
-                                    voluptatem quia voluptas sit aspernatur aut odit aut fugit,
-                                    sed quia consequuntur magni dolores eos qui ratione
-                                    voluptatem sequi nesciunt. Neque porro quisquam est, qui
-                                    dolorem ipsum quia dolor sit amet.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="feature__list-item flex-wrap">
-                            <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon3.png" alt="" />
-                            </div>
-                            <div class="feature__list-item__text">
-                                <h3 class="feature__list-item__title">Booking</h3>
-                                <p class="feature__list-item__para">
-                                    The great explorer of the truth, the master-builder of human
-                                    happiness. No one rejects, dislikes, or avoids pleasure
-                                    itself Nemo enim ipsam voluptatem quia voluptas sit
-                                    aspernatur aut odit aut fugit, sed quia consequuntur magni
-                                    dolores eos qui ratione voluptatem sequi nesciunt. Neque
-                                    porro quisquam est.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="feature__list-item flex-wrap">
-                            <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon.png" alt="" />
-                            </div>
-                            <div class="feature__list-item__text">
-                                <h3 class="feature__list-item__title">Create Project</h3>
-                                <p class="feature__list-item__para">
-                                    The great explorer of the truth, the master-builder of human
-                                    happiness. No one rejects, dislikes, or avoids pleasure
-                                    itself Nemo enim ipsam voluptatem quia voluptas sit
-                                    aspernatur aut odit aut fugit, sed quia consequuntur magni
-                                    dolores eos qui ratione voluptatem sequi nesciunt. Neque
-                                    porro quisquam est.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="feature__list-item flex-wrap">
-                            <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon2.png" alt="" />
-                            </div>
-                            <div class="feature__list-item__text">
-                                <h3 class="feature__list-item__title">Delivery Project</h3>
-                                <p class="feature__list-item__para">
-                                    The great explorer of the truth, the master-builder of human
-                                    happiness. No one rejects, dislikes, or avoids pleasure
-                                    itself Nemo enim ipsam voluptatem quia voluptas sit
-                                    aspernatur aut odit aut fugit, sed quia consequuntur magni
-                                    dolores eos qui ratione voluptatem sequi nesciunt. Neque
-                                    porro quisquam est.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="feature__list-item flex-wrap">
-                            <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon3.png" alt="" />
-                            </div>
-                            <div class="feature__list-item__text">
-                                <h3 class="feature__list-item__title">Reviews</h3>
-                                <p class="feature__list-item__para">
-                                    The great explorer of the truth, the master-builder of human
-                                    happiness. No one rejects, dislikes, or avoids pleasure
-                                    itself Nemo enim ipsam voluptatem quia voluptas sit
-                                    aspernatur aut odit aut fugit, sed quia consequuntur magni
-                                    dolores eos qui ratione voluptatem sequi nesciunt. Neque
-                                    porro quisquam est.
-                                </p>
-                            </div>
-                        </li>
+                            @endif
                     </ul>
                 </div>
             </section>
 
             <!-- User Companies -->
-            <section class="user-companies">
-                <div class="container">
-                    <div class="user-companies__figure">
-                        <img src="{{asset('img')}}/img/companies.png" alt="" />
-                    </div>
-                </div>
-            </section>
+{{--            <section class="user-companies">--}}
+{{--                <div class="container">--}}
+{{--                    <div class="user-companies__figure">--}}
+{{--                        <img src="{{asset('img')}}/img/companies.png" alt=""/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </section>--}}
 
             <!-- How Payments Work -->
             <section class="fig-content how-pmnts-work">
                 <div class="container flex-wrap">
                     <figure class="fig-content__figure">
-                        <img src="{{asset('img')}}/img/fig-content-img1.webp" alt="" />
+{{--                        <img src="{{asset('img')}}/img/fig-content-img1.webp" alt=""/>--}}
+                        <img src="{{asset($howItWork->payment_left_img)}}" alt=""/>
                     </figure>
                     <div class="fig-content__text">
                         <h2 class="fig-content__title">How payments work</h2>
                         <ul class="fig-content__list">
+                            @if($howItWork->how_payment_work_one)
                             <li class="fig-content__list-item flex-wrap">
                                 <div class="fig-content__list-item__icon">
                                     <svg
@@ -176,10 +158,11 @@
                                 </div>
 
                                 <p class="fig-content__list-item__para">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing. sed do
-                                    eiusmod tempor incididunt ut labore.
+                               {{$howItWork->how_payment_work_one}}
                                 </p>
                             </li>
+                            @endif
+                                @if($howItWork->how_payment_work_two)
                             <li class="fig-content__list-item flex-wrap">
                                 <div class="fig-content__list-item__icon">
                                     <svg
@@ -197,10 +180,11 @@
                                 </div>
 
                                 <p class="fig-content__list-item__para">
-                                    Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt
-                                    ut labore. consectetur adipiscing.
+                               {{$howItWork->how_payment_work_two}}
                                 </p>
                             </li>
+                                @endif
+                                @if($howItWork->how_payment_work_three)
                             <li class="fig-content__list-item flex-wrap">
                                 <div class="fig-content__list-item__icon">
                                     <svg
@@ -218,10 +202,10 @@
                                 </div>
 
                                 <p class="fig-content__list-item__para">
-                                    Lorem ipsum dolor sit amet, consectetur sed do eiusmod
-                                    tempor incididunt ut labore. adipiscing.
+                                  {{$howItWork->how_payment_work_three}}
                                 </p>
                             </li>
+                                @endif
                         </ul>
                         <a href="#" class="contact-link btn-solid">Contact Us</a>
                     </div>
@@ -232,12 +216,9 @@
             <section class="faq how-it-works-faq">
                 <div class="container flex-wrap">
                     <div class="faq__text-area">
-                        <h2 class="faq__title">Frequency aks questions</h2>
+                        <h2 class="faq__title"> {{languageGet()=='en'?'Frequency aks questions':'أسئلة التردد'  }}</h2>
                         <p class="faq__para">
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                            quae ab illo inventore veritatis et quasi architecto beatae
-                            vitae dicta sunt explicabo.
+                           {{$howItWork->faq_short_description}}
                         </p>
                     </div>
                     <div class="accordion">
@@ -383,7 +364,7 @@
                     <ul class="feature__list">
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Schedule manage</h3>
@@ -399,7 +380,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon2.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon2.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Meeting with client</h3>
@@ -415,7 +396,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon3.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon3.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Booking</h3>
@@ -431,7 +412,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Create Project</h3>
@@ -447,7 +428,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon2.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon2.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Delivery Project</h3>
@@ -463,7 +444,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon3.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon3.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Reviews</h3>
@@ -485,7 +466,7 @@
             <section class="user-companies">
                 <div class="container">
                     <div class="user-companies__figure">
-                        <img src="{{asset('img')}}/img/companies.png" alt="" />
+                        <img src="{{asset('img')}}/img/companies.png" alt=""/>
                     </div>
                 </div>
             </section>
@@ -494,7 +475,7 @@
             <section class="fig-content how-pmnts-work">
                 <div class="container flex-wrap">
                     <figure class="fig-content__figure">
-                        <img src="{{asset('img')}}/img/hero-img.webp" alt="" />
+                        <img src="{{asset('img')}}/img/hero-img.webp" alt=""/>
                     </figure>
                     <div class="fig-content__text">
                         <h2 class="fig-content__title">How payments work</h2>
@@ -723,7 +704,7 @@
                     <ul class="feature__list">
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Schedule manage</h3>
@@ -739,7 +720,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon2.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon2.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Meeting with client</h3>
@@ -755,7 +736,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon3.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon3.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Booking</h3>
@@ -771,7 +752,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Create Project</h3>
@@ -787,7 +768,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon2.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon2.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Delivery Project</h3>
@@ -803,7 +784,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon3.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon3.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Reviews</h3>
@@ -825,7 +806,7 @@
             <section class="user-companies">
                 <div class="container">
                     <div class="user-companies__figure">
-                        <img src="{{asset('img')}}/img/companies.png" alt="" />
+                        <img src="{{asset('img')}}/img/companies.png" alt=""/>
                     </div>
                 </div>
             </section>
@@ -834,7 +815,7 @@
             <section class="fig-content how-pmnts-work">
                 <div class="container flex-wrap">
                     <figure class="fig-content__figure">
-                        <img src="{{asset('img')}}/img/hero-img.webp" alt="" />
+                        <img src="{{asset('img')}}/img/hero-img.webp" alt=""/>
                     </figure>
                     <div class="fig-content__text">
                         <h2 class="fig-content__title">How payments work</h2>
@@ -1063,7 +1044,7 @@
                     <ul class="feature__list">
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Schedule manage</h3>
@@ -1079,7 +1060,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon2.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon2.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Meeting with client</h3>
@@ -1095,7 +1076,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon3.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon3.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Booking</h3>
@@ -1111,7 +1092,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Create Project</h3>
@@ -1127,7 +1108,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon2.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon2.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Delivery Project</h3>
@@ -1143,7 +1124,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon3.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon3.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Reviews</h3>
@@ -1165,7 +1146,7 @@
             <section class="user-companies">
                 <div class="container">
                     <div class="user-companies__figure">
-                        <img src="{{asset('img')}}/img/companies.png" alt="" />
+                        <img src="{{asset('img')}}/img/companies.png" alt=""/>
                     </div>
                 </div>
             </section>
@@ -1174,7 +1155,7 @@
             <section class="fig-content how-pmnts-work">
                 <div class="container flex-wrap">
                     <figure class="fig-content__figure">
-                        <img src="{{asset('img')}}/img/hero-img.webp" alt="" />
+                        <img src="{{asset('img')}}/img/hero-img.webp" alt=""/>
                     </figure>
                     <div class="fig-content__text">
                         <h2 class="fig-content__title">How payments work</h2>
@@ -1403,7 +1384,7 @@
                     <ul class="feature__list">
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Schedule manage</h3>
@@ -1419,7 +1400,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon2.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon2.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Meeting with client</h3>
@@ -1435,7 +1416,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon3.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon3.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Booking</h3>
@@ -1451,7 +1432,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Create Project</h3>
@@ -1467,7 +1448,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon2.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon2.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Delivery Project</h3>
@@ -1483,7 +1464,7 @@
                         </li>
                         <li class="feature__list-item flex-wrap">
                             <div class="feature__list-item__icon">
-                                <img src="{{asset('img')}}/img/feature-icon3.png" alt="" />
+                                <img src="{{asset('img')}}/img/feature-icon3.png" alt=""/>
                             </div>
                             <div class="feature__list-item__text">
                                 <h3 class="feature__list-item__title">Reviews</h3>
@@ -1505,7 +1486,7 @@
             <section class="user-companies">
                 <div class="container">
                     <div class="user-companies__figure">
-                        <img src="{{asset('img')}}/img/companies.png" alt="" />
+                        <img src="{{asset('img')}}/img/companies.png" alt=""/>
                     </div>
                 </div>
             </section>
@@ -1514,7 +1495,7 @@
             <section class="fig-content how-pmnts-work">
                 <div class="container flex-wrap">
                     <figure class="fig-content__figure">
-                        <img src="{{asset('img')}}/img/hero-img.webp" alt="" />
+                        <img src="{{asset('img')}}/img/hero-img.webp" alt=""/>
                     </figure>
                     <div class="fig-content__text">
                         <h2 class="fig-content__title">How payments work</h2>
@@ -1730,8 +1711,6 @@
             </section>
         </section>
     </section>
-
-
 
 @endsection
 

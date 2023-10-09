@@ -220,6 +220,7 @@ class SettingController extends Controller
 
     public function howWorkStore(Request $request)
     {
+
         $request->validate([
             'how_it_work_head_title_en' => 'required',
             'how_it_work_head_title_ar' => 'required',

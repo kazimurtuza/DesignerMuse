@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\howItworkResource;
 use App\Models\Designer;
 use App\Models\DesignerAppointmentList;
 use App\Models\DesignerChat;
+use App\Models\HowItWork;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,10 +96,4 @@ class FrontendChatController extends Controller
         return $chat;
     }
 
-   public function aboutOus(){
-       return view('frontend.page.aboutOus');
-   }
-   public function howWeWork(){
-       return view('frontend.page.howItWork');
-   }
 }
