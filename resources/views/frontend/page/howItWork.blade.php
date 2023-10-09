@@ -14,14 +14,15 @@
     </section>
 
     <!-- Tab  -->
+    @php $type=request()->get('type'); @endphp
     <section class="how-to-work-tab tab">
         <nav class="tab__menu">
             <ul class="tab__menu-list">
                 <li>
-                    <a href="{{route('frontend.how.we.work',['type'=>2])}}" class="tab__menu-link active">Designer</a>
+                    <a href="{{route('frontend.how.we.work',['type'=>2])}}" class="tab__menu-link active">{{languageGet()=='en'?'Designer':'مصمم' }}</a>
                 </li>
-                <li><a href="{{route('frontend.how.we.work',['type'=>1])}}" class="tab__menu-link">Shop</a></li>
-                <li><a href="{{route('frontend.how.we.work',['type'=>3])}}" class="tab__menu-link">Company</a></li>
+                <li><a href="{{route('frontend.how.we.work',['type'=>1])}}" class="tab__menu-link">{{languageGet()=='en'?'Shop':'محل' }}</a></li>
+                <li><a href="{{route('frontend.how.we.work',['type'=>3])}}" class="tab__menu-link">{{languageGet()=='en'?'Company':'شركة' }}</a></li>
 {{--                <li><a href="#customer" class="tab__menu-link">Customer</a></li>--}}
 {{--                <li><a href="#designer2" class="tab__menu-link">Designer</a></li>--}}
             </ul>
@@ -32,10 +33,24 @@
             <section class="feature">
                 <div class="container">
                     <div class="feature__title">
-                        <h4 class="feature__title-sub slice">Designer</h4>
+                        @if($type==2)
+                        <h4 class="feature__title-sub slice">{{languageGet()=='en'?'Designer':'مصمم' }}</h4>
                         <h2 class="feature__title-main">
-                            On the other hand, we denounce with righteous
+                            {{languageGet()=='en'?'Designer work process':'عملية عمل المصمم' }}
                         </h2>
+                        @endif
+                        @if($type==1)
+                            <h4 class="feature__title-sub slice"> {{languageGet()=='en'?'Shop':'محل' }}</h4>
+                            <h2 class="feature__title-main">
+                                {{languageGet()=='en'?'Shopkeeper work process':'عملية عمل المتسوقين' }}
+                            </h2>
+                        @endif
+                        @if($type==3)
+                            <h4 class="feature__title-sub slice"> {{languageGet()=='en'?'Company':'شركة' }}</h4>
+                            <h2 class="feature__title-main">
+                                {{languageGet()=='en'?'company work process':'عملية عمل الشركة' }}
+                            </h2>
+                        @endif
                     </div>
                     <ul class="feature__list">
                         @if($howItWork->work_process_one_title)
@@ -138,7 +153,8 @@
                         <img src="{{asset($howItWork->payment_left_img)}}" alt=""/>
                     </figure>
                     <div class="fig-content__text">
-                        <h2 class="fig-content__title">How payments work</h2>
+                        <h2 class="fig-content__title">{{languageGet()=='en'?'How payments work':' كيف تعمل المدفوعات' }}
+                        </h2>
                         <ul class="fig-content__list">
                             @if($howItWork->how_payment_work_one)
                             <li class="fig-content__list-item flex-wrap">

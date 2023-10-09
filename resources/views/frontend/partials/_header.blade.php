@@ -8,7 +8,6 @@
         <nav class="offcanvas-nav">
             <ul class="offcanvas-nav-parent">
                 <li class="active"><a href="#">How it Work</a></li>
-                {{-- <li><a href="{{route('designer.list')}}">Freelancers</a></li>--}}
                 <li><a href="#">Shop</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="{{route('frontend.user.login')}}">Log in</a></li>
@@ -203,12 +202,18 @@
                 <li><a href="{{route('frontend.user.registration')}}">Sign Up</a></li>
                 @endif
             </ul>
-            <div class="switch">
-                <input id="language-toggle" class="check-toggle check-toggle-round-flat" type="checkbox">
-                <label for="language-toggle"></label>
-                <span class="on">BN</span>
-                <span class="off">EN</span>
-            </div>
+
+               <div class="switch">
+                    <input id="language-toggle" class="check-toggle check-toggle-round-flat" onclick="language()" type="checkbox">
+                    <label for="language-toggle"></label>
+                    <span class="{{\Illuminate\Support\Facades\Session::get('language')=='ar'?'on':'off'}}" >AR</span>
+                    <span class="{{\Illuminate\Support\Facades\Session::get('language')=='en'?'on':'off'}}" >EN</span>
+                </div>
+
+             <form action="{{route('language.set')}}" method="get">
+                 <button type="submit" style="display: none" id="language"></button>
+            </form>
+
 
         </div>
     </div>

@@ -10,6 +10,9 @@
 {{--<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>--}}
 
 <script>
+    function language(){
+       $('#language').click();
+    }
     @if (Session::has('success'))
     toastr.success($('#successmsg').val())
     @endif

@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Session;
 
 class HowItWorkResource extends JsonResource
 {
@@ -14,7 +15,8 @@ class HowItWorkResource extends JsonResource
      */
     public function toArray($request)
     {
-        if (1) {
+        $language=Session::get('language');
+        if ($language=='en') {
             return [
                 'type' => $this->type,
                 'how_it_work_head_title' => $this->how_it_work_head_title_en,

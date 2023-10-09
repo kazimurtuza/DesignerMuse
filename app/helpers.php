@@ -10,7 +10,13 @@ function getUploadPath()
 }
 
 function languageGet(){
-    $language='en';
+    $info=Session::get('language');
+    if($info){
+        $language=$info;
+    }else{
+        $language='ar';
+    }
+
     return $language;
 }
 
