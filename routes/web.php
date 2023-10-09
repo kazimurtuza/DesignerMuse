@@ -114,6 +114,7 @@ Route::get('designer/payment/success', [\App\Http\Controllers\Admin\PaymentContr
 
 Route::get('frontend/about/ous', [\App\Http\Controllers\PageController::class, 'aboutOus'])->name('frontend.about.ous');
 Route::get('how/we/work', [\App\Http\Controllers\PageController::class, 'howWeWork'])->name('frontend.how.we.work');
+Route::get('language/set', [\App\Http\Controllers\Frontend\LanguageController::class, 'languageSet'])->name('language.set');
 
 
 
