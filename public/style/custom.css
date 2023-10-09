@@ -1,0 +1,202 @@
+.top-title-txt{
+    font-size: 27px;
+    margin-left: 20px;
+}
+.add-btn{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #7cd9ce;
+    height: 10px;
+    width: 10px;
+    padding: 11px;
+    border-radius: 50%;
+    font-weight: 600;
+    color: #31504c;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    margin-top: 2px !important;
+}
+
+
+.select2-container--default .select2-purple .select2-selection--multiple .select2-selection__choice, .select2-purple .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    padding: 0px 22px;
+    display: flex;
+    gap: 18px;
+    font-size: 13px;
+    paddign: 20px;
+}
+
+
+
+
+.colorCoseshow{
+    height: 30px;
+    width: 30px;
+    border-radius: 10px;
+}
+.dropstyle{
+    display: inherit;
+}
+.action-width{
+    width: 100px;
+}
+.dropbtnstyle{
+    font-size: 12px;
+    background: #3f6791;
+    border-radius: 3px;
+}
+
+.dropdown-menu {
+    left: -58px !important;
+}
+.loginerror{
+    color:#ff7373;text-align: center
+}
+
+
+
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    line-height: 31px;
+    /* background: red; */
+    position: relative;
+    top: -12px;
+}
+.imgaddcard {
+    height: 150px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    border-radius: 10px;
+    background: #00000012;
+    cursor: pointer;
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding: 18px 1px;
+    /* color: red; */
+}
+
+.delete-postionset{
+    right: -29px;
+    top: -11px;
+    font-size: 10px;
+    background: #e9e5e5;
+}
+
+.delete-postionset:hover{
+    background: #eee2e2;
+    color:white;
+}
+
+.card-boxshadow{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.add-img-icon{
+    background: #17a2b8;
+    height: 28px;
+    border-radius: 50%;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    cursor: pointer;
+    color: white;
+    margin-right: 4px;
+    font-size: 6px;
+}
+.add-img-icon svg{
+    color: #ffffff !important;
+    height: 14px;
+    font-size: 15px;
+}
+
+.profile-cardstyle{
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 34px;
+    padding: 34px !important;
+}
+
+.custom-drp .dropdown-menu {
+    left: -106px !important;
+}
+.orderdetails-ft{
+    font-size: 18px;
+    font-weight: 600;
+    background: #f5f4f4;
+}
+.detailsorder-top{
+    font-size: 16px;
+    font-weight: 600;
+    color: #998e8e;
+}
+
+.detailsorder-foot{
+    font-size: 19px;
+    font-weight: 600;
+    color: #6c6b6b;
+    background: #e9e9e9;
+}
+.userinfo{
+    border: 1px solid #dfdfdf;
+    padding: 10px;
+    background: #f7f7f7;
+}
+
+
+.bank_card{
+    margin: 5px;
+    background: white;
+    padding: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.balance-card {
+    background: #e28c71;
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+    color: white;
+}
+
+.available-balance-card {
+    background: #0dcaf0;
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
