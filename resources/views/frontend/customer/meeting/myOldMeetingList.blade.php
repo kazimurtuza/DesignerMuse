@@ -102,7 +102,7 @@
                   ></path>
                 </svg>
               </span>
-                        Settings
+                         {{languageGet()=='en'?'Settings':'إعدادات'}}
                     </a>
                 </li>
             </ul>
@@ -112,18 +112,18 @@
     <!-- Projects Table -->
     <section class="projects-table">
         <div class="projects-container container">
-            <h2 class="title">Meeting List</h2>
+            <h2 class="title"> {{languageGet()=='en'?'Meeting List':'مدفوع'}}</h2>
             <div class="table-wrapper">
                 <table>
                     <thead>
                     <tr>
-                        <th class="text-center">Meeting Id</th>
-                        <th class="text-center">Date</th>
-                        <th class="text-center">Type</th>
-                        <th class="text-center">Meeting Time</th>
-                        <th class="text-center">Designer</th>
-                        <th class="text-center">Consultation Outcome</th>
-{{--                        <th class="text-center">Outcome of the consultation</th>--}}
+                        <th class="text-center">{{languageGet()=='en'?'Meeting id':'معرف الاجتماع'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Date':'تاريخ'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Type':'يكتب'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Meeting Time':'وقت الاجتماع'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Designer':'مصمم'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Consultation Outcome':'نتائج التشاور'}}</th>
+{{--                        <th class="text-center">Outcome of the consultation </th>--}}
                     </tr>
                     </thead>
                     <tbody>
@@ -137,11 +137,11 @@
                             <td class="text-center">{{$meeting->designer->name}}</td>
                             <td class="text-center">
                                 @if($meeting->status==1)
-                                    <span class="badge badge-danger bg-info">Consultation only</span>
+                                    <span class="badge badge-danger bg-info"> {{languageGet()=='en'?'Consultation only':'التشاور فقط'}}</span>
                                 @elseif($meeting->status==2)
-                                    <span class="badge badge-danger bg-primary">Start project</span>
+                                    <span class="badge badge-danger bg-primary"> {{languageGet()=='en'?'Start project':'ابدأ المشروع'}}</span>
                                 @elseif($meeting->status==3)
-                                    <span class="badge badge-danger bg-success">Project Completed </span>
+                                    <span class="badge badge-danger bg-success">{{languageGet()=='en'?'Project Completed':'اكتمل المشروع'}}</span>
                                 @endif
                             </td>
 {{--                            <td class="text-center">--}}

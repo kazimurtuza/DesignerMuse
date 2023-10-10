@@ -14,12 +14,12 @@
                 <table  id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th class="text-center">Date</th>
-                        <th class="text-center">Type</th>
-                        <th class="text-center">Start Time</th>
-                        <th class="text-center">Meeting Time</th>
-                        <th class="text-center">Designer</th>
-                        <th class="text-center">Consultation Outcome</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Date':'تاريخ'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Type':'يكتب'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Start Time':'وقت البدء'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Meeting Time ':'وقت الاجتماع'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Designer':'مصمم'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Consultation Outcome':'نتائج التشاور'}}</th>
                         {{--                        <th class="text-center">Outcome of the consultation</th>--}}
                     </tr>
                     </thead>
@@ -33,13 +33,13 @@
                             <td class="text-center">{{$meeting->designer->name}}</td>
                             <td class="text-center">
                                 @if($meeting->status==1)
-                                    <span class="badge badge-danger bg-info">Consultation only</span>
+                                    <span class="badge badge-danger bg-info"> {{languageGet()=='en'?'Consultation only':'التشاور فقط'}}</span>
                                 @elseif($meeting->status==2)
-                                    <span class="badge badge-danger bg-primary">Start project</span>
+                                    <span class="badge badge-danger bg-primary"> {{languageGet()=='en'?'Start project':'ابدأ المشروع'}}</span>
                                 @elseif($meeting->status==0)
-                                    <span class="badge badge-danger bg-danger">Pending</span>
+                                    <span class="badge badge-danger bg-danger"> {{languageGet()=='en'?'Pending':'قيد الانتظار'}}</span>
                                 @elseif($meeting->status==3)
-                                    <span class="badge badge-danger bg-success">Project Completed </span>
+                                    <span class="badge badge-danger bg-success"> {{languageGet()=='en'?'Project Completed':'اكتمل المشروع'}} </span>
                                 @endif
                             </td>
                         </tr>

@@ -40,7 +40,7 @@
                   </g>
                 </svg>
               </span>
-                        Balance
+                        {{languageGet()=='en'?'Balance':'توازن'}}
                     </a>
                 </li>
 
@@ -68,7 +68,7 @@
                   </g>
                 </svg>
               </span>
-                      Profile
+                        {{languageGet()=='en'?'Profile':'حساب تعريفي'}}
                     </a>
                 </li>
                 <li>
@@ -85,7 +85,7 @@
                   </g>
                 </svg>
               </span>
-                        Meeting List
+                         {{languageGet()=='en'?'Meeting List':'قائمة الاجتماعات'}}
                     </a>
                 </li>
                 <li>
@@ -106,7 +106,7 @@
                   </g>
                 </svg>
               </span>
-                        Project List
+                        {{languageGet()=='en'?'Project List':'قائمة المشروع'}}
                     </a>
                 </li>
                 <li>
@@ -123,7 +123,8 @@
                   </g>
                 </svg>
               </span>
-                      Time Schedule List
+
+                        {{languageGet()=='en'?'Time Schedule List':'قائمة الجدول الزمني'}}
                     </a>
                 </li>
                 <li>
@@ -144,7 +145,7 @@
                   ></path>
                 </svg>
               </span>
-                        Settings
+                         {{languageGet()=='en'?'Settings':'إعدادات'}}
                     </a>
                 </li>
             </ul>

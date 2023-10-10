@@ -5,20 +5,28 @@
     <!-- Projects Table -->
     <section class="projects-table">
         <div class="projects-container container">
-            <h2 class="title">Meeting List</h2>
+            <h2 class="title"> {{languageGet()=='en'?'Meeting List':'قائمة الاجتماعات'}} </h2>
             <div class="table-wrapper">
                 <table>
                     <thead>
                     <tr>
-                        <th class="text-center">Meeting ID</th>
-                        <th class="text-center">Date</th>
-                        <th class="text-center">Type</th>
+                        <th class="text-center">{{languageGet()=='en'?'Meeting id':'معرف الاجتماع'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Date':'تاريخ'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Type':'يكتب'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Meeting Time':'وقت الاجتماع'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Client':'عميل'}}</th>
+{{--                        <th class="text-center">{{languageGet()=='en'?'Consultation Outcome':'نتائج التشاور'}}</th>--}}
+
+
+
+
 {{--                        <th class="text-center">Start Time</th>--}}
-                        <th class="text-center">Meeting Time</th>
-                        <th class="text-center">Client</th>
-                        <th class="text-center">Chat</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Options</th>
+
+
+                        <th class="text-center"> {{languageGet()=='en'?'Chat':'محادثة'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Status':'حالة'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Options':'خيارات'}}</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -32,7 +40,7 @@
                             <td class="text-center">{{$meeting->client->name}}</td>
                             <td class="text-center">
                                 <a href="{{route('frontend.designer.project.chat',['meeting_id'=>$meeting->id])}}"
-                                >Chat
+                                >{{languageGet()=='en'?'Chat':'محادثة'}}
                                     <span>
                       <svg
                           version="1.1"
@@ -56,18 +64,19 @@
                                 </td>
                             <td class="text-center">
                                 @if($meeting->status)
-                                    <span class="badge badge-danger bg-success">Completed</span>
+                                    <span class="badge badge-danger bg-success"> {{languageGet()=='en'?'Completed':'مكتمل'}}</span>
                                 @else
-                                    <span class="badge badge-danger bg-danger">Pending</span>
+                                    <span class="badge badge-danger bg-danger"> {{languageGet()=='en'?'Pending':'قيد الانتظار'}}</span>
                                 @endif
                             </td>
                             <td class="text-center">
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle drop-btn-style" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Option
+
+                                        {{languageGet()=='en'?'Option':'خيار'}}
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="">Order Details</a></li>
+                                        <li><a class="dropdown-item" href=""> {{languageGet()=='en'?'Order Details':'تفاصيل الطلب'}}</a></li>
                                     </ul>
                                 </div>
                             </td>

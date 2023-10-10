@@ -5,17 +5,17 @@
     <!-- Projects Table -->
     <section class="projects-table">
         <div class="projects-container container">
-            <h2 class="title">Payment List</h2>
+            <h2 class="title">{{languageGet()=='en'?'Payment List':'قائمة الدفع'}}</h2>
             <div class="table-wrapper">
                 <table>
                     <thead>
                     <tr>
-                        <th class="text-center">SI</th>
-                        <th class="text-center">Code No</th>
-                        <th class="text-center">Sender Name</th>
-                        <th class="text-center">Job Type</th>
-                        <th class="text-center">Date</th>
-                        <th class="text-center">Amount</th>
+                        <th class="text-center"> {{languageGet()=='en'?'SI':'مسلسل'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Code No':'رقم الكود'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Sender Name':'اسم المرسل'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Job Type':'نوع الوظيفة'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Date':'تاريخ'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Amount':'كمية'}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -25,11 +25,11 @@
                             <td class="text-center">{{$payment->id_no}}</td>
                             <td class="text-center">{{$payment->sednerInfo->name}}</td>
                             @if($payment->payment_for==2)
-                                <td class="text-center"><span class="badge bg-primary">Meeting</span></td>
+                                <td class="text-center"><span class="badge bg-primary">{{languageGet()=='en'?'Meeting':'مقابلة'}}</span></td>
                             @elseif($payment->payment_for==1)
-                                <td class="text-center"><span class="badge bg-info">Shop</span></td>
+                                <td class="text-center"><span class="badge bg-info">{{languageGet()=='en'?'Shop':'محل'}}</span></td>
                             @elseif($payment->payment_for==3)
-                                <td class="text-center"><span class="badge bg-success">Project</span></td>
+                                <td class="text-center"><span class="badge bg-success"> {{languageGet()=='en'?'Project':'مشروع'}}</span></td>
                             @endif
                             <td class="center">
                                 {{$payment->date}}

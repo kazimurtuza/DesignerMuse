@@ -6,15 +6,15 @@
     <!-- Projects Table -->
     <section class="projects-table">
         <div class="projects-container container cart-st bg-white">
-            <h4 class="mb-4">Service Rate Set</h4>
+            <h4 class="mb-4"> {{languageGet()=='en'?'Service Rate Set':'تحديد أسعار الخدمة'}}</h4>
 
             <div class="row d-grid balance-card-wrap">
                 <div class="balance-card">
-                    <h4>Total Withdrawal</h4>
+                    <h4> {{languageGet()=='en'?'Total Withdrawal':'الانسحاب الكلي'}}</h4>
                     <h4>${{$totalCompletedWithdrawal}}</h4>
                 </div>
                 <div class="available-balance-card">
-                    <h4>Available Balance</h4>
+                    <h4> {{languageGet()=='en'?'Available Balance':'الرصيد المتوفر'}}</h4>
                     <h4>${{$availableBalance}}</h4>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                     <form action="{{route('designer.withdrawal.request')}}" method="get">
                     <div class="input-group mb-4">
                         <select class="form-select" aria-label="Default select example" name="bank_id" required>
-                            <option value="">Bank Account</option>
+                            <option value=""> {{languageGet()=='en'?'Bank Account':'حساب البنك'}}</option>
                             @foreach($bankList as $bank)
                             <option value="{{$bank->id}}">{{$bank->bank_name}}</option>
                             @endforeach
@@ -33,9 +33,9 @@
                     </div>
 
                         <div class="input-group mb-3">
-                        <input type="number" name="balance" class="form-control"   min="1" max="{{$availableBalance}}" placeholder="Withdrawal Amount" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+                        <input type="number" name="balance" class="form-control"   min="1" max="{{$availableBalance}}" placeholder=" {{languageGet()=='en'?'Amount of withdrawal':'كمية السحب'}}" aria-label="Recipient's username" aria-describedby="button-addon2" required>
                         <div class="input-group-append">
-                            <button class="btn btn-success" type="submit" id="button-addon2">Withdrawal Now</button>
+                            <button class="btn btn-success" type="submit" id="button-addon2"> {{languageGet()=='en'?'Withdrawal Now':'انسحب الآن'}}</button>
                         </div>
                     </div>
                     </form>
@@ -57,30 +57,32 @@
 
                     <section class="projects-table">
                         <div class="projects-container container">
-                            <h6>Last withdrawal list</h6>
+                            <h6> {{languageGet()=='en'?'Last withdrawal list':'قائمة الانسحاب'}}</h6>
                             <div class="table-wrapper">
                                 <table>
                                     <thead>
                                     <tr>
-                                        <th>SI</th>
-                                        <th class="text-center">Withdrawal Code</th>
-                                        <th class="text-center">Request Date</th>
-                                        <th class="text-center">Accept Date</th>
-                                        <th class="text-center">Status</th>
-                                        <th class="text-center">Amount</th>
+
+                                        <th class="text-center">{{languageGet()=='en'?'SI':'رقم المسلسل'}}</th>
+                                        <th class="text-center">{{languageGet()=='en'?'Withdrawal Code':'رقم السحب'}}</th>
+                                        <th class="text-center"> {{languageGet()=='en'?'Request Date':'تاريخ تقديم الطلب'}}</th>
+                                        <th class="text-center"> {{languageGet()=='en'?'Accept Date':'قبول التاريخ'}}</th>
+                                        <th class="text-center"> {{languageGet()=='en'?'Status':'حالة'}}</th>
+                                        <th class="text-center"> {{languageGet()=='en'?'Amount':'كمية'}}</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($withdrawal  as $key=>$withdrawal)
                                         <tr>
                                             <td class="text-center">{{$key+1}}</td>
-                                            <td class="text-center">{{$withdrawal->id_no}}</td>
+                                            <td class="text-center">#{{$withdrawal->id_no}}</td>
                                             <td class="text-center">{{$withdrawal->withdrawal_request_date}}</td>
                                             <td class="text-center">{{$withdrawal->withdrawal_accept_date}}</td>
                                             @if($withdrawal->status==0)
-                                            <td class="text-center"><span class="badge bg-danger">Request Pending</span></td>
+                                            <td class="text-center"><span class="badge bg-danger"> {{languageGet()=='en'?'Request Pending':'الطلب معلق'}}</span></td>
                                                 @else
-                                                <td class="text-center"><span class="badge bg-success">Completed</span></td>
+                                                <td class="text-center"><span class="badge bg-success"> {{languageGet()=='en'?'Completed':'مكتمل'}}</span></td>
                                             @endif
                                             <td style="text-align: right;padding-right: 40px">${{$withdrawal->withdrawal_amount}}</td>
 

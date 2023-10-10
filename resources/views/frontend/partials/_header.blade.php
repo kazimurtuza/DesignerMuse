@@ -33,15 +33,13 @@
         <div class="header__nav u-flex u-flex--item-center">
             <ul class="header__nav__main u-flex u-flex--items-center">
 
-                <li><a href="{{route('frontend.how.we.work',['type'=>2])}}">How it Work</a></li>
-{{--                <li><a href="{{route('designer.list')}}">Freelancers</a></li>--}}
+                <li><a href="{{route('frontend.how.we.work',['type'=>2])}}"> {{languageGet()=='en'?'How it Work':'تسجيل الدخول'}}</a></li>
 
-                {{-- <li><a href="{{route('designer.list')}}">Freelancers</a></li>--}}
-                <li><a href="{{route('shop.list')}}">Shop</a></li>
-                <li><a href="{{route('frontend.about.ous')}}">About</a></li>
-                <li><a href="{{route('shop.product.wishlist')}}">Wishlist</a></li>
+                <li><a href="{{route('shop.list')}}"> {{languageGet()=='en'?'Shop':'محل'}}</a></li>
+                <li><a href="{{route('frontend.about.ous')}}"> {{languageGet()=='en'?'About us':'معلومات عنا'}}</a></li>
+                <li><a href="{{route('shop.product.wishlist')}}"> {{languageGet()=='en'?'Wish List':'قائمة الرغبات'}}</a></li>
                 @if(\Illuminate\Support\Facades\Auth::user() ||Auth::guard('designer')->user())
-                <li><a href="{{route('all.chat.list')}}">Chat</a>
+                <li><a href="{{route('all.chat.list')}}"> {{languageGet()=='en'?'Chat':'محادثة'}}</a>
                     <span class="cat-item">0</span>
                 </li>
                 @endif
@@ -109,22 +107,19 @@
 
                         <ul class="dd-menu">
                             <li>
-                                <a href="{{route('user.my.order.list')}}">My Order</a>
-                            </li>
-                            {{-- <li>Another action</li>--}}
-                            {{-- <li>Something else here</li>--}}
-                            {{-- <li class="divider"></li>--}}
-                            <li>
-                                <a href="{{route('user.my.old.meeting.list')}}">Old Meeting</a>
+                                <a href="{{route('user.my.order.list')}}"> {{languageGet()=='en'?'My Order':'تسجيل الدخول'}}</a>
                             </li>
                             <li>
-                                <a href="{{route('user.my.meeting.list')}}">New Meeting</a>
+                                <a href="{{route('user.my.old.meeting.list')}}"> {{languageGet()=='en'?'Old Meeting':'لقاء قديم'}}</a>
                             </li>
                             <li>
-                                <a href="{{route('user.project.list')}}">Project List</a>
+                                <a href="{{route('user.my.meeting.list')}}"> {{languageGet()=='en'?'New Meeting':'اجتماع جديد'}}</a>
                             </li>
                             <li>
-                                <a href="{{route('frontend.user.logout')}}">Sign Out</a>
+                                <a href="{{route('user.project.list')}}"> {{languageGet()=='en'?'Project List':'قائمة المشروع'}}</a>
+                            </li>
+                            <li>
+                                <a href="{{route('frontend.user.logout')}}"> {{languageGet()=='en'?'Sign Out' : 'خروج'}}</a>
                             </li>
                         </ul>
 
@@ -198,15 +193,15 @@
 
                 @endif
                 @else
-                <li><a href="{{route('frontend.user.login')}}">Log in</a></li>
-                <li><a href="{{route('frontend.user.registration')}}">Sign Up</a></li>
+                <li><a href="{{route('frontend.user.login')}}">{{languageGet()=='en'?'Log in':'تسجيل الدخول'}}</a></li>
+                <li><a href="{{route('frontend.user.registration')}}"> {{languageGet()=='en'?'Sign Up':'اشتراك'}}</a></li>
                 @endif
             </ul>
 
                <div class="switch">
                     <input id="language-toggle" class="check-toggle check-toggle-round-flat" onclick="language()" type="checkbox">
                     <label for="language-toggle"></label>
-                    <span class="{{\Illuminate\Support\Facades\Session::get('language')=='ar'?'on':'off'}}" >AR</span>
+                    <span class="{{\Illuminate\Support\Facades\Session::get('language')=='ar'||\Illuminate\Support\Facades\Session::get('language')==''?'on':'off'}}" >AR</span>
                     <span class="{{\Illuminate\Support\Facades\Session::get('language')=='en'?'on':'off'}}" >EN</span>
                 </div>
 
