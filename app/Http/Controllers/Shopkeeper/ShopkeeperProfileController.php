@@ -13,7 +13,7 @@ class ShopkeeperProfileController extends Controller
 {
     public function profileSetting(){
         $common_data = new Array_();
-        $common_data->title = 'Profile Info';
+        $common_data->title =languageGet()=='en'?'Profile Info':'معلومات الشخصي';
 
         $user_id=Auth::guard('shopkeeper')->user()->id;
         $shopDetails=ShopkeeperDetails::where('user_id',$user_id)->first();

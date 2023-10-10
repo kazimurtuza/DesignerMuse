@@ -2,11 +2,11 @@
 @section('main_content')
 
     <div class="row">
-        <div class="col-12 d-flex justify-content-end mb-2 mt-3">
-            <a href="{{route('shopkeeper.product.add')}}" class="btn btn-primary" >
-                Add Product
-            </a>
-        </div>
+        {{--<div class="col-12 d-flex justify-content-end mb-2 mt-3">--}}
+            {{--<a href="{{route('shopkeeper.product.add')}}" class="btn btn-primary" >--}}
+                {{--Add Product--}}
+            {{--</a>--}}
+        {{--</div>--}}
         <div class="card w-100">
             {{--            <div class="card-header">--}}
             {{--                <h3 class="card-title">DataTable with default features</h3>--}}
@@ -16,13 +16,13 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>SI</th>
-                        <th>Invoice Id</th>
-                        <th>Customer Name</th>
-                        <th>Total Amount</th>
-                        <th>Total Payable</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th> {{languageGet()=='en'?'SI':'رقم الهوية'}}</th>
+                        <th> {{languageGet()=='en'?'Invoice Id':'فاتورة'}}</th>
+                        <th> {{languageGet()=='en'?'Customer Name':'اسم العميل'}}</th>
+                        <th> {{languageGet()=='en'?'Total Amount':'المبلغ الإجمالي'}}</th>
+                        <th> {{languageGet()=='en'?'Total Payable':'مجموع المستحق الدفع'}}</th>
+                        <th> {{languageGet()=='en'?'Status':'حالة'}}</th>
+                        <th> {{languageGet()=='en'?'Option':'خيار'}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -43,18 +43,18 @@
                             </td>
                             <td>
                                 @if($order->status==2)
-                                    <span class="badge badge-success">Completed</span>
+                                    <span class="badge badge-success">{{languageGet()=='en'?'Completed':'مكتمل'}}</span>
                                 @endif
                             </td>
                             <td>
                                 <div class="dropdown dropstyle">
                                     <button class="btn btn-secondary dropdown-toggle dropbtnstyle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Action List
+                                        {{languageGet()=='en'?'Option':'خيار'}}
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="javascript:window.close()"  onclick="editColor({{$order->id}})" >View Details</a>
-                                        <a class="dropdown-item" href="{{route('customer.status.update',['status'=>1,'order_id'=>$order->id])}}">Processing</a>
-                                        <a class="dropdown-item" href="{{route('customer.status.update',['status'=>2,'order_id'=>$order->id])}}">Completed</a>
+                                        <a class="dropdown-item" href="javascript:window.close()"  onclick="editColor({{$order->id}})" >{{languageGet()=='en'?'View Details':'عرض التفاصيل'}}</a>
+                                        <a class="dropdown-item" href="{{route('customer.status.update',['status'=>1,'order_id'=>$order->id])}}">{{languageGet()=='en'?'Processing':'تحميض'}}</a>
+                                        <a class="dropdown-item" href="{{route('customer.status.update',['status'=>2,'order_id'=>$order->id])}}">{{languageGet()=='en'?'Completed':'مكتمل'}}</a>
                                     </div>
 
                                 </div>

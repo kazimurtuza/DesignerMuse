@@ -8,12 +8,12 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Name</label>
+                        <label for="exampleInputEmail1">{{languageGet()=='en'?'Name':'اسم'}}</label>
                         <input type="text" class="form-control" name="name" value="{{$shopDetails->name}}" aria-describedby="emailHelp" placeholder="User Name">
                     </div>
                 </div>
                 <div class="col-sm-8">
-                    <label for="exampleInputEmail1">Top bar Image</label>
+                    <label for="exampleInputEmail1"> {{languageGet()=='en'?'Top bar Image':'صورة للشريط العلوي'}}</label>
                     <div class="mb-2 mt-2 row" style="position: relative">
                         <div class="d-flex w-100">
                                      <span class="add-img-icon" onclick="coverphoto()">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <label for="exampleInputEmail1">Profile Photo</label>
+                    <label for="exampleInputEmail1"> {{languageGet()=='en'?'Profile Photo':'الصوره الشخصيه'}}</label>
 
                     <div class="mb-2 mt-2 row d-flex justify-content-center" style="position: relative">
                         <div class="d-flex justify-content-center">
@@ -52,13 +52,13 @@
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <label for="inputProductDescription" class="form-label"> Portfolio  </label>
+                    <label for="inputProductDescription" class="form-label">  {{languageGet()=='en'?'Description':'وصف'}} </label>
                     <textarea class="form-control" name="description" style="min-height: 100px" id="summernote"
                               rows="3">{{$shopDetails->portfolio}}</textarea>
                 </div>
 
                 <div class="col-sm-12 d-flex justify-content-end">
-                        <button type="submit" class="btn btn-info w-25">Save</button>
+                        <button type="submit" class="btn btn-info w-25"> {{languageGet()=='en'?'Save':'يحفظ'}} </button>
                 </div>
             </div>
             </form>

@@ -30,19 +30,19 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="mb-3">
-                                                <label for="inputProductTitle" class="form-label">Product Name<strong
+                                                <label for="inputProductTitle" class="form-label"> {{languageGet()=='en'?'Product Name':'اسم المنتج'}} <strong
                                                         class="text-danger">*</strong> </label>
                                                 <input type="text" class="form-control" name="name"
                                                        id="inputProductTitle"
-                                                       placeholder="Enter product Name" required>
+                                                       placeholder="{{languageGet()=='en'?'Enter product Name':'أدخل اسم المنتج'}}" required>
                                             </div>
                                         </div>
                                         <div class="col-12 col-sm-6">
                                             <div class="form-group">
-                                                <label>Category <strong class="text-danger">*</strong></label>
+                                                <label> {{languageGet()=='en'?'Category':'فئة'}}  <strong class="text-danger">*</strong></label>
 
                                                 <select class="js-example-basic-single w-100" name="category" required>
-                                                    <option value="">Choose Category</option>
+                                                    <option value=""> {{languageGet()=='en'?'Choose Category':'اختر الفئة'}}</option>
                                                     @foreach($category as $categoryList)
                                                         <option
                                                             value="{{$categoryList->id}}">{{$categoryList->name}}</option>
@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="col-12 col-sm-6">
                                             <div class="form-group">
-                                                <label>Color variant <input type="checkbox" name="is_variant" value="1"
+                                                <label> {{languageGet()=='en'?'Color variable':'متغير اللون'}} <input type="checkbox" name="is_variant" value="1"
                                                                             class="form-check-input ml-2 mt-2 "
                                                                             id="is_variant" onclick="isVariant(this)"> </label> &nbsp; <strong
                                                     class="text-danger">*</strong>
@@ -70,7 +70,7 @@
                                                         {{--                                                        </select>--}}
 
                                                         <select class="js-example-basic-single w-100" style="width: 100%" name="variant"  id="colorvariant" onchange="newcolorItem(this)">
-                                                            <option value="">Choose Color </option>
+                                                            <option value="">{{languageGet()=='en'?'Choose Category':'اختر الفئة'}}</option>
                                                             @foreach($color as $colorlist2)
                                                                 <option value="{{$colorlist2->id}}"
                                                                         colorname="{{$colorlist2->name}}" colorcode="{{$colorlist2->color_code}}">{{$colorlist2->name}}</option>
@@ -108,7 +108,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="inputProductDescription" class="form-label">Description</label>
+                                        <label for="inputProductDescription" class="form-label">{{languageGet()=='en'?'Description':'وصف'}} </label>
                                         <textarea class="form-control" name="description" id="summernote"
                                                   rows="3"></textarea>
 
@@ -116,19 +116,19 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="inputProductDescription" class="form-label">Measurements</label>
+                                        <label for="inputProductDescription" class="form-label"> {{languageGet()=='en'?'Measurements':'قياسات'}} </label>
                                         <textarea class="form-control" name="measurement" id="summernote2"
                                                   rows="3"></textarea>
 
 
                                     </div>
                                     <div class="mb-3">
-                                        <label for="inputProductDescription" class="form-label">Product Photo</label>
+                                        <label for="inputProductDescription" class="form-label"> {{languageGet()=='en'?'Product Photo':'صورة المنتج'}}</label>
                                         <input style="display:none" type="file" name="image" class="image">
                                         <div class="row" id="productImglist">
                                             <div class="col-sm-3 mb-2" style="position:relative" id="222"
                                                  onclick="selectImage('222')">
-                                                <span class="text-center mainphototxt">Main Photo</span>
+                                                <span class="text-center mainphototxt"> {{languageGet()=='en'?'Main Photo':'الصورة الرئيسية'}}</span>
                                                 <input type="hidden" name="product_img[]" class="222input">
                                                 <div
                                                     class="imgaddcard d-flex justify-content-center align-items-center 222view ">
@@ -202,7 +202,7 @@
                                     <div class="row g-3">
 
                                         <div class="col-md-6" id="sellprice">
-                                            <label for="inputPrice" class="form-label">Sell Price <strong
+                                            <label for="inputPrice" class="form-label"> {{languageGet()=='en'?'Sell Price':'سعر البيع'}}<strong
                                                     class="text-danger">*</strong> </label>
                                             <input type="number" name="current_sale_price"
                                                    value="{{old('current_sale_price')}}" class="form-control"
@@ -210,28 +210,28 @@
                                         </div>
 
                                         <div class="col-md-6    mb-3">
-                                            <label for="inputStarPoints" class="form-label">Discount Type</label>
+                                            <label for="inputStarPoints" class="form-label"> {{languageGet()=='en'?'Discount Type':'نوع الخصم'}}</label>
                                             <select name="discount_type" class="form-control" id=""
                                                     onchange="discountType(this)">
-                                                <option value="0">Fixed</option>
-                                                <option value="1">Percentage (%)</option>
+                                                <option value="0"> {{languageGet()=='en'?'Fixed':'مُثَبَّت'}}</option>
+                                                <option value="1"> {{languageGet()=='en'?'Percentage':'نسبه مئويه'}} (%)</option>
                                             </select>
                                         </div>
                                         <div class="col-md-6  mb-3" id="discount" >
-                                            <label for="inputStarPoints" class="form-label">Discount Amount</label>
+                                            <label for="inputStarPoints" class="form-label"> {{languageGet()=='en'?'Discount Amount':'نسبه مئويه'}} (%)</label>
                                             <input type="number" name="discount" class="form-control"
-                                                   placeholder="Amount">
+                                                   placeholder=" {{languageGet()=='en'?'Amount':'كمية'}}">
                                         </div>
                                         <div class="col-md-6  mb-3" id="discount" >
-                                            <label for="inputStarPoints" class="form-label">Shipping Charge</label>
+                                            <label for="inputStarPoints" class="form-label"> {{languageGet()=='en'?'Shipping Charge':'مصاريف الشحن'}} </label>
                                             <input type="number" name="shipping_cost" class="form-control"
-                                                   placeholder="Amount">
+                                                   placeholder="{{languageGet()=='en'?'Amount':'كمية'}}">
                                         </div>
 
 
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <button type="submit" class="btn btn-primary">Save Product</button>
+                                                <button type="submit" class="btn btn-primary"> {{languageGet()=='en'?'Save Product':'قم بتخزين المنتج'}}</button>
                                             </div>
                                         </div>
                                     </div>

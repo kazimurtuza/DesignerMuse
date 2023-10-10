@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cart;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\Array_;
 
 class OrderController extends Controller
 {
@@ -174,9 +175,11 @@ class OrderController extends Controller
 
     public function shopkeeperPendingOrder()
     {
+        $common_data = new Array_();
+        $common_data->title =languageGet()=='en'?'Pending Order':'طلب معلق';
         $shopId = Auth::guard('shopkeeper')->user()->id;
         $orderList = ShopOrder::where('shop_id', $shopId)->where('status', 0)->get();
-        return view('shopkeeper.orderList.pendingOrderList')->with(compact('orderList'));
+        return view('shopkeeper.orderList.pendingOrderList')->with(compact('orderList','common_data'));
 
     }
 

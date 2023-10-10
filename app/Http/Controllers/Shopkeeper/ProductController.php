@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function addProduct()
     {
         $common_data = new Array_();
-        $common_data->title = 'Add Product';
+        $common_data->title =languageGet()=='en'?'Add Product':'أضف منتج';
         $category = ProductCategory::get();
         $color = ProductColor::get();
         return view('shopkeeper.product.add_product')->with(compact('category', 'color', 'common_data'));
@@ -112,7 +112,7 @@ class ProductController extends Controller
     public function productList()
     {
         $common_data = new Array_();
-        $common_data->title = 'Product List';
+        $common_data->title =languageGet()=='en'?'Product List':'قائمة المنتجات';
         $user_id = Auth::guard('shopkeeper')->user()->id;
 
         $productList = ShopProduct::with('colorVariant')->where('user_id', $user_id)->with('productImage')->with('colorVariant')->get();

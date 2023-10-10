@@ -2,9 +2,6 @@
 @section('main_content')
 
     <div class="row">
-        <div class="col-12 d-flex justify-content-end mb-2 mt-3">
-            Financial Report
-        </div>
         <div class="card w-100">
         {{--            <div class="card-header">--}}
         {{--                <h3 class="card-title">DataTable with default features</h3>--}}
@@ -14,12 +11,12 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>SI</th>
-                        <th class="text-center">Withdrawal Code</th>
-                        <th class="text-center">Request Date</th>
-                        <th class="text-center">Accept Date</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Amount</th>
+                        <th> {{languageGet()=='en'?'SI':'رقم الهوية'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Withdrawal Code':'رقم السحب'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Request Date':'تاريخ تقديم الطلب'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Accept Date ':'قبول التاريخ'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Status':'حالة'}}</th>
+                            <th class="text-center"> {{languageGet()=='en'?'Amount':'كمية'}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -30,9 +27,9 @@
                             <td class="text-center">{{$withdrawal->withdrawal_request_date}}</td>
                             <td class="text-center">{{$withdrawal->withdrawal_accept_date}}</td>
                             @if($withdrawal->status==0)
-                                <td class="text-center"><span class="badge bg-danger">Request Pending</span></td>
+                                <td class="text-center"><span class="badge bg-danger"> {{languageGet()=='en'?'Request Pending':'الطلب معلق'}}</span></td>
                             @else
-                                <td class="text-center"><span class="badge bg-success">Completed</span></td>
+                                <td class="text-center"><span class="badge bg-success"> {{languageGet()=='en'?'Completed':'مكتمل'}}</span></td>
                             @endif
                             <td style="text-align: right;padding-right: 40px">${{$withdrawal->withdrawal_amount}}</td>
 

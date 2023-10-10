@@ -2,27 +2,27 @@
 @section('main_content')
 
     <div class="row">
-        <div class="col-12 d-flex justify-content-end mb-2 mt-3">
-            <a href="{{route('shopkeeper.product.add')}}" class="btn btn-primary" >
-                Add Product
-            </a>
-        </div>
+        {{--<div class="col-12 d-flex justify-content-end mb-2 mt-3">--}}
+        {{--<a href="{{route('shopkeeper.product.add')}}" class="btn btn-primary" >--}}
+        {{--Add Product--}}
+        {{--</a>--}}
+        {{--</div>--}}
         <div class="card w-100">
-            {{--            <div class="card-header">--}}
-            {{--                <h3 class="card-title">DataTable with default features</h3>--}}
-            {{--            </div>--}}
-            <!-- /.card-header -->
+        {{--            <div class="card-header">--}}
+        {{--                <h3 class="card-title">DataTable with default features</h3>--}}
+        {{--            </div>--}}
+        <!-- /.card-header -->
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>SI</th>
-                        <th>Invoice Id</th>
-                        <th>Customer Name</th>
-                        <th>Total Amount</th>
-                        <th>Total Payable</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th> {{languageGet()=='en'?'SI':'رقم الهوية'}}</th>
+                        <th> {{languageGet()=='en'?'Invoice Id':'فاتورة'}}</th>
+                        <th> {{languageGet()=='en'?'Customer Name':'اسم العميل'}}</th>
+                        <th> {{languageGet()=='en'?'Total Amount':'المبلغ الإجمالي'}}</th>
+                        <th> {{languageGet()=='en'?'Total Payable':'مجموع المستحق الدفع'}}</th>
+                        <th> {{languageGet()=='en'?'Status':'حالة'}}</th>
+                        <th> {{languageGet()=='en'?'Option':'خيار'}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -43,24 +43,29 @@
                             </td>
                             <td>
                                 @if($order->status==0)
-                                    <span class="badge badge-danger">Pending</span>
+                                    <span class="badge badge-danger"> {{languageGet()=='en'?'Pending':'الى أن'}}</span>
                                 @else
-                                    <span class="badge badge-primary">Processing</span>
+                                    <span class="badge badge-primary"> {{languageGet()=='en'?'Processing':'تحميض'}}</span>
                                 @endif
                             </td>
-                                                        <td>
-                                                            <div class="dropdown dropstyle">
-                                                                <button class="btn btn-secondary dropdown-toggle dropbtnstyle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                    Action List
-                                                                </button>
-                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                                    <a class="dropdown-item" href="javascript:window.close()"  onclick="editColor({{$order->id}})" >View Details</a>
-                                                                    <a class="dropdown-item" href="{{route('customer.status.update',['status'=>1,'order_id'=>$order->id])}}">Processing</a>
-                                                                    <a class="dropdown-item" href="{{route('customer.status.update',['status'=>2,'order_id'=>$order->id])}}">Completed</a>
-                                                                </div>
+                            <td>
+                                <div class="dropdown dropstyle">
+                                    <button class="btn btn-secondary dropdown-toggle dropbtnstyle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                        {{languageGet()=='en'?'Option':'خيار'}}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="javascript:window.close()"
+                                           onclick="editColor({{$order->id}})"> {{languageGet()=='en'?'View Details':'عرض التفاصيل'}}</a>
+                                        <a class="dropdown-item"
+                                           href="{{route('customer.status.update',['status'=>1,'order_id'=>$order->id])}}"> {{languageGet()=='en'?'Processing':'تحميض'}}</a>
+                                        <a class="dropdown-item"
+                                           href="{{route('customer.status.update',['status'=>2,'order_id'=>$order->id])}}"> {{languageGet()=='en'?'Completed':'مكتمل'}}</a>
+                                    </div>
 
-                                                            </div>
-                                                        </td>
+                                </div>
+                            </td>
 
                         </tr>
                     @endforeach
@@ -87,8 +92,6 @@
                         </button>
                     </div>
                     <div class="modal-body">
-
-
 
 
                     </div>
@@ -122,7 +125,7 @@
     </div>
 
 
-    <div id="colorinput"  class="d-hidden-mini" style="display: none">
+    <div id="colorinput" class="d-hidden-mini" style="display: none">
         <div class="row mt-2">
             <div class="col">
                 <input type="text" class="form-control" name="category_name[]" placeholder="Category Name">
@@ -133,9 +136,12 @@
 @endsection
 
 @section('css_plugins')
-    <link rel="stylesheet" href="{{asset('assets/adminPanel')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{asset('assets/adminPanel')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{asset('assets/adminPanel')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet"
+          href="{{asset('assets/adminPanel')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet"
+          href="{{asset('assets/adminPanel')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet"
+          href="{{asset('assets/adminPanel')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endsection
 @section('js_plugins')
     <!-- DataTables  & Plugins -->
@@ -155,10 +161,11 @@
 @section('js')
 
     <script>
-        function addNewColor(){
+        function addNewColor() {
             $('#coloradd').append($('#colorinput').html())
         }
-        function editColor(shop_order_id){
+
+        function editColor(shop_order_id) {
 
             $('#editModal').modal('show');
 
@@ -166,16 +173,16 @@
                 url: "{{route('shop.order.details')}}",
                 type: "get",
                 data: {
-                    order_id:shop_order_id,
+                    order_id: shop_order_id,
                 },
-                success: function(response) {
+                success: function (response) {
                     $('#orderDetails').html(response)
                     // console.log(response);
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     //Do Something to handle error
-                }});
-
+                }
+            });
 
 
         }
