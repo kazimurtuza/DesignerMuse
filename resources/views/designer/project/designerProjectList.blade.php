@@ -10,36 +10,36 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>Order ID</th>
-                        <th>Project Name</th>
-                        <th>Date Line</th>
-                        <th class="center">Client Name</th>
-                        <th class="center">Status</th>
-                        <th class="end">Chat</th>
-                        <th class="end">Action</th>
+                        <th>  {{languageGet()=='en'?'Order ID':'رقم تعريف الطلب الخاص'}}</th>
+                        <th> {{languageGet()=='en'?'Project Name':'اسم المشروع'}}</th>
+                        <th> {{languageGet()=='en'?'Date Line':'خط التاريخ'}}</th>
+                        <th class="center"> {{languageGet()=='en'?'Client Name':'اسم العميل'}}</th>
+                        <th class="center"> {{languageGet()=='en'?'Status':'حالة'}}</th>
+                        <th class="end"> {{languageGet()=='en'?'Chat':'محادثة'}}</th>
+                        <th class="end"> {{languageGet()=='en'?'Option':'خيار'}}</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($projectList as $key=>$project)
                         <tr>
-                            <td>{{$project->meetingInfo?$project->meetingInfo->id_no:'-'}}</td>
+                            <td>#{{$project->meetingInfo?$project->meetingInfo->id_no:'-'}}</td>
                             <td>{{$project->title}}</td>
                             <td>{{$project->dateline}}</td>
                             <td class="center">{{$project->client->name}}</td>
                             <td class="center">
                               @if($project->project_status==0)
-                                    <span class="badge bg-warning text-dark">Pending</span>
+                                    <span class="badge bg-warning text-dark"> {{languageGet()=='en'?'Pending':'قيد الانتظار'}}</span>
                               @endif
                              @if($project->project_status==1)
-                                 <span class="badge bg-primary">On Going</span>
+                                 <span class="badge bg-primary">{{languageGet()=='en'?'On Going ':'جاري التنفيذ'}}</span>
                              @endif
                                   @if($project->project_status==3)
-                                      <span class="badge bg-danger">Rejected</span>
+                                      <span class="badge bg-danger"> {{languageGet()=='en'?'Rejected':'مرفوض'}}</span>
                                   @endif
                             </td>
                             <td class="center">
                                 <a href="{{route('frontend.designer.project.chat',['meeting_id'=>$project->meeting_id])}}"
-                                >Chat
+                                > {{languageGet()=='en'?'Chat':'محادثة'}}
                                     <span>
                       <svg
                           version="1.1"
@@ -60,17 +60,17 @@
                             </td>
                             <td class="d-flex justify-content-end">
                                 @if($project->agreement_accepted==0)
-                                <a href="{{route('project.agreement.set',['id'=>$project->id])}}" class="btn agreementbtn">Set Agreement</a> &nbsp;
+                                <a href="{{route('project.agreement.set',['id'=>$project->id])}}" class="btn agreementbtn">  {{languageGet()=='en'?'Set Agreement':'تعيين الاتفاقية'}}</a> &nbsp;
                                 @endif
                                 <div class="dropdown">
                                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                      Action
+                                       {{languageGet()=='en'?'Action':'فعل'}}
                                     </a>
 
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <li><a class="dropdown-item" href="{{route('designer.project.details',['project_id'=>$project->id])}}">Details</a></li>
+                                        <li><a class="dropdown-item" href="{{route('designer.project.details',['project_id'=>$project->id])}}"> {{languageGet()=='en'?'Details':'تفاصيل'}}</a></li>
                                         @if($project->agreement_accepted==1)
-                                        <li><a href="#" onclick="setprojectId({{$project->id}})" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"> File Add</a></li>
+                                        <li><a href="#" onclick="setprojectId({{$project->id}})" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"> {{languageGet()=='en'?'File Add':'إضافة ملف'}}</a></li>
                                         @endif
 {{--                                        <li><a class="dropdown-item" href="{{route('designer.project.status',['status'=>1,'project_id'=>$project->id])}}">Project Accept</a></li>--}}
 {{--                                        <li><a class="dropdown-item" href="{{route('designer.project.status',['status'=>3,'project_id'=>$project->id])}}">Project Reject</a></li>--}}

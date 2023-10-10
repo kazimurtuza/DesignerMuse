@@ -5,18 +5,18 @@
     <!-- Projects Table -->
     <section class="projects-table">
         <div class="projects-container container">
-            <h2 class="title">Financial Report</h2>
+            <h2 class="title"> {{languageGet()=='en'?'Financial Report':'تقرير مالي'}}</h2>
             <div class="table-wrapper">
                 <table>
                     <thead>
                     <tr>
-                        <th class="text-center">SI</th>
-                        <th class="text-center">Payment Id</th>
-                        <th class="text-center">Order Type</th>
-                        <th class="text-center">Trn Id</th>
-                        <th class="text-center">Payed Amount</th>
-                        <th class="text-center">Service Charge</th>
-                        <th class="text-center">Receivable Amount</th>
+                        <th class="text-center">  {{languageGet()=='en'?'SI':'رقم المسلسل'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Payment Id':'معرف الدفع'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Order Type':'نوع الطلب'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Trn Id ':'رقم التحويلة'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Payed Amount':'المبلغ المدفوع'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Service Charge':'تكلفة الخدمة'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Receivable Amount':'المبلغ المستحق'}}</th>
                     </tr>
                     </thead>
                     <tbody>

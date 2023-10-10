@@ -5,21 +5,18 @@
     <section class="hero-wrap">
         <div class="hero about-hero">
             <div class="about-hero__bg-line">
-                <img src="{{asset('img')}}/img/hero-bg-line.png" alt=""/>
+                <img src="{{asset($aboutOus->about_top_back_ground_img)}}" alt=""/>
             </div>
             <div class="container flex-wrap">
                 <div class="hero__text-content">
-                    <h1 class="about-hero__title">de Finibus Bonorum et Malorum</h1>
+                    <h1 class="about-hero__title">{{$aboutOus->about_top_title}}</h1>
                     <p class="about-hero__para">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                        enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                        nisi ut aliquip ex ea commodo consequat.
+                        {!! $aboutOus->about_top_details !!}
                     </p>
-                    <a href="#" class="about-hero__link btn-solid">CONTACT US</a>
+                    <a href="#" class="about-hero__link btn-solid">{{languageGet()=='en'?'About Us':'اتصل بنا'}}   </a>
                 </div>
                 <figure class="hero__figure-content">
-                    <img src="{{asset('img')}}/img/hero-img.webp" alt="hero-image"/>
+                    <img src="{{asset($aboutOus->about_top_font_img)}}" alt="hero-image"/>
                 </figure>
             </div>
         </div>
@@ -33,23 +30,13 @@
             </figure>
 
             <div class="fig-content__text">
-                <h5 class="fig-content__subtitle slice">About Us</h5>
-                <h2 class="fig-content__title mw-420">Welcome to Designer mouse</h2>
+                <h5 class="fig-content__subtitle slice">{{languageGet()=='en'?'About Us':'معلومات عنا'}}</h5>
+                <h2 class="fig-content__title mw-420">{{$aboutOus->about_title}}</h2>
                 <p class="fig-content__para">
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                    accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                    quae ab illo inventore veritatis et quasi architecto beatae vitae
-                    dicta sunt explicabo.
+                    {!! $aboutOus->about_ous !!}
                 </p>
-                <p class="fig-content__para">
-                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                    fugit, sed quia consequuntur magni dolores eos qui ratione
-                    voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
-                    ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non
-                    numquam eius modi tempora incidunt ut labore et dolore magnam
-                    aliquam quaerat voluptatem.
-                </p>
-                <a href="#" class="fig-content__link btn-solid">CONTACT US</a>
+
+                <a href="#" class="fig-content__link btn-solid"> {{languageGet()=='en'?'CONTACT US':'اتصل بنا'}}</a>
             </div>
         </div>
     </section>
@@ -64,87 +51,24 @@
                 </h2>
             </div>
             <div class="card-carousel">
-                <div class="card-carousel__item">
-                    <a href="#">
-                        <figure class="card-carousel__item-figure">
-                            <img src="{{asset('img')}}/img/image1.webp" alt=""/>
-                        </figure>
-                    </a>
-                    <div class="card-carousel__item-text">
-                        <a href="#" class="card-carousel__item-title"
-                        >At vero eos et accusamus</a
-                        >
-                        <p class="card-carousel__item-bio">Interior Designer</p>
+                @foreach($project as $projectInfo)
+                    <div class="card-carousel__item">
+                        <a href="#">
+                            <figure class="card-carousel__item-figure">
+                                <img src="{{asset($projectInfo->image)}}" alt=""/>
+                            </figure>
+                        </a>
+                        <div class="card-carousel__item-text">
+                            <a href="#" class="card-carousel__item-title"
+                            >{{$projectInfo->title}}</a
+                            >
+                            <p class="card-carousel__item-bio">{{$projectInfo->about}}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="card-carousel__item">
-                    <a href="#">
-                        <figure class="card-carousel__item-figure">
-                            <img src="{{asset('img')}}/img/image2.webp" alt=""/>
-                        </figure>
-                    </a>
-                    <div class="card-carousel__item-text">
-                        <a href="#" class="card-carousel__item-title"
-                        >At vero eos et accusamus</a
-                        >
-                        <p class="card-carousel__item-bio">Interior Designer</p>
-                    </div>
-                </div>
-                <div class="card-carousel__item">
-                    <a href="#">
-                        <figure class="card-carousel__item-figure">
-                            <img src="{{asset('img')}}/img/image3.webp" alt=""/>
-                        </figure>
-                    </a>
-                    <div class="card-carousel__item-text">
-                        <a href="#" class="card-carousel__item-title"
-                        >At vero eos et accusamus</a
-                        >
-                        <p class="card-carousel__item-bio">Interior Designer</p>
-                    </div>
-                </div>
-                <div class="card-carousel__item">
-                    <a href="#">
-                        <figure class="card-carousel__item-figure">
-                            <img src="{{asset('img')}}/img/image1.webp" alt=""/>
-                        </figure>
-                    </a>
-                    <div class="card-carousel__item-text">
-                        <a href="#" class="card-carousel__item-title"
-                        >At vero eos et accusamus</a
-                        >
-                        <p class="card-carousel__item-bio">Interior Designer</p>
-                    </div>
-                </div>
-                <div class="card-carousel__item">
-                    <a href="#">
-                        <figure class="card-carousel__item-figure">
-                            <img src="{{asset('img')}}/img/image2.webp" alt=""/>
-                        </figure>
-                    </a>
-                    <div class="card-carousel__item-text">
-                        <a href="#" class="card-carousel__item-title"
-                        >At vero eos et accusamus</a
-                        >
-                        <p class="card-carousel__item-bio">Interior Designer</p>
-                    </div>
-                </div>
-                <div class="card-carousel__item">
-                    <a href="#">
-                        <figure class="card-carousel__item-figure">
-                            <img src="{{asset('img')}}/img/image3.webp" alt=""/>
-                        </figure>
-                    </a>
-                    <div class="card-carousel__item-text">
-                        <a href="#" class="card-carousel__item-title"
-                        >At vero eos et accusamus</a
-                        >
-                        <p class="card-carousel__item-bio">Interior Designer</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="view__link">
-                <a href="#" class="btn-solid">VIEW ALL</a>
+                <a href="#" class="btn-solid"> {{languageGet()=='en'?'VIEW ALL':'عرض الكل'}}</a>
             </div>
         </div>
     </section>
@@ -153,190 +77,74 @@
     <section class="our-team">
         <div class="container">
             <div class="our-team__text">
-                <h2 class="our-team__text-main">OUR Teams</h2>
-                <p class="our-team__para">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet
-                    laoreet turpis. In hac habitasse platea dictumst.
-                </p>
+                <h2 class="our-team__text-main">{{languageGet()=='en'?'OUR Teams':'فريقنا'}}</h2>
+{{--                <p class="our-team__para">--}}
+{{--                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet--}}
+{{--                    laoreet turpis. In hac habitasse platea dictumst.--}}
+{{--                </p>--}}
             </div>
             <div class="flex-wrap">
-                <div class="our-team__member">
-                    <figure class="our-team__member__figure">
-                        <img src="{{asset('img')}}/img/member-1.png" alt=""/>
-                    </figure>
-                    <div class="our-team__member__text">
-                        <a href="#" class="our-team__member__name">Mike ROBINSON</a>
-                        <p class="our-team__member__bio">Interior Designer</p>
-                        <ul class="our-team__member__socials">
-                            <li>
-                                <a href="#" class="our-team__member__social-link">
-                                    <svg
-                                        width="12"
-                                        height="22"
-                                        viewBox="0 0 12 22"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M11.2749 0.740129C10.9434 0.691022 9.80167 0.592807 8.47578 0.592807C5.70123 0.592807 3.79833 2.287 3.79833 5.39303V8.06937H0.667745V11.7033H3.79833V21.0214H7.55502V11.7033H10.6733L11.1521 8.06937H7.55502V5.74906C7.55502 4.70553 7.83739 3.9812 9.34743 3.9812H11.2749V0.740129Z"
-                                            fill="#656565"
-                                        />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="our-team__member__social-link">
-                                    <svg
-                                        width="20"
-                                        height="17"
-                                        viewBox="0 0 20 17"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M19.7882 2.60174C19.0761 2.90866 18.3027 3.12964 17.5047 3.21558C18.3273 2.7245 18.9534 1.95107 19.248 1.03031C18.4869 1.48455 17.6275 1.81602 16.7313 1.9879C16.0069 1.21446 14.9757 0.735665 13.834 0.735665C11.6364 0.735665 9.86855 2.5158 9.86855 4.70107C9.86855 5.00799 9.90538 5.31491 9.96677 5.60955C6.67659 5.43767 3.74244 3.86625 1.79043 1.46C1.44668 2.04928 1.25025 2.7245 1.25025 3.46111C1.25025 4.83611 1.95003 6.05151 3.01811 6.76357C2.36744 6.73901 1.7536 6.55486 1.2257 6.26022C1.2257 6.2725 1.2257 6.29705 1.2257 6.30933C1.2257 8.23678 2.58842 9.83276 4.40538 10.2011C4.07391 10.287 3.71788 10.3361 3.36186 10.3361C3.10404 10.3361 2.85851 10.3116 2.61297 10.2747C3.11632 11.8462 4.57726 12.9879 6.32056 13.0247C4.95784 14.0928 3.25137 14.7189 1.39757 14.7189C1.0661 14.7189 0.759178 14.7066 0.439982 14.6698C2.19556 15.7993 4.28262 16.45 6.52927 16.45C13.8217 16.45 17.8116 10.4098 17.8116 5.16758C17.8116 4.99571 17.8116 4.82383 17.7994 4.65196C18.5728 4.08723 19.248 3.38745 19.7882 2.60174Z"
-                                            fill="#656565"
-                                        />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="our-team__member__social-link">
-                                    <svg
-                                        width="20"
-                                        height="20"
-                                        viewBox="0 0 20 20"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M17.225 16.0995C17.225 16.5169 16.8935 16.8484 16.4761 16.8484H3.35221C2.9348 16.8484 2.60333 16.5169 2.60333 16.0995V8.14415H4.33436C4.17476 8.6475 4.08882 9.19995 4.08882 9.75241C4.08882 12.8953 6.71605 15.4366 9.94485 15.4366C13.1859 15.4366 15.8132 12.8953 15.8132 9.75241C15.8132 9.19995 15.7272 8.6475 15.5676 8.14415H17.225V16.0995ZM13.7384 9.55598C13.7384 11.5816 12.0442 13.2267 9.94485 13.2267C7.85779 13.2267 6.1636 11.5816 6.1636 9.55598C6.1636 7.53031 7.85779 5.88522 9.94485 5.88522C12.0442 5.88522 13.7384 7.53031 13.7384 9.55598ZM17.225 5.13633C17.225 5.60285 16.8444 5.98343 16.3779 5.98343H14.2417C13.7752 5.98343 13.3946 5.60285 13.3946 5.13633V3.11067C13.3946 2.64415 13.7752 2.26357 14.2417 2.26357H16.3779C16.8444 2.26357 17.225 2.64415 17.225 3.11067V5.13633ZM19.3611 2.58276C19.3611 1.25687 18.2685 0.164236 16.9426 0.164236H2.92253C1.59663 0.164236 0.503999 1.25687 0.503999 2.58276V16.6029C0.503999 17.9287 1.59663 19.0214 2.92253 19.0214H16.9426C18.2685 19.0214 19.3611 17.9287 19.3611 16.6029V2.58276Z"
-                                            fill="#656565"
-                                        />
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
+                @foreach($team as $teamList)
+                    <div class="our-team__member">
+                        <figure class="our-team__member__figure">
+                            <img src="{{asset($teamList->image)}}" alt=""/>
+                        </figure>
+                        <div class="our-team__member__text">
+                            <a href="#" class="our-team__member__name">{{$teamList->name}}</a>
+                            <p class="our-team__member__bio">{{$teamList->about}}</p>
+                            <ul class="our-team__member__socials">
+                                <li>
+                                    <a href="{{$teamList->face_book}}" class="our-team__member__social-link">
+                                        <svg
+                                            width="12"
+                                            height="22"
+                                            viewBox="0 0 12 22"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M11.2749 0.740129C10.9434 0.691022 9.80167 0.592807 8.47578 0.592807C5.70123 0.592807 3.79833 2.287 3.79833 5.39303V8.06937H0.667745V11.7033H3.79833V21.0214H7.55502V11.7033H10.6733L11.1521 8.06937H7.55502V5.74906C7.55502 4.70553 7.83739 3.9812 9.34743 3.9812H11.2749V0.740129Z"
+                                                fill="#656565"
+                                            />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{$teamList->twitter}}" class="our-team__member__social-link">
+                                        <svg
+                                            width="20"
+                                            height="17"
+                                            viewBox="0 0 20 17"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M19.7882 2.60174C19.0761 2.90866 18.3027 3.12964 17.5047 3.21558C18.3273 2.7245 18.9534 1.95107 19.248 1.03031C18.4869 1.48455 17.6275 1.81602 16.7313 1.9879C16.0069 1.21446 14.9757 0.735665 13.834 0.735665C11.6364 0.735665 9.86855 2.5158 9.86855 4.70107C9.86855 5.00799 9.90538 5.31491 9.96677 5.60955C6.67659 5.43767 3.74244 3.86625 1.79043 1.46C1.44668 2.04928 1.25025 2.7245 1.25025 3.46111C1.25025 4.83611 1.95003 6.05151 3.01811 6.76357C2.36744 6.73901 1.7536 6.55486 1.2257 6.26022C1.2257 6.2725 1.2257 6.29705 1.2257 6.30933C1.2257 8.23678 2.58842 9.83276 4.40538 10.2011C4.07391 10.287 3.71788 10.3361 3.36186 10.3361C3.10404 10.3361 2.85851 10.3116 2.61297 10.2747C3.11632 11.8462 4.57726 12.9879 6.32056 13.0247C4.95784 14.0928 3.25137 14.7189 1.39757 14.7189C1.0661 14.7189 0.759178 14.7066 0.439982 14.6698C2.19556 15.7993 4.28262 16.45 6.52927 16.45C13.8217 16.45 17.8116 10.4098 17.8116 5.16758C17.8116 4.99571 17.8116 4.82383 17.7994 4.65196C18.5728 4.08723 19.248 3.38745 19.7882 2.60174Z"
+                                                fill="#656565"
+                                            />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{$teamList->instagram}}" class="our-team__member__social-link">
+                                        <svg
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 20 20"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M17.225 16.0995C17.225 16.5169 16.8935 16.8484 16.4761 16.8484H3.35221C2.9348 16.8484 2.60333 16.5169 2.60333 16.0995V8.14415H4.33436C4.17476 8.6475 4.08882 9.19995 4.08882 9.75241C4.08882 12.8953 6.71605 15.4366 9.94485 15.4366C13.1859 15.4366 15.8132 12.8953 15.8132 9.75241C15.8132 9.19995 15.7272 8.6475 15.5676 8.14415H17.225V16.0995ZM13.7384 9.55598C13.7384 11.5816 12.0442 13.2267 9.94485 13.2267C7.85779 13.2267 6.1636 11.5816 6.1636 9.55598C6.1636 7.53031 7.85779 5.88522 9.94485 5.88522C12.0442 5.88522 13.7384 7.53031 13.7384 9.55598ZM17.225 5.13633C17.225 5.60285 16.8444 5.98343 16.3779 5.98343H14.2417C13.7752 5.98343 13.3946 5.60285 13.3946 5.13633V3.11067C13.3946 2.64415 13.7752 2.26357 14.2417 2.26357H16.3779C16.8444 2.26357 17.225 2.64415 17.225 3.11067V5.13633ZM19.3611 2.58276C19.3611 1.25687 18.2685 0.164236 16.9426 0.164236H2.92253C1.59663 0.164236 0.503999 1.25687 0.503999 2.58276V16.6029C0.503999 17.9287 1.59663 19.0214 2.92253 19.0214H16.9426C18.2685 19.0214 19.3611 17.9287 19.3611 16.6029V2.58276Z"
+                                                fill="#656565"
+                                            />
+                                        </svg>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="our-team__member">
-                    <figure class="our-team__member__figure">
-                        <img src="{{asset('img')}}/img/member-2.png" alt=""/>
-                    </figure>
-                    <div class="our-team__member__text">
-                        <a href="#" class="our-team__member__name">Mike ROBINSON</a>
-                        <p class="our-team__member__bio">Interior Designer</p>
-                        <ul class="our-team__member__socials">
-                            <li>
-                                <a href="#" class="our-team__member__social-link">
-                                    <svg
-                                        width="12"
-                                        height="22"
-                                        viewBox="0 0 12 22"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M11.2749 0.740129C10.9434 0.691022 9.80167 0.592807 8.47578 0.592807C5.70123 0.592807 3.79833 2.287 3.79833 5.39303V8.06937H0.667745V11.7033H3.79833V21.0214H7.55502V11.7033H10.6733L11.1521 8.06937H7.55502V5.74906C7.55502 4.70553 7.83739 3.9812 9.34743 3.9812H11.2749V0.740129Z"
-                                            fill="#656565"
-                                        />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="our-team__member__social-link">
-                                    <svg
-                                        width="20"
-                                        height="17"
-                                        viewBox="0 0 20 17"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M19.7882 2.60174C19.0761 2.90866 18.3027 3.12964 17.5047 3.21558C18.3273 2.7245 18.9534 1.95107 19.248 1.03031C18.4869 1.48455 17.6275 1.81602 16.7313 1.9879C16.0069 1.21446 14.9757 0.735665 13.834 0.735665C11.6364 0.735665 9.86855 2.5158 9.86855 4.70107C9.86855 5.00799 9.90538 5.31491 9.96677 5.60955C6.67659 5.43767 3.74244 3.86625 1.79043 1.46C1.44668 2.04928 1.25025 2.7245 1.25025 3.46111C1.25025 4.83611 1.95003 6.05151 3.01811 6.76357C2.36744 6.73901 1.7536 6.55486 1.2257 6.26022C1.2257 6.2725 1.2257 6.29705 1.2257 6.30933C1.2257 8.23678 2.58842 9.83276 4.40538 10.2011C4.07391 10.287 3.71788 10.3361 3.36186 10.3361C3.10404 10.3361 2.85851 10.3116 2.61297 10.2747C3.11632 11.8462 4.57726 12.9879 6.32056 13.0247C4.95784 14.0928 3.25137 14.7189 1.39757 14.7189C1.0661 14.7189 0.759178 14.7066 0.439982 14.6698C2.19556 15.7993 4.28262 16.45 6.52927 16.45C13.8217 16.45 17.8116 10.4098 17.8116 5.16758C17.8116 4.99571 17.8116 4.82383 17.7994 4.65196C18.5728 4.08723 19.248 3.38745 19.7882 2.60174Z"
-                                            fill="#656565"
-                                        />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="our-team__member__social-link">
-                                    <svg
-                                        width="20"
-                                        height="20"
-                                        viewBox="0 0 20 20"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M17.225 16.0995C17.225 16.5169 16.8935 16.8484 16.4761 16.8484H3.35221C2.9348 16.8484 2.60333 16.5169 2.60333 16.0995V8.14415H4.33436C4.17476 8.6475 4.08882 9.19995 4.08882 9.75241C4.08882 12.8953 6.71605 15.4366 9.94485 15.4366C13.1859 15.4366 15.8132 12.8953 15.8132 9.75241C15.8132 9.19995 15.7272 8.6475 15.5676 8.14415H17.225V16.0995ZM13.7384 9.55598C13.7384 11.5816 12.0442 13.2267 9.94485 13.2267C7.85779 13.2267 6.1636 11.5816 6.1636 9.55598C6.1636 7.53031 7.85779 5.88522 9.94485 5.88522C12.0442 5.88522 13.7384 7.53031 13.7384 9.55598ZM17.225 5.13633C17.225 5.60285 16.8444 5.98343 16.3779 5.98343H14.2417C13.7752 5.98343 13.3946 5.60285 13.3946 5.13633V3.11067C13.3946 2.64415 13.7752 2.26357 14.2417 2.26357H16.3779C16.8444 2.26357 17.225 2.64415 17.225 3.11067V5.13633ZM19.3611 2.58276C19.3611 1.25687 18.2685 0.164236 16.9426 0.164236H2.92253C1.59663 0.164236 0.503999 1.25687 0.503999 2.58276V16.6029C0.503999 17.9287 1.59663 19.0214 2.92253 19.0214H16.9426C18.2685 19.0214 19.3611 17.9287 19.3611 16.6029V2.58276Z"
-                                            fill="#656565"
-                                        />
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="our-team__member">
-                    <figure class="our-team__member__figure">
-                        <img src="{{asset('img')}}/img/member-3.png" alt=""/>
-                    </figure>
-                    <div class="our-team__member__text">
-                        <a href="#" class="our-team__member__name">Mike ROBINSON</a>
-                        <p class="our-team__member__bio">Interior Designer</p>
-                        <ul class="our-team__member__socials">
-                            <li>
-                                <a href="#" class="our-team__member__social-link">
-                                    <svg
-                                        width="12"
-                                        height="22"
-                                        viewBox="0 0 12 22"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M11.2749 0.740129C10.9434 0.691022 9.80167 0.592807 8.47578 0.592807C5.70123 0.592807 3.79833 2.287 3.79833 5.39303V8.06937H0.667745V11.7033H3.79833V21.0214H7.55502V11.7033H10.6733L11.1521 8.06937H7.55502V5.74906C7.55502 4.70553 7.83739 3.9812 9.34743 3.9812H11.2749V0.740129Z"
-                                            fill="#656565"
-                                        />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="our-team__member__social-link">
-                                    <svg
-                                        width="20"
-                                        height="17"
-                                        viewBox="0 0 20 17"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M19.7882 2.60174C19.0761 2.90866 18.3027 3.12964 17.5047 3.21558C18.3273 2.7245 18.9534 1.95107 19.248 1.03031C18.4869 1.48455 17.6275 1.81602 16.7313 1.9879C16.0069 1.21446 14.9757 0.735665 13.834 0.735665C11.6364 0.735665 9.86855 2.5158 9.86855 4.70107C9.86855 5.00799 9.90538 5.31491 9.96677 5.60955C6.67659 5.43767 3.74244 3.86625 1.79043 1.46C1.44668 2.04928 1.25025 2.7245 1.25025 3.46111C1.25025 4.83611 1.95003 6.05151 3.01811 6.76357C2.36744 6.73901 1.7536 6.55486 1.2257 6.26022C1.2257 6.2725 1.2257 6.29705 1.2257 6.30933C1.2257 8.23678 2.58842 9.83276 4.40538 10.2011C4.07391 10.287 3.71788 10.3361 3.36186 10.3361C3.10404 10.3361 2.85851 10.3116 2.61297 10.2747C3.11632 11.8462 4.57726 12.9879 6.32056 13.0247C4.95784 14.0928 3.25137 14.7189 1.39757 14.7189C1.0661 14.7189 0.759178 14.7066 0.439982 14.6698C2.19556 15.7993 4.28262 16.45 6.52927 16.45C13.8217 16.45 17.8116 10.4098 17.8116 5.16758C17.8116 4.99571 17.8116 4.82383 17.7994 4.65196C18.5728 4.08723 19.248 3.38745 19.7882 2.60174Z"
-                                            fill="#656565"
-                                        />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="our-team__member__social-link">
-                                    <svg
-                                        width="20"
-                                        height="20"
-                                        viewBox="0 0 20 20"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M17.225 16.0995C17.225 16.5169 16.8935 16.8484 16.4761 16.8484H3.35221C2.9348 16.8484 2.60333 16.5169 2.60333 16.0995V8.14415H4.33436C4.17476 8.6475 4.08882 9.19995 4.08882 9.75241C4.08882 12.8953 6.71605 15.4366 9.94485 15.4366C13.1859 15.4366 15.8132 12.8953 15.8132 9.75241C15.8132 9.19995 15.7272 8.6475 15.5676 8.14415H17.225V16.0995ZM13.7384 9.55598C13.7384 11.5816 12.0442 13.2267 9.94485 13.2267C7.85779 13.2267 6.1636 11.5816 6.1636 9.55598C6.1636 7.53031 7.85779 5.88522 9.94485 5.88522C12.0442 5.88522 13.7384 7.53031 13.7384 9.55598ZM17.225 5.13633C17.225 5.60285 16.8444 5.98343 16.3779 5.98343H14.2417C13.7752 5.98343 13.3946 5.60285 13.3946 5.13633V3.11067C13.3946 2.64415 13.7752 2.26357 14.2417 2.26357H16.3779C16.8444 2.26357 17.225 2.64415 17.225 3.11067V5.13633ZM19.3611 2.58276C19.3611 1.25687 18.2685 0.164236 16.9426 0.164236H2.92253C1.59663 0.164236 0.503999 1.25687 0.503999 2.58276V16.6029C0.503999 17.9287 1.59663 19.0214 2.92253 19.0214H16.9426C18.2685 19.0214 19.3611 17.9287 19.3611 16.6029V2.58276Z"
-                                            fill="#656565"
-                                        />
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -419,57 +227,77 @@
     <section class="fig-content our-approach">
         <div class="container flex-wrap">
             <figure class="fig-content__figure">
-                <img src="{{asset('img')}}/img/our-approach.webp" alt=""/>
+                <img src="{{asset($aboutOus->our_approach_left_img)}}" alt=""/>
             </figure>
 
             <div class="fig-content__text">
-                <h5 class="fig-content__subtitle slice">Our approach</h5>
-                <h2 class="fig-content__title">
-                    On the other hand, we denounce with righteous
-                </h2>
+                <h5 class="fig-content__subtitle slice mb-5">{{languageGet()=='en'?'Our approach':'نهجنا' }}</h5>
+                {{--                <h2 class="fig-content__title">--}}
+                {{--                    On the other hand, we denounce with righteous--}}
+                {{--                </h2>--}}
                 <ul class="our-approach__list">
-                    <li class="our-approach__list-item flex-wrap">
-                        <div class="our-approach__list-item__icon">
-                            <img src="{{asset('img')}}/img/our-approach-icon1.png" alt=""/>
-                        </div>
-                        <div class="our-approach__list-item__text">
-                            <h3 class="our-approach__list-item__title">
-                                Lorem ipsum dolor sit
-                            </h3>
-                            <p class="our-approach__list-item__para">
-                                But I must explain to you how all this mistaken idea of
-                                denouncing pleasure and praising pain.
-                            </p>
-                        </div>
-                    </li>
-                    <li class="our-approach__list-item flex-wrap">
-                        <div class="our-approach__list-item__icon">
-                            <img src="{{asset('img')}}/img/our-approach-icon2.png" alt=""/>
-                        </div>
-                        <div class="our-approach__list-item__text">
-                            <h3 class="our-approach__list-item__title">
-                                Lorem ipsum dolor sit
-                            </h3>
-                            <p class="our-approach__list-item__para">
-                                Was born and I will give you a complete account of the system,
-                                and expound the actual teachings.
-                            </p>
-                        </div>
-                    </li>
-                    <li class="our-approach__list-item flex-wrap">
-                        <div class="our-approach__list-item__icon">
-                            <img src="{{asset('img')}}/img/our-approach-icon3.png" alt=""/>
-                        </div>
-                        <div class="our-approach__list-item__text">
-                            <h3 class="our-approach__list-item__title">
-                                Lorem ipsum dolor sit
-                            </h3>
-                            <p class="our-approach__list-item__para">
-                                The great explorer of the truth, the master-builder of human
-                                happiness. No one rejects, dislikes, or avoids pleasure itself
-                            </p>
-                        </div>
-                    </li>
+                    @if($aboutOus->our_approach_one_title)
+                        <li class="our-approach__list-item flex-wrap">
+                            <div class="our-approach__list-item__icon">
+                                <img src="{{asset($aboutOus->our_approach_one_img)}}" alt=""/>
+                            </div>
+                            <div class="our-approach__list-item__text">
+                                <h3 class="our-approach__list-item__title">
+                                    {{$aboutOus->our_approach_one_title}}
+                                </h3>
+                                <p class="our-approach__list-item__para">
+                                    {!! $aboutOus->our_approach_one_details !!}
+                                </p>
+                            </div>
+                        </li>
+                    @endif
+                    @if($aboutOus->our_approach_two_title)
+                        <li class="our-approach__list-item flex-wrap">
+                            <div class="our-approach__list-item__icon">
+                                <img src="{{asset($aboutOus->our_approach_two_img)}}" alt=""/>
+                            </div>
+                            <div class="our-approach__list-item__text">
+                                <h3 class="our-approach__list-item__title">
+                                    {{$aboutOus->our_approach_two_title}}
+                                </h3>
+                                <p class="our-approach__list-item__para">
+                                    {!! $aboutOus->our_approach_two_details !!}
+                                </p>
+                            </div>
+                        </li>
+                    @endif
+                        @if($aboutOus->our_approach_three_title)
+                            <li class="our-approach__list-item flex-wrap">
+                                <div class="our-approach__list-item__icon">
+                                    <img src="{{asset($aboutOus->our_approach_three_img)}}" alt=""/>
+                                </div>
+                                <div class="our-approach__list-item__text">
+                                    <h3 class="our-approach__list-item__title">
+                                        {{$aboutOus->our_approach_three_title}}
+                                    </h3>
+                                    <p class="our-approach__list-item__para">
+                                        {!! $aboutOus->our_approach_three_details !!}
+                                    </p>
+                                </div>
+                            </li>
+                        @endif
+                        @if($aboutOus->our_approach_four_title)
+                            <li class="our-approach__list-item flex-wrap">
+                                <div class="our-approach__list-item__icon">
+                                    <img src="{{asset($aboutOus->our_approach_four_img)}}" alt=""/>
+                                </div>
+                                <div class="our-approach__list-item__text">
+                                    <h3 class="our-approach__list-item__title">
+                                        {{$aboutOus->our_approach_four_title}}
+                                    </h3>
+                                    <p class="our-approach__list-item__para">
+                                        {!! $aboutOus->our_approach_four_details !!}
+                                    </p>
+                                </div>
+                            </li>
+                        @endif
+
+
                 </ul>
             </div>
         </div>
@@ -485,7 +313,7 @@
 
 @endsection
 @section('js')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.18/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.18/dist/sweetalert2.all.min.js"></script>
 
 
     <script>

@@ -5,17 +5,17 @@
     <!-- Projects Table -->
     <section class="projects-table schedule-list">
         <div class="projects-container container">
-            <div class="d-flex justify-content-end"><a href="{{route('time.schedule.setting')}}" class="btn btn-success">Add Schedule</a></div>
+            <div class="d-flex justify-content-end"><a href="{{route('time.schedule.setting')}}" class="btn btn-success"> {{languageGet()=='en'?'Add Schedule':'إضافة الجدول الزمني'}}</a></div>
             <h2 class="title">Schedule List</h2>
             <div class="table-wrapper">
                 <table>
                     <thead>
                     <tr>
-                        <th class="text-center">SI</th>
-                        <th class="text-center">Date</th>
-                        <th class="text-center">Total Booked</th>
-                        <th class="text-center">Available schedule</th>
-                        <th class="end">Action</th>
+                        <th class="text-center">  {{languageGet()=='en'?'SI':'مسلسل'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Date':'تاريخ'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Total Booked':'إجمالي الحجز'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Available schedule':'الجدول الزمني المتاح'}}</th>
+                        <th class="end"> {{languageGet()=='en'?'Action':'خيار'}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -32,11 +32,11 @@
                             <td class="end action-btn">
                                 <div class="dropdown">
                                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Action
+                                        {{languageGet()=='en'?'Option':'خيار'}}
                                     </a>
 
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <li><a  class="dropdown-item" href="{{route('time.schedule.edit',['service_time_id'=>$schedule->id])}}">Edit</a></li>
+                                        <li><a  class="dropdown-item" href="{{route('time.schedule.edit',['service_time_id'=>$schedule->id])}}">{{languageGet()=='en'?'Edit':'للتحديث'}}</a></li>
                                     </ul>
                                 </div>
 

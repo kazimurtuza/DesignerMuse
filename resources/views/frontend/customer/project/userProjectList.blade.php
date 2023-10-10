@@ -5,19 +5,20 @@
     <!-- Projects Table -->
     <section class="projects-table">
         <div class="projects-container container">
-            <h2 class="title">Projects</h2>
+            <h2 class="title">  {{languageGet()=='en'?'Projects List':'قائمة المشاريع'}}</h2>
             <div class="table-wrapper">
                 <table>
                     <thead>
                     <tr>
-                        <th class="center">Meeting Id</th>
-                        <th class="center">Project Name</th>
-                        <th class="center">Date Line</th>
-                        <th class="center">Client Name</th>
-                        <th class="center">Uploaded by</th>
-                        <th class="center">Status</th>
-                        <th class="end">Chat</th>
-                        <th class="end">Action</th>
+
+                        <th class="text-center">{{languageGet()=='en'?'Meeting Id':'معرف الاجتماع'}}</th>
+                        <th class="center">{{languageGet()=='en'?'Project Name':'اسم المشروع'}}</th>
+                        <th class="center">  {{languageGet()=='en'?'Date Line':'خط التاريخ'}}</th>
+                        <th class="center">  {{languageGet()=='en'?'Client Name':'اسم العميل'}}</th>
+                        <th class="center"> {{languageGet()=='en'?'Uploaded by ':'تم الرفع بواسطة'}}</th>
+                        <th class="center">  {{languageGet()=='en'?'Status':'حالة'}}</th>
+                        <th class="end">{{languageGet()=='en'?'Chat':'محادثة'}}</th>
+                        <th class="end">{{languageGet()=='en'?'Option':'خيار'}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -36,18 +37,18 @@
                             </td>
                             <td class="center">
                                 @if($project->project_status==0)
-                                    <span class="badge bg-warning text-dark">Pending</span>
+                                    <span class="badge bg-warning text-dark">{{languageGet()=='en'?'Pending':'قيد الانتظار'}}</span>
                                 @endif
                                 @if($project->project_status==1)
-                                    <span class="badge bg-primary">On Going</span>
+                                    <span class="badge bg-primary">{{languageGet()=='en'?'On Going':'يعالج'}}</span>
                                 @endif
                                 @if($project->project_status==2)
-                                    <span class="badge bg-success">Completed</span>
+                                    <span class="badge bg-success">{{languageGet()=='en'?'Completed':'مكتمل'}}</span>
                                 @endif
                             </td>
 
                             <td class="center">
-                                <a href="{{route('client.project.chat',['meeting_id'=>$project->meeting_id])}}">Chat<span>
+                                <a href="{{route('client.project.chat',['meeting_id'=>$project->meeting_id])}}">{{languageGet()=='en'?'Chat':'محادثة'}}<span>
                       <svg
                           version="1.1"
                           xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +71,7 @@
                                 <div class="dropdown">
                                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
                                        id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Action
+                                         {{languageGet()=='en'?'Option':'خيار'}}
                                     </a>
 
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -78,24 +79,24 @@
                                         <li>
                                             <a class="dropdown-item"
                                                href="{{route('accept.agreement',['id'=>$project->id])}}">
-                                                <span>Accept Agreement</span>
+                                                <span> {{languageGet()=='en'?'Accept Agreement':'اقبل الاتفاقية'}}</span>
                                             </a>
                                         </li>
                                         @endif
                                         <li><a class="dropdown-item"
                                                href="{{route('client.project.details',['project_id'=>$project->id])}}">
-                                                <span>Details</span>
+                                                <span>{{languageGet()=='en'?'Details':'تفاصيل'}}</span>
 
                                             </a></li>
                                             @if($project->agreement_accepted==2)
                                         <li>
                                             <span onclick="setprojectId({{$project->id}})" class="dropdown-item"
-                                                  data-bs-toggle="modal" data-bs-target="#exampleModal"> File Add</span>
+                                                  data-bs-toggle="modal" data-bs-target="#exampleModal">{{languageGet()=='en'?'File Add':'إضافة ملف'}}</span>
                                         </li>
                                             @endif
                                             @if($project->agreement_accepted==1&&$project->project_status!=2)
                                                 <li onclick="projectRate({{$project->id}})">
-                                                    <span> &nbsp;&nbsp; Completed</span>
+                                                    <span> &nbsp;&nbsp;  {{languageGet()=='en'?'Completed':'مكتمل'}}</span>
 
                                                 </li>
                                             @endif

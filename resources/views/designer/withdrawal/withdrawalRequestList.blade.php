@@ -5,27 +5,27 @@
     <!-- Projects Table -->
     <section class="projects-table">
         <div class="projects-container container">
-            <h2 class="title">Pending Withdrawal</h2>
+            <h2 class="title">{{languageGet()=='en'?'Pending Withdrawal':'ريثما يتم الانسحاب'}}</h2>
             <div class="table-wrapper">
                 <table>
                     <thead>
                     <tr>
-                        <th>SI</th>
-                        <th class="text-center">Withdrawal Code</th>
-                        <th class="text-center">Request Date</th>
-                        <th class="text-center">Accept Date</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Amount</th>
+                        <th class="text-center">{{languageGet()=='en'?'SI':'رقم المسلسل'}}</th>
+                        <th class="text-center">{{languageGet()=='en'?'Withdrawal Code':'رقم السحب'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Request Date':'تاريخ تقديم الطلب'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Accept Date':'قبول التاريخ'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Status':'حالة'}}</th>
+                        <th class="text-center"> {{languageGet()=='en'?'Amount':'كمية'}}</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($withdrawalList as $key=>$withdrawal)
                         <tr>
                             <td class="text-center">{{$key+1}}</td>
-                            <td class="text-center">{{$withdrawal->id_no}}</td>
+                            <td class="text-center">#{{$withdrawal->id_no}}</td>
                             <td class="text-center">{{$withdrawal->withdrawal_request_date}}</td>
                             <td class="text-center">{{$withdrawal->withdrawal_accept_date}}</td>
-                            <td class="text-center"><span class="badge bg-danger">Request Pending</span></td>
+                            <td class="text-center"><span class="badge bg-danger"> {{languageGet()=='en'?'Request Pending':'الطلب معلق'}}</span></td>
                             <td style="text-align: right;padding-right: 40px">${{$withdrawal->withdrawal_amount}}</td>
 
                         </tr>

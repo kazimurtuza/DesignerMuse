@@ -1,57 +1,55 @@
 @extends('frontend.layout.layout')
 @section('main_content')
     <!-- Hero -->
+{{--    get_it_now_txt--}}
+{{--    get_it_now_txt_link--}}
+{{--    how_work_step_one--}}
+{{--    how_work_step_two--}}
+{{--    how_work_step_three--}}
+{{--    headline_phone_tab--}}
+{{--    phone_tab_details--}}
+{{--    web_tab_details--}}
+{{--    headline_web_tab--}}
+{{--    features--}}
+{{--    features_details--}}
+{{--    feature_one_title--}}
+{{--    feature_one_details--}}
+{{--    feature_two_title--}}
+{{--    feature_two_details--}}
+{{--    feature_three_title--}}
+{{--    feature_three_details--}}
+{{--    looking_for--}}
+{{--    designer_card_title--}}
+{{--    designer_card_img--}}
+{{--    shop_card_title--}}
+{{--    shop_card_img--}}
+{{--    explaining_video_title--}}
+{{--    explaining_video_cover_img--}}
+{{--    explaining_video_link--}}
     <section class="hero">
         <div class="hero__slider">
+            @foreach($homeTopSection as $topSection)
             <div class="hero__slider__item">
                 <div class="hero__slider__figure">
-                    <img data-lazy="{{asset('assets/frontend')}}/img/main-slider.webp" alt="" />
+                    <img data-lazy="{{asset($topSection->img)}}" alt="" />
                 </div>
                 <div class="hero__slider__content">
                     <div class="container">
                         <div class="hero__slider__content__wrap">
-                            <h1>Beautiful Landing Page</h1>
+                            <h1>{{$topSection->top_bar_title}}</h1>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
-                                repudiandae aut ipsam vitae debitis distinctio porro molestiae
-                                quia autem harum? ipsum dolor sit amet consectetur adipisicing
-                                elit. Tenetur ad in nam, suscipit velit aspernatur cupiditate.
-                                Natus, rerum.
+                               {!! $topSection->top_bar_body !!}
                             </p>
                             <div class="hero__slider__buttons">
 
-                                <a class="button-light" href="#">Learn More</a>
-                                <a class="button-primary" href="#">Get it now</a>
+                                <a class="button-light" href="{{$topSection->learn_more_link}}">{{$topSection->learn_more}}</a>
+                                <a class="button-primary" href="{{$topSection->get_it_now_link}}">{{$topSection->get_it_now}}</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- item end -->
-            <div class="hero__slider__item">
-                <div class="hero__slider__figure">
-                    <img data-lazy="{{asset('assets/frontend')}}/img/main-slider.webp" alt="" />
-                </div>
-                <div class="hero__slider__content">
-                    <div class="container">
-                        <div class="hero__slider__content__wrap">
-                            <h1>Beautiful Landing Page</h1>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
-                                repudiandae aut ipsam vitae debitis distinctio porro molestiae
-                                quia autem harum? ipsum dolor sit amet consectetur adipisicing
-                                elit. Tenetur ad in nam, suscipit velit aspernatur cupiditate.
-                                Natus, rerum.
-                            </p>
-                            <div class="hero__slider__buttons">
-                                <a class="button-light" href="#">Learn More</a>
-                                <a class="button-primary" href="#">Get it now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- item end -->
+            @endforeach
         </div>
     </section>
 
@@ -59,40 +57,32 @@
     <section class="steps">
         <div class="container">
             <div class="title">
-                <h2>How it's Work</h2>
+                <h2>{{languageGet()=='en'?'How it Work':'تسجيل الدخول'}}</h2>
             </div>
 
             <div class="steps-wrap">
                 <div class="step">
-                    <div class="figure">1</div>
+                    <div class="figure">{{languageGet()=='en'?'1':'١'}}</div>
                     <div class="text">
+
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae
-                            alias dolores laboriosam quo voluptas maiores. ipsum, dolor sit
-                            amet consectetur adipisicing elit. Ea facilis expedita
-                            inventore.
+                            {!! $home->how_work_step_one !!}
                         </p>
                     </div>
                 </div>
                 <div class="step">
-                    <div class="figure">2</div>
+                    <div class="figure">{{languageGet()=='en'?'2':'٢'}}</div>
                     <div class="text">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae
-                            alias dolores laboriosam quo voluptas maiores. ipsum, dolor sit
-                            amet consectetur adipisicing elit. Ea facilis expedita
-                            inventore.
+                            {!! $home->how_work_step_two !!}
                         </p>
                     </div>
                 </div>
                 <div class="step">
-                    <div class="figure">3</div>
+                    <div class="figure">{{languageGet()=='en'?'3':'٣'}}</div>
                     <div class="text">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae
-                            alias dolores laboriosam quo voluptas maiores. ipsum, dolor sit
-                            amet consectetur adipisicing elit. Ea facilis expedita
-                            inventore.
+                            {!! $home->how_work_step_three !!}
                         </p>
                     </div>
                 </div>
@@ -109,11 +99,9 @@
         <div class="container-alt">
             <div class="counter__row row">
                 <div class="counter__text counter__col col-lg-9 col-md-8">
-                    <h3 class="title">Headline Goes Here</h3>
+                    <h3 class="title">{{$home->headline_phone_tab}}</h3>
                     <p class="dsc">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae
-                        alias dolores laboriosam quo voluptas maiores. ipsum dolor sit
-                        amet consectetur adipisicing elit.
+                       {!! $home->phone_tab_details !!}}
                     </p>
                 </div>
 
@@ -126,13 +114,9 @@
                     <img src="{{asset('assets/frontend')}}/img/laptop.png" alt="laptop" />
                 </div>
                 <div class="counter__text counter__col col-lg-6 col-md-6">
-                    <h3 class="title">Headline Goes Here</h3>
+                    <h3 class="title">{{$home->web_tab_details}}</h3>
                     <p class="dsc">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae
-                        alias dolores laboriosam quo voluptas maiores., ipsum dolor sit
-                        amet consectetur adipisicing elit. Numquam, quas. Voluptatibus
-                        voluptatum laborum, dignissimos at porro perferendis tempora,
-                        labore architecto unde similique cumque maxime consequatur.
+                        {!! $home->web_tab_details !!}
                     </p>
                 </div>
             </div>
@@ -143,14 +127,9 @@
     <section class="features">
         <div class="container">
             <div class="title">
-                <h2>Features</h2>
+                <h2>{{$home->features}}</h2>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae
-                    alias dolores laboriosam quo voluptas maiores. ipsum dolor sit amet
-                    consectetur, adipisicing elit. Autem iure cupiditate fuga tenetur
-                    pariatur perferendis accusantium esse quos harum doloribus rerum
-                    ducimus est quasi illo delectus. perferendis accusantium esse quos
-                    harum doloribus rerum ducimus est quasi illo delectus
+                 {!! $home->features_details !!}
                 </p>
             </div>
 
@@ -173,12 +152,10 @@
                         </svg>
                     </div>
                     <div class="texts">
-                        <h4>Customization</h4>
+
+                        <h4>{{$home->feature_one_title}}</h4>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae
-                            alias dolores laboriosam quo voluptas maiores. ipsum dolor sit
-                            amet consectetur, adipisicing elit. Quas illo assumenda sequi
-                            quam tenetur est officiis aspernatur.
+                            {!! $home->feature_one_details !!}
                         </p>
                     </div>
                 </li>
@@ -200,12 +177,9 @@
                         </svg>
                     </div>
                     <div class="texts">
-                        <h4>Conversation</h4>
+                        <h4>{{$home->feature_two_title}}</h4>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae
-                            alias dolores laboriosam quo voluptas maiores. ipsum dolor sit
-                            amet consectetur, adipisicing elit. Quas illo assumenda sequi
-                            quam tenetur est officiis aspernatur.
+                            {!! $home->feature_two_details !!}
                         </p>
                     </div>
                 </li>
@@ -251,12 +225,9 @@
                         </svg>
                     </div>
                     <div class="texts">
-                        <h4>Performance</h4>
+                        <h4>{{$home->feature_two_title}}</h4>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae
-                            alias dolores laboriosam quo voluptas maiores. ipsum dolor sit
-                            amet consectetur, adipisicing elit. Quas illo assumenda sequi
-                            quam tenetur est officiis aspernatur.
+                            {!! $home->feature_two_details !!}
                         </p>
                     </div>
                 </li>
@@ -267,25 +238,25 @@
     <!-- Category-area -->
     <section class="Category-area">
         <div class="container">
-            <h2 class="title">Looking For</h2>
+            <h2 class="title">{{$home->looking_for}}</h2>
             <div class="grid-wrapper">
                 <a href="{{route('designer.list')}}" class="grid-item">
                     <div class="grid-item__title">
-                        <h3 class="title-main">Interior Designer</h3>
-                        <h4 class="title-sub">{{$totalDesigner}} Designer</h4>
+                        <h3 class="title-main">{{$home->designer_card_title}}</h3>
+                        <h4 class="title-sub">{{$totalDesigner}} {{languageGet()=='en'?'Designer':'مصمم'}}</h4>
                     </div>
                     <div class="grid-item__thumb">
-                        <img src="{{asset('assets/frontend')}}/img/modern-luxury-aesthetics.jpg" alt="designer" />
+                        <img src="{{asset($home->designer_card_img)}}" alt="designer" />
                     </div>
                 </a>
 
                 <a href="{{route('shop.list')}}" class="grid-item">
                     <div class="grid-item__title">
-                        <h3 class="title-main">Furniture</h3>
-                        <h4 class="title-sub">{{$productItem}} item</h4>
+                        <h3 class="title-main"> {{languageGet()=='en'?'Furniture':'أثاث'}}</h3>
+                        <h4 class="title-sub">{{$home->shop_card_title}}  {{languageGet()=='en'?'item':'غرض'}}</h4>
                     </div>
                     <div class="grid-item__thumb">
-                        <img src="{{asset('assets/frontend')}}/img/modern-luxury-aesthetics.jpg" alt="furniture" />
+                        <img src="{{asset($home->shop_card_img)}}" alt="furniture" />
                     </div>
                 </a>
             </div>
@@ -295,15 +266,15 @@
     <!-- Register area -->
     <section class="register-area">
         <div class="container-alt">
-            <h2 class="register-title">Explaining Video</h2>
+            <h2 class="register-title">{{$home->explaining_video_title}}</h2>
             <div class="register-row row">
                 <div class="register-video col-lg-7 col-md-6">
                     <a
-                        href="https://www.youtube.com/watch?v=xRMPKQweySE"
+                        href="{{$home->explaining_video_link}}"
                         class="video-block"
                     >
                         <figure>
-                            <img src="{{asset('assets/frontend')}}/img/modern-luxury-aesthetics.jpg" alt="" />
+                            <img src="{{$home->explaining_video_cover_img}}" alt="" />
                         </figure>
                         <div class="icon">
                             <svg
@@ -335,20 +306,20 @@
                             </svg>
                         </div>
                     </a>
-                    <h2 class="video-title">Register Now</h2>
+                    <h2 class="video-title"> {{languageGet()=='en'?'Register Now':'سجل الان'}}</h2>
                 </div>
 
 
                 <div class="register-form col-lg-5 col-md-6">
                     <form action="{{route('support.message.send')}}" method="post">
                         @csrf
-                        <label for="first-name">Name</label>
+                        <label for="first-name">{{languageGet()=='en'?'Name':'اسم'}}   </label>
                         <input type="text" name="sender_name" id="rtr-first-name"  required/>
-                        <label for="last-name">Email</label>
+                        <label for="last-name">{{languageGet()=='en'?'Email':'بريد إلكتروني'}} </label>
                         <input type="email" name="sender_email" id="rtr-last-name"  required/>
-                        <label for="rtr-email">Message</label>
+                        <label for="rtr-email">{{languageGet()=='en'?'Message':'رسالة'}} </label>
                         <textarea name="sender_message" class="form-control" id="" cols="3" rows="2" required></textarea>
-                        <input type="submit" value="Send" />
+                        <input type="submit" value="{{languageGet()=='en'?'Send':'يرسل'}}"  />
                     </form>
                 </div>
             </div>
@@ -357,7 +328,7 @@
 
     <!-- Items slider -->
     <section class="products-slider">
-        <h2 class="products-slider__title">New Items</h2>
+        <h2 class="products-slider__title"> {{languageGet()=='en'?'New Items ':'عناصر جديدة'}} </h2>
         <div class="slider-wrapper">
             @foreach($shopProductList as $product)
             <a href="{{route('shop.product.details',['product_id'=>$product->id])}}" class="slider-item">

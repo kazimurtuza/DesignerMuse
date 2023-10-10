@@ -64,10 +64,11 @@
                                 </div>
                                 <div class="edit-btn">
                                     @if(Auth::user())
-                                        <span class="portfolio-btn">Add Profile</span>
+                                        <span
+                                            class="portfolio-btn">{{languageGet()=='en'?'Add Profile':'إضافة الملف الشخصي'}} </span>
                                     @else
                                         <span class="portfolio-btn" data-bs-toggle="modal"
-                                              data-bs-target="#profileModal">Update Profile</span>
+                                              data-bs-target="#profileModal"> {{languageGet()=='en'?'Update Profile':'تحديث الملف'}}</span>
 
                                     @endif
 
@@ -84,10 +85,10 @@
                     <div class="portfolio-blog">
                         <div class="container">
                             <div class="portfolio-header">
-                                <h3 class="title">Portfolio Items</h3>
+                                <h3 class="title"> {{languageGet()=='en'?'Portfolio Items':'عناصر المحفظة'}}</h3>
                                 <div>
                                     <span class="portfolio-btn" data-bs-toggle="modal"
-                                          data-bs-target="#protfolioItemModal">Add Portfolio Item</span>
+                                          data-bs-target="#protfolioItemModal"> {{languageGet()=='en'?'Add Portfolio Item':'إضافة عنصر المحفظة'}}   </span>
                                 </div>
                             </div>
                             <div class="portfolio-grid">
@@ -101,16 +102,16 @@
                                     </a>
                                 @endforeach
                             </div>
-                          {!! $projects->links() !!}
-{{--                            <div class="more-link">--}}
-{{--                                <a href="#" class="portfolio-btn">Load More</a>--}}
-{{--                            </div>--}}
+                            {!! $projects->links() !!}
+                            {{--                            <div class="more-link">--}}
+                            {{--                                <a href="#" class="portfolio-btn">Load More</a>--}}
+                            {{--                            </div>--}}
                         </div>
                     </div>
                     <div class="portfolio-blog experiance">
                         <div class="container">
                             <div class="portfolio-header">
-                                <h3 class="title">Education & Experience</h3>
+                                <h3 class="title">  {{languageGet()=='en'?'Education & Experience':'التعليم و الخبرة'}}</h3>
                             </div>
 
                             <div class="experiance-item">
@@ -125,13 +126,14 @@
                     <div class="portfolio-blog">
                         <div class="container">
                             <div class="portfolio-header">
-                                <h3 class="title">Reviews</h3>
+                                <h3 class="title"> {{languageGet()=='en'?'Reviews':'التعليقات'}}</h3>
                             </div>
                             @if(count($rateReview)>0)
                                 @foreach($rateReview as $review)
                                     <div class="review-item">
                                         <div class="ratting-wrapper">
-                                            <div class="ratting active-ratting" style="width: {{($review->rating*100)/5}}%" >
+                                            <div class="ratting active-ratting"
+                                                 style="width: {{($review->rating*100)/5}}%">
                             <span>
                   <svg
                       height="24px"
@@ -308,7 +310,8 @@
                                         </div>
                                         <h4 class="title">{{$review->project_name}}</h4>
                                         <p>{!! $review->review !!}</p>
-                                        <p>{{$review->customerInfo->name}}<span>{{$review->created_at->diffForHumans()}}</span></p>
+                                        <p>{{$review->customerInfo->name}}
+                                            <span>{{$review->created_at->diffForHumans()}}</span></p>
                                     </div>
                                 @endforeach
                             @endif
@@ -420,7 +423,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{route('profile.data.store')}}" method="post">
-                    <style>.note-toolbar.card-header {display: none;}</style>
+                    <style>.note-toolbar.card-header {
+                            display: none;
+                        }</style>
                     @csrf
                     <input type="hidden" name="designer_id" value="{{$profile?$profile->id :''}}">
                     <div class="modal-body" style="padding: 30px">
