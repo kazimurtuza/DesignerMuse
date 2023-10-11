@@ -11,13 +11,16 @@ use App\Models\Withdrawal;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\Array_;
 
 class BankBalanceController extends Controller
 {
     public function bankAccount(){
+        $common_data = new Array_();
+        $common_data->title =languageGet()=='en'?'Bank List':'قائمة البنك';
          $userId =Auth::guard('shopkeeper')->user()->id;
          $bankList=BankAccount::where('user_id',$userId)->where('sector',2)->where('is_active',1)->get();
-         return view('shopkeeper.bankBalance.bankList')->with(compact('bankList'));
+         return view('shopkeeper.bankBalance.bankList')->with(compact('bankList','common_data'));
     }
     public function bankAccountStore(Request $request){
         $userId = Auth::guard('shopkeeper')->user()->id;
@@ -37,6 +40,8 @@ class BankBalanceController extends Controller
 
     function bankBalance()
     {
+        $common_data = new Array_();
+        $common_data->title =languageGet()=='en'?'Balance and withdrawal':'الرصيد والسحب';
         $shop_id = Auth::guard('shopkeeper')->user()->id;
         $totalCashIn = OrderDetails::where('shop_id',$shop_id)->where('payment_status',1)->sum('total_payable');
         $totalServiceCharge=OrderDetails::where('shop_id',$shop_id)->where('payment_status',1)->sum('service_charge');
@@ -46,7 +51,7 @@ class BankBalanceController extends Controller
         $totalCompletedWithdrawal = Withdrawal::where('sector_type', 2)->where('status', 1)->where('designer_id', $shop_id)->sum('withdrawal_amount');
         $availableBalance = $totalCashIn - $totalCashOut-$totalServiceCharge;
         $bankList = BankAccount::where('user_id', $shop_id)->where('sector', 2)->get();
-        return view('shopkeeper.bankBalance.balanceWithdrawal')->with(compact('availableBalance', 'totalCompletedWithdrawal', 'withdrawal', 'bankList'));
+        return view('shopkeeper.bankBalance.balanceWithdrawal')->with(compact('availableBalance', 'totalCompletedWithdrawal', 'withdrawal', 'bankList','common_data'));
     }
 
     function withdrawalRequest(Request $request)

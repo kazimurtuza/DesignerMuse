@@ -3,27 +3,27 @@
 
     <div class="row">
         <div class="col-12 d-flex justify-content-end mb-2 mt-3">
-            <a href="{{route('shopkeeper.product.add')}}" class="btn btn-primary" >
-                Add Product
+            <a href="{{route('shopkeeper.product.add')}}" class="btn btn-primary">
+                {{languageGet()=='en'?'Add Product':'أضف منتج'}}
             </a>
         </div>
         <div class="card w-100">
-{{--            <div class="card-header">--}}
-{{--                <h3 class="card-title">DataTable with default features</h3>--}}
-{{--            </div>--}}
-            <!-- /.card-header -->
+        {{--            <div class="card-header">--}}
+        {{--                <h3 class="card-title">DataTable with default features</h3>--}}
+        {{--            </div>--}}
+        <!-- /.card-header -->
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>SI</th>
-                        <th>Product Name</th>
-                        <th>Category</th>
-                        <th>Product Image</th>
-                        <th>Price</th>
-                        <th>Variant</th>
-                        <th>Status</th>
-                        <th class="action-width">Action</th>
+                        <th> {{languageGet()=='en'?'SI':'مسلسل'}}</th>
+                        <th> {{languageGet()=='en'?'Product Name':'اسم المنتج'}}</th>
+                        <th> {{languageGet()=='en'?'Category':'فئة'}}</th>
+                        <th>{{languageGet()=='en'?'Product Image':'صورة المنتج'}}</th>
+                        <th> {{languageGet()=='en'?'Price':'سعر'}}</th>
+                        <th> {{languageGet()=='en'?'Variant':'البديل'}}</th>
+                        <th> {{languageGet()=='en'?'Status':'حالة'}}</th>
+                        <th class="action-width"> {{languageGet()=='en'?'Action':'خيار'}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -38,7 +38,8 @@
                             </td>
                             <td class="d-flex justify-content-center">
                                 @if( count($product->productImage)>0)
-                                <img height="60px" width="60px" src="{{asset($product->productImage[0]->image)}}" alt="">
+                                    <img height="60px" width="60px" src="{{asset($product->productImage[0]->image)}}"
+                                         alt="">
                                 @endif
                             </td>
                             <td>
@@ -46,25 +47,28 @@
                             </td>
                             <td>
                                 @if($product->is_variant==1)
-                                    <span class="badge badge-primary">Variant</span>
+                                    <span class="badge badge-primary"> {{languageGet()=='en'?'Variant':'بديل'}}</span>
                                 @else
-                                    <span class="badge badge-danger">No Variant</span>
+                                    <span class="badge badge-danger"> {{languageGet()=='en'?'No Variant':'لا بديل'}}</span>
                                 @endif
                             </td>
                             <td>
                                 @if($product->status==1)
-                                    <span class="badge badge-primary">Active</span>
+                                    <span class="badge badge-primary">  {{languageGet()=='en'?'Active':'نشيط'}}</span>
                                 @else
-                                    <span class="badge badge-danger">Inactive</span>
+                                    <span class="badge badge-danger">  {{languageGet()=='en'?'Inactive':'غير نشط'}}</span>
                                 @endif
                             </td>
                             <td>
                                 <div class="dropdown dropstyle">
-                                    <button class="btn btn-secondary dropdown-toggle dropbtnstyle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Action List
+                                    <button class="btn btn-secondary dropdown-toggle dropbtnstyle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                        {{languageGet()=='en'?'Option':'خيار'}}
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{{route('shop.product.edit',['product_id'=>$product->id])}}">Edit</a>
+                                        <a class="dropdown-item"
+                                           href="{{route('shop.product.edit',['product_id'=>$product->id])}}">{{languageGet()=='en'?'Edit':'تصحيح'}}</a>
                                     </div>
                                 </div>
                             </td>
@@ -99,7 +103,8 @@
                         <div id="coloradd">
                             <div class="row">
                                 <div class="col">
-                                    <input type="text" class="form-control" name="category_name[]" placeholder="Category Name">
+                                    <input type="text" class="form-control" name="category_name[]"
+                                           placeholder="Category Name">
                                 </div>
                             </div>
 
@@ -137,7 +142,8 @@
                             <div class="row">
                                 <div class="col">
                                     <input type="text" id="colorid" name="category_id" style="display: none">
-                                    <input type="text" id="colorName" class="form-control" name="category_name" placeholder="Category name">
+                                    <input type="text" id="colorName" class="form-control" name="category_name"
+                                           placeholder="Category name">
                                 </div>
                             </div>
                         </div>
@@ -153,7 +159,7 @@
     </div>
 
 
-    <div id="colorinput"  class="d-hidden-mini" style="display: none">
+    <div id="colorinput" class="d-hidden-mini" style="display: none">
         <div class="row mt-2">
             <div class="col">
                 <input type="text" class="form-control" name="category_name[]" placeholder="Category Name">
@@ -164,9 +170,12 @@
 @endsection
 
 @section('css_plugins')
-    <link rel="stylesheet" href="{{asset('assets/adminPanel')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{asset('assets/adminPanel')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{asset('assets/adminPanel')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet"
+          href="{{asset('assets/adminPanel')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet"
+          href="{{asset('assets/adminPanel')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet"
+          href="{{asset('assets/adminPanel')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endsection
 @section('js_plugins')
     <!-- DataTables  & Plugins -->
@@ -186,10 +195,11 @@
 @section('js')
 
     <script>
-        function addNewColor(){
+        function addNewColor() {
             $('#coloradd').append($('#colorinput').html())
         }
-        function editColor(categoryList){
+
+        function editColor(categoryList) {
             $('#editModal').modal('show');
             $("#colorid").val(categoryList.id);
             $("#colorName").val(categoryList.name);

@@ -2,7 +2,8 @@
 @section('main_content')
 <div>
     <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#exampleModal">
-        Add Bank Account
+
+        {{languageGet()=='en'?'Add Bank Account':'إضافة حساب مصرفي'}}
     </button>
 
     <!-- Modal -->
@@ -12,7 +13,7 @@
                 @csrf
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{languageGet()=='en'?'Add Bank Account':'إضافة حساب مصرفي'}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -20,26 +21,26 @@
                 <div class="modal-body">
                         <div class="modal-body">
                             <div class="mb-3 mt-3">
-                                <label for="email" class="form-label">Bank Name:</label>
+                                <label for="email" class="form-label"> {{languageGet()=='en'?'Bank Name':'اسم البنك'}}:</label>
                                 <input type="text" class="form-control" id="email"  name="bank_name" required>
                             </div>
                             <div class="mb-3">
-                                <label for="pwd" class="form-label">Account Name:</label>
+                                <label for="pwd" class="form-label"> {{languageGet()=='en'?'Account Name':'إسم الحساب'}}:</label>
                                 <input type="text" class="form-control" id="pwd"  name="acc_name" required>
                             </div>
                             <div class="mb-3">
-                                <label for="pwd" class="form-label">Account Number:</label>
+                                <label for="pwd" class="form-label"> {{languageGet()=='en'?'Account Number':'رقم حساب'}}:</label>
                                 <input type="text" class="form-control" id="pwd"  name="acc_number" required>
                             </div>
                             <div class="mb-3">
-                                <label for="pwd" class="form-label">Routing  Number:</label>
+                                    <label for="pwd" class="form-label"> {{languageGet()=='en'?'Routing  Number':'رقم الشحنه'}}:</label>
                                 <input type="text" class="form-control" id="pwd"  name="routing_number" required>
                             </div>
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    {{--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
+                    <button type="submit" class="btn btn-primary">{{languageGet()=='en'?'Save':'يحفظ'}}</button>
                 </div>
             </div>
             </form>

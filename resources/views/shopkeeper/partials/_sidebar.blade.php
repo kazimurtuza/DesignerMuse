@@ -39,7 +39,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon far fa-envelope"></i>
                         <p>
-                            Shop Setting
+                            {{languageGet()=='en'?'Shop Setting':'محل'}}
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -47,7 +47,7 @@
                         <li class="nav-item">
                             <a href="{{route('shopkeeper.profile.setting')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Profile Setting</p>
+                                <p>  {{languageGet()=='en'?'Profile Setting':'إعداد الملف الشخصي'}}</p>
                             </a>
                         </li>
 
@@ -58,7 +58,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Product List
+                             {{languageGet()=='en'?'Product List':'قائمة المنتجات'}}
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -67,13 +67,13 @@
                         <li class="nav-item">
                             <a href="{{route('shopkeeper.product.add')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Product Add</p>
+                                <p>  {{languageGet()=='en'?'Product Add':'إضافة المنتج'}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('shopkeeper.product.list')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Product List</p>
+                                <p> {{languageGet()=='en'?'Product List':'قائمة المنتجات'}}</p>
                             </a>
                         </li>
                     </ul>
@@ -82,7 +82,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Order List
+                             {{languageGet()=='en'?'Order List':'لائحة الطلبات'}}
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -91,19 +91,19 @@
                         <li class="nav-item">
                             <a href="{{route('shopkeeper.pending.customer')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Pending Order</p>
+                                <p> {{languageGet()=='en'?'Pending Order':'طلب معلق'}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('shopkeeper.processing.customer')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Processing order</p>
+                                <p> {{languageGet()=='en'?'Processing order':'معالجة الطلب'}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('shopkeeper.completed.customer')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Completed order</p>
+                                <p>{{languageGet()=='en'?'Completed order ':'الطلب جاهز'}}</p>
                             </a>
                         </li>
                     </ul>
@@ -112,7 +112,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Bank Balance List
+                             {{languageGet()=='en'?'Bank Balance List':'قائمة رصيد البنك'}}
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -121,13 +121,13 @@
                         <li class="nav-item">
                             <a href="{{route('shopkeeper.bank.list')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Bank List</p>
+                                <p> {{languageGet()=='en'?'Bank List':'قائمة البنك'}}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('shopkeeper.balance')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Balance Withdrawal</p>
+                                <p> {{languageGet()=='en'?'Balance Withdrawal':'سحب الرصيد'}}</p>
                             </a>
                         </li>
                     </ul>
@@ -136,7 +136,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Withdrawal
+                             {{languageGet()=='en'?'Withdrawal':'انسحاب'}}
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -145,7 +145,7 @@
                         <li class="nav-item">
                             <a href="{{route('shopkeeper.withdrawal.list')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Withdrawal List</p>
+                                <p> {{languageGet()=='en'?'Withdrawal List':'قائمة الانسحاب'}}</p>
                             </a>
                         </li>
                     </ul>
@@ -154,7 +154,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Financial Report
+                             {{languageGet()=='en'?'Financial Report':'تقرير مالي'}}
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -163,7 +163,7 @@
                         <li class="nav-item">
                             <a href="{{route('shopkeeper.financial.report')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Financial Report</p>
+                                <p> {{languageGet()=='en'?'Financial Report':'تقرير مالي'}}</p>
                             </a>
                         </li>
                     </ul>

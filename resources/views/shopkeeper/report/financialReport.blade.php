@@ -2,9 +2,6 @@
 @section('main_content')
 
     <div class="row">
-        <div class="col-12 d-flex justify-content-end mb-2 mt-3">
-          Financial Report
-        </div>
         <div class="card w-100">
         {{--            <div class="card-header">--}}
         {{--                <h3 class="card-title">DataTable with default features</h3>--}}
@@ -14,26 +11,26 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>SI</th>
-                        <th>Date</th>
-                        <th>Order ID</th>
-                        <th>Payment Trn</th>
-                        <th>Total Payed</th>
-                        <th>Service Charge</th>
-                        <th>Receivable Amount</th>
+                        <th>{{languageGet()=='en'?'SI':'رقم الهوية'}}</th>
+                        <th>{{languageGet()=='en'?'Date':'تاريخ'}}</th>
+                        <th>{{languageGet()=='en'?'Order ID':'أرقام الطلب'}}</th>
+                        <th>{{languageGet()=='en'?'Payment Trn ':'رقم معاملة الدفع'}}</th>
+                        <th>{{languageGet()=='en'?'Total Payed':'إجمالي المبالغ المدفوعة'}}</th>
+                        <th>{{languageGet()=='en'?'Service Charge':'تكلفة الخدمة'}}</th>
+                        <th>{{languageGet()=='en'?'Receivable Amount':'المبلغ المستحق'}}</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($orderInfo as $key=>$order)
-                    <tr>
-                        <td>{{$key+1}}</td>
-                        <td>{{date('d-m-y',strtotime($order->orderInfo->date))}}</td>
-                        <td>#{{$order->invoice_id}}</td>
-                        <td>{{$order->orderInfo->trn_id}}</td>
-                        <td>{{$pay=$order->orderItems->sum('total_payable')}}</td>
-                        <td>{{$charge=$order->orderItems->sum('service_charge')}}</td>
-                        <td>{{$pay-$charge}}</td>
-                    </tr>
+                        <tr>
+                            <td>{{$key+1}}</td>
+                            <td>{{date('d-m-y',strtotime($order->orderInfo->date))}}</td>
+                            <td>#{{$order->invoice_id}}</td>
+                            <td>{{$order->orderInfo->trn_id}}</td>
+                            <td>{{$pay=$order->orderItems->sum('total_payable')}}</td>
+                            <td>{{$charge=$order->orderItems->sum('service_charge')}}</td>
+                            <td>{{$pay-$charge}}</td>
+                        </tr>
                     @endforeach
 
                     </tbody>
@@ -62,7 +59,8 @@
                         <div id="coloradd">
                             <div class="row">
                                 <div class="col">
-                                    <input type="text" class="form-control" name="category_name[]" placeholder="Category Name">
+                                    <input type="text" class="form-control" name="category_name[]"
+                                           placeholder="Category Name">
                                 </div>
                             </div>
 
@@ -100,7 +98,8 @@
                             <div class="row">
                                 <div class="col">
                                     <input type="text" id="colorid" name="category_id" style="display: none">
-                                    <input type="text" id="colorName" class="form-control" name="category_name" placeholder="Category name">
+                                    <input type="text" id="colorName" class="form-control" name="category_name"
+                                           placeholder="Category name">
                                 </div>
                             </div>
                         </div>
@@ -116,7 +115,7 @@
     </div>
 
 
-    <div id="colorinput"  class="d-hidden-mini" style="display: none">
+    <div id="colorinput" class="d-hidden-mini" style="display: none">
         <div class="row mt-2">
             <div class="col">
                 <input type="text" class="form-control" name="category_name[]" placeholder="Category Name">
@@ -127,9 +126,12 @@
 @endsection
 
 @section('css_plugins')
-    <link rel="stylesheet" href="{{asset('assets/adminPanel')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{asset('assets/adminPanel')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{asset('assets/adminPanel')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet"
+          href="{{asset('assets/adminPanel')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet"
+          href="{{asset('assets/adminPanel')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet"
+          href="{{asset('assets/adminPanel')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endsection
 @section('js_plugins')
     <!-- DataTables  & Plugins -->
