@@ -1,31 +1,5 @@
 @extends('frontend.layout.layout')
 @section('main_content')
-    <!-- Hero -->
-{{--    get_it_now_txt--}}
-{{--    get_it_now_txt_link--}}
-{{--    how_work_step_one--}}
-{{--    how_work_step_two--}}
-{{--    how_work_step_three--}}
-{{--    headline_phone_tab--}}
-{{--    phone_tab_details--}}
-{{--    web_tab_details--}}
-{{--    headline_web_tab--}}
-{{--    features--}}
-{{--    features_details--}}
-{{--    feature_one_title--}}
-{{--    feature_one_details--}}
-{{--    feature_two_title--}}
-{{--    feature_two_details--}}
-{{--    feature_three_title--}}
-{{--    feature_three_details--}}
-{{--    looking_for--}}
-{{--    designer_card_title--}}
-{{--    designer_card_img--}}
-{{--    shop_card_title--}}
-{{--    shop_card_img--}}
-{{--    explaining_video_title--}}
-{{--    explaining_video_cover_img--}}
-{{--    explaining_video_link--}}
     <section class="hero">
         <div class="hero__slider">
             @foreach($homeTopSection as $topSection)
@@ -253,7 +227,7 @@
                 <a href="{{route('shop.list')}}" class="grid-item">
                     <div class="grid-item__title">
                         <h3 class="title-main"> {{languageGet()=='en'?'Furniture':'أثاث'}}</h3>
-                        <h4 class="title-sub">{{$home->shop_card_title}}  {{languageGet()=='en'?'item':'غرض'}}</h4>
+                        <h4 class="title-sub">{{$productItem}}  {{languageGet()=='en'?'item':'غرض'}}</h4>
                     </div>
                     <div class="grid-item__thumb">
                         <img src="{{asset($home->shop_card_img)}}" alt="furniture" />

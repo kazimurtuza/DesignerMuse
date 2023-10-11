@@ -50,7 +50,6 @@ Route::group(['middleware' => 'generalUserAuthCheck'], function () {
     //create designer project
     Route::get('designer/create/project', [\App\Http\Controllers\GeneralUser\ProjectController::class, 'createProject'])->name('designer.create.project');
     Route::post('designer/project/agreement/accept/store', [\App\Http\Controllers\GeneralUser\ProjectController::class, 'projectAgreementAcceptStore'])->name('designer.project.agreement.accept.store');
-
     //project
     Route::post('designer/project/store', [\App\Http\Controllers\GeneralUser\ProjectController::class, 'projectStore'])->name('designer.project.store');
     Route::get('user/project/list', [\App\Http\Controllers\GeneralUser\ProjectController::class, 'myProjectList'])->name('user.project.list');
@@ -116,6 +115,9 @@ Route::get('frontend/about/ous', [\App\Http\Controllers\PageController::class, '
 Route::get('how/we/work', [\App\Http\Controllers\PageController::class, 'howWeWork'])->name('frontend.how.we.work');
 Route::get('language/set', [\App\Http\Controllers\Frontend\LanguageController::class, 'languageSet'])->name('language.set');
 
+//pages
+Route::get('terms-condition', [\App\Http\Controllers\Frontend\WebTermsAndConditionController::class, 'termsCondition'])->name('terms.condition');
+Route::get('privacy-policy', [\App\Http\Controllers\Frontend\WebTermsAndConditionController::class,'privacyPolicy'])->name('privacy.policy');
 
 
 

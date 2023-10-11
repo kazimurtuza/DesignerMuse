@@ -81,10 +81,11 @@
             <nav class="footer__nav">
                 <ul class="list">
                     <li class="list-item">
-                        <a href="#" class="link">How it work</a>
+
+                        <a href="{{route('terms.condition')}}" class="link">Terms and conditions</a>
                     </li>
                     <li class="list-item">
-                        <a href="#" class="link">Service</a>
+                        <a href="{{route('privacy.policy')}}"  class="link">Privacy policy</a>
                     </li>
                     <li class="list-item"><a href="#" class="link">Blog</a></li>
                     <li class="list-item">

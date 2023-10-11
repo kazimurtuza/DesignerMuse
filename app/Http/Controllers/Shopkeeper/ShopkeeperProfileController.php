@@ -49,8 +49,8 @@ class ShopkeeperProfileController extends Controller
             }
             $profile->save();
         }
-
-        return redirect()->back()->with('success','Successfully profile updated');
+        $msg = languageGet() == 'en' ? 'Successfully profile updated' : 'تم تحديث الملف الشخصي بنجاح';
+        return redirect()->back()->with('success',$msg);
     }
 
 

@@ -9,11 +9,11 @@
             <div class="row">
                 <div class="mb-3 col-sm-6">
                     <label for="exampleInputEmail1" class="form-label">Privacy Policy English</label>
-                    <textarea  name="privacy_en" class="form-control"   id="" cols="5" rows="5" required>{{$info?$info->privacy_en:''}}</textarea>
+                    <textarea  name="privacy_en" class="form-control"   id="summernote1"  cols="5" rows="5" required>{{$info?$info->privacy_en:''}}</textarea>
                 </div>
                 <div class="mb-3 col-sm-6">
                     <label for="exampleInputEmail1" class="form-label">Privacy Policy Arabic</label>
-                    <textarea dir="rtl" name="privacy_ar" class="form-control" id="" cols="5" rows="5" required>{{$info?$info->privacy_ar:''}}</textarea>
+                    <textarea dir="rtl" name="privacy_ar" class="form-control" id="summernote2"  cols="5" rows="5" required>{{$info?$info->privacy_ar:''}}</textarea>
                 </div>
             </div>
         </div>
@@ -24,11 +24,11 @@
             <div class="row">
                 <div class="mb-3 col-sm-6">
                     <label for="exampleInputEmail1" class="form-label">Terms and conditions English</label>
-                    <textarea  name="condition_en" class="form-control" id=""  cols="5" rows="5" required>{{$info?$info->condition_en:''}}</textarea>
+                    <textarea  name="condition_en" class="form-control" id="summernote3"  cols="5" rows="5" required>{{$info?$info->condition_en:''}}</textarea>
                 </div>
                 <div class="mb-3 col-sm-6">
                     <label for="exampleInputEmail1" class="form-label">Terms and conditions Arabic</label>
-                    <textarea dir="rtl" name="condition_ar" class="form-control"  id="" cols="5" rows="5" required>{{$info?$info->condition_ar:''}}</textarea>
+                    <textarea dir="rtl" name="condition_ar" class="form-control"  id="summernote4"  cols="5" rows="5" required>{{$info?$info->condition_ar:''}}</textarea>
                 </div>
             </div>
         </div>
@@ -45,6 +45,7 @@
     <link rel="stylesheet" href="{{asset('assets/adminPanel')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="{{asset('assets/adminPanel')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{asset('assets/adminPanel')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{asset('assets/adminPanel')}}/plugins/summernote/summernote-bs4.min.css">
 @endsection
 @section('js_plugins')
     <!-- DataTables  & Plugins -->
@@ -60,6 +61,8 @@
     <script src="{{asset('assets/adminPanel')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="{{asset('assets/adminPanel')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="{{asset('assets/adminPanel')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+    <script src="{{asset('assets/adminPanel')}}/plugins/summernote/summernote-bs4.min.js"></script>
 @endsection
 @section('js')
 
@@ -98,5 +101,22 @@
                 "responsive": true,
             });
         });
+    </script>
+
+    <script>
+        $(function () {
+            // Summernote
+
+            $('#summernote1').summernote()
+            $('#summernote2').summernote()
+            $('#summernote3').summernote()
+            $('#summernote4').summernote()
+
+            // CodeMirror
+            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+                mode: "htmlmixed",
+                theme: "monokai"
+            });
+        })
     </script>
 @endsection

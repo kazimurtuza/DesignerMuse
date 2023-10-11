@@ -233,6 +233,10 @@ Route::post('notification/token/store', [\App\Http\Controllers\Api\ApiNotificati
 Route::post('notification/token/delete', [\App\Http\Controllers\Api\ApiNotificationController::class, 'notificationTokenDelete']);
 
 Route::get('how/it/work', [\App\Http\Controllers\Api\ApiPageController::class, 'howItWork']);
+Route::get('about-us', [\App\Http\Controllers\Api\ApiPageController::class, 'aboutUs']);
+
+Route::get('privacy/policy', [\App\Http\Controllers\Api\TermsAndPolicyController::class, 'privacyPolicy']);
+Route::get('terms/condition', [\App\Http\Controllers\Api\TermsAndPolicyController::class, 'terms']);
 
 
 
