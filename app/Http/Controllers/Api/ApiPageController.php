@@ -15,8 +15,11 @@ class ApiPageController extends Controller
 
     function howItWork(Request $request)
     {
-
-        return new ApiHowItWorkResource(HowItWork::first());
+        $type=$request->type;
+        if(!$type){
+            $type=$type;
+        }
+        return new ApiHowItWorkResource(HowItWork::where('type',$type)->first());
     }
 
     function aboutUs(Request $request)

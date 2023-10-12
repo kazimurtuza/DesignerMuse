@@ -30,7 +30,7 @@ Route::group(['middleware' => 'adminAuthCheck'], function() {
     Route::post('admin/shop/update/category',[ShopController::class, 'productCategoryUpdate'])->name('admin.shop.update.category');
     Route::get('admin/shop/order/list',[\App\Http\Controllers\Admin\ShopOrderController::class, 'shopOrderList'])->name('admin.shop.order.list');
     Route::get('admin/shop/order/details/get',[\App\Http\Controllers\Admin\ShopOrderController::class, 'shopOrderDetailsGet'])->name('admin.shop.order.details.get');
-    Route::get('admin/shop/pending/list',[ShopController::class, 'shopOrderList'])->name('admin.shop.pending.shop.list');
+    Route::get('admin/shop/pending/list',[ShopController::class, 'deletedShopList'])->name('admin.shop.pending.shop.list');
     Route::get('shopkeeper/active/list', [ShopController::class, 'ShopActiveList'])->name('shop.active.list');
     Route::get('shopkeeper/approve/shop/request', [ShopController::class, 'approveShopRequest'])->name('approve.shop');
     Route::get('shopkeeper/shop/inactive', [ShopController::class, 'shopInactive'])->name('shop.inactive');
@@ -39,6 +39,7 @@ Route::group(['middleware' => 'adminAuthCheck'], function() {
 
     //designer Info
     Route::get('admin/designer/list', [\App\Http\Controllers\Admin\AdminDesignerController::class, 'designerList'])->name('admin.designer.list');
+    Route::get('admin/designer/delete', [\App\Http\Controllers\Admin\AdminDesignerController::class, 'designerDelete'])->name('admin.designer.delete');
     Route::get('admin/booked/meeting/list', [\App\Http\Controllers\Admin\AdminDesignerController::class, 'designerMeetingList'])->name('admin.designer.meeting.list');
     Route::get('admin/booked/project/list', [\App\Http\Controllers\Admin\AdminDesignerController::class, 'designerProjectList'])->name('admin.designer.project.list');
 

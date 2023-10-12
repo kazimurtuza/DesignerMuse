@@ -18,8 +18,14 @@ class AdminDesignerController extends Controller
       $projectRate=$settingInfo?$settingInfo->project_charge_rate:'';
       $meetingRate=$settingInfo?$settingInfo->meeting_charge_rate:'';
       return view('admin.designer.designerList')->with(compact('designerList','projectRate','meetingRate'));
-
   }
+
+    function designerDelete(Request $request){
+        $designerList=Designer::find($request->designer_id);
+        $designerList->is_deleted=1;
+        $designerList->save();
+        return redirect()->back()->with('success','successfully Designer Deleted');
+    }
   function designerMeetingList(){
       $meetingList= DesignerAppointmentList::with('timeInfo')->where('payment_status',1)->orderBy('id','desc')->where('status',0)->get();
 

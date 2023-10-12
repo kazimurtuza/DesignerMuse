@@ -72,15 +72,15 @@ class ShopController extends Controller
         return redirect()->back()->with('success', 'Successfully Product Category Updated');
     }
 
-    public function shopOrderList()
+    public function deletedShopList()
     {
-        $shopList = Shopkeeper::where('is_approved', 0)->where('is_authentic', 1)->get();
+        $shopList = Shopkeeper::where('is_deleted', 1)->get();
         return view('admin.shop.pending_shop_list')->with(compact('shopList'));
     }
 
     public function ShopActiveList()
     {
-        $shopList = Shopkeeper::where('is_approved', 1)->where('is_authentic', 1)->get();
+        $shopList = Shopkeeper::where('is_deleted', 0)->get();
         $setting = AdminSetting::first();
         $sellRate = null;
         if ($setting) {
@@ -93,13 +93,13 @@ class ShopController extends Controller
     public function approveShopRequest(Request $request)
     {
         $shop = Shopkeeper::find($request->shop_id);
-        $shop->is_approved = 1;
+        $shop->is_deleted = 0;
         $shop->approved_data = Carbon::now();
         $shop->save();
 
         $details = [
             'user_type' => 'shop_keeper',
-            'title' => 'Mail from Designers Muse Shop Approved',
+            'title' => 'Mail from Designers Muse Shop Active',
             'name' => $shop->name,
 
         ];
@@ -115,7 +115,7 @@ class ShopController extends Controller
     public function shopInactive(Request $request)
     {
         $shop = Shopkeeper::find($request->shop_id);
-        $shop->is_approved = 0;
+        $shop->is_deleted = 1;
         $shop->save();
         return redirect()->back()->with('success', 'Successfully Shop Deactivated');
     }

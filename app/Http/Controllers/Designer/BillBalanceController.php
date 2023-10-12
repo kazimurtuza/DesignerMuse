@@ -66,13 +66,13 @@ class BillBalanceController extends Controller
 
     function withdrawalRequestList()
     {
-        $withdrawalList = Withdrawal::where('status', 0)->orderBy('id', 'desc')->get();
+        $withdrawalList = Withdrawal::where('status', 0)->orderBy('id', 'desc')->paginate(10);;
         return view('designer.withdrawal.withdrawalRequestList')->with(compact('withdrawalList'));
     }
 
     function withdrawalRequestCompleted()
     {
-        $withdrawalList = Withdrawal::where('status', 1)->orderBy('id', 'desc')->get();
+        $withdrawalList = Withdrawal::where('status', 1)->orderBy('id', 'desc')->paginate(10);
         return view('designer.withdrawal.withdrawalCompletedList')->with(compact('withdrawalList'));
     }
 }

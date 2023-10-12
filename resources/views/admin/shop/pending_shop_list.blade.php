@@ -34,11 +34,7 @@
                             </td>
                             <td>{{  date('d-m-Y',strtotime($allShopList->email_verified_at)) }}</td>
                             <td>
-                                @if($allShopList->is_approved)
-                                    <span class="badge badge-success">Approved</span>
-                                @else
-                                    <span class="badge badge-danger">Not Approved</span>
-                                @endif
+                                <span class="badge badge-danger">Deleted</span>
                             </td>
 
                             <td>
@@ -48,7 +44,7 @@
                                     </button>
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{{route('approve.shop',['shop_id'=>$allShopList->id])}}">Approved</a>
+                                        <a class="dropdown-item" href="{{route('approve.shop',['shop_id'=>$allShopList->id])}}">Active</a>
                                     </div>
                                 </div>
                             </td>

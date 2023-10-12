@@ -28,7 +28,7 @@ Route::middleware(['auth:sanctum', 'type.generalUser'])->group(function () {
     Route::get('get/user/order/details', [\App\Http\Controllers\Api\GeneralUser\Order\ShopOrderController::class, 'orderDetails']);
     //    Shop Product purchase
 
-   //    Meeting List
+    //    Meeting List
 
     Route::get('user/meeting/list', [\App\Http\Controllers\Api\UserMeetingController::class, 'meetingList']);
     Route::get('user/old/meeting/list', [\App\Http\Controllers\Api\UserMeetingController::class, 'oldMeetingList']);
@@ -226,7 +226,6 @@ Route::get('get/country', [\App\Http\Controllers\Api\ApiLocationController::clas
 // After Payment
 Route::post('meeting/after/payment/result/store', [\App\Http\Controllers\Api\ApiAfterPaymentController::class, 'meetingPaymentSuccess']);
 Route::post('milestone/after/payment/result/store', [\App\Http\Controllers\Api\ApiAfterPaymentController::class, 'milestonePaymentSuccess']);
-
 
 
 Route::post('notification/token/store', [\App\Http\Controllers\Api\ApiNotificationController::class, 'notificationStore']);
