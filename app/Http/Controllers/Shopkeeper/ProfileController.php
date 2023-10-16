@@ -11,47 +11,48 @@ use PhpParser\Node\Expr\Array_;
 
 class ProfileController extends Controller
 {
-    public function profileSetting(){
+    public function profileSetting()
+    {
         $common_data = new Array_();
         $common_data->title = 'Profile Info';
 
-        $user_id=Auth::guard('shopkeeper')->user()->id;
-        $shopDetails=ShopkeeperDetails::where('user_id',$user_id)->first();
+        $user_id = Auth::guard('shopkeeper')->user()->id;
+        $shopDetails = ShopkeeperDetails::where('user_id', $user_id)->first();
 
 
-        return view('shopkeeper.user.user_profile')->with(compact('shopDetails','common_data'));
+        return view('shopkeeper.user.user_profile')->with(compact('shopDetails', 'common_data'));
     }
 
-    public function profileStore(Request $request){
-            $user_id=Auth::guard('shopkeeper')->user()->id;
-             $findUser=ShopkeeperDetails::where('user_id',$user_id)->first();
-             if($findUser){
-                 $userUpdate=$findUser;
-                 $userUpdate->name=$request->name;
-                 $userUpdate->portfolio=$request->description;
-                 if($request->topbar_img){
-                     $userUpdate->top_img=$this->imageSave($request->topbar_img);
-                 }
-                 if($request->profile_img){
-                     $userUpdate->profile_img=$this->imageSave($request->profile_img);
-                 }
-                 $userUpdate->save();
-             }
-             else{
-                 $profile=new ShopkeeperDetails();
-                 $profile->user_id=Auth::guard('shopkeeper')->user()->id;
-                 $profile->name=$request->name;
-                 $profile->portfolio=$request->description;
-                 if($request->topbar_img){
-                     $profile->top_img=$this->imageSave($request->topbar_img);
-                 }
-                 if($request->profile_img){
-                     $profile->profile_img=$this->imageSave($request->profile_img);
-                 }
-                 $profile->save();
-             }
-
-             return redirect()->back()->with('success','Successfully profile updated');
+    public function profileStore(Request $request)
+    {
+        $user_id = Auth::guard('shopkeeper')->user()->id;
+        $findUser = ShopkeeperDetails::where('user_id', $user_id)->first();
+        if ($findUser) {
+            $userUpdate = $findUser;
+            $userUpdate->name = $request->name;
+            $userUpdate->portfolio = $request->description;
+            if ($request->topbar_img) {
+                $userUpdate->top_img = $this->imageSave($request->topbar_img);
+            }
+            if ($request->profile_img) {
+                $userUpdate->profile_img = $this->imageSave($request->profile_img);
+            }
+            $userUpdate->save();
+        } else {
+            $profile = new ShopkeeperDetails();
+            $profile->user_id = Auth::guard('shopkeeper')->user()->id;
+            $profile->name = $request->name;
+            $profile->portfolio = $request->description;
+            if ($request->topbar_img) {
+                $profile->top_img = $this->imageSave($request->topbar_img);
+            }
+            if ($request->profile_img) {
+                $profile->profile_img = $this->imageSave($request->profile_img);
+            }
+            $profile->save();
+        }
+        $msg = languageGet() == 'en' ? 'Successfully profile updated' : 'تم تحديث الملف الشخصي بنجاح';
+        return redirect()->back()->with('success', $msg);
     }
 
 

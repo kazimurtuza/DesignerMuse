@@ -23,7 +23,7 @@ class DesignerSettingController extends Controller
     public function timeScheduleList()
     {
         $designer = Auth::guard('designer')->user();
-        $scheduleList = DesignerServiceTime::with('bookedList')->where('designer_id', $designer->id)->orderBy('id', 'desc')->get();
+        $scheduleList = DesignerServiceTime::with('bookedList')->where('designer_id', $designer->id)->orderBy('id', 'desc')->paginate(10);
         return view('designer.schedule.scheduleList')->with(compact('scheduleList'));
 
     }

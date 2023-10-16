@@ -176,7 +176,7 @@ class UserController extends Controller
                 ]);
                 if (Auth::guard('designer')->attempt($request->only('email', 'password'))) {
                     $this->deviceTokenStore($findDesigner->user_type,$findDesigner->id,$request->device_token);
-                    return redirect()->intended('designer/dashboard');
+                    return redirect()->intended('designer/profile/setting');
                 }
                 return redirect()->back()->with('error', 'Email or password is incorrect');
             }

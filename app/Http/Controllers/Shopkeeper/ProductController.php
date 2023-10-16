@@ -106,7 +106,8 @@ class ProductController extends Controller
                 $productColor->save();
             }
         }
-        return redirect()->back()->with('success', 'Successfully created product ');
+        $msg=languageGet()=='en'?'Successfully created product':'تم إنشاء المنتج بنجاح';
+        return redirect()->back()->with('success',$msg);
     }
 
     public function productList()
@@ -229,7 +230,8 @@ class ProductController extends Controller
                 }
             }
         }
-        return redirect()->back()->with('success', 'Successfully  product Updated');
+        $msg = languageGet() == 'en' ? 'Successfully  product Updated' : 'تم تحديث المنتج بنجاح';
+        return redirect()->back()->with('success',$msg);
     }
 
 

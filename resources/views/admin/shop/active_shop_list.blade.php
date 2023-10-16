@@ -34,8 +34,8 @@
                             </td>
                             <td>{{  date('d-m-Y',strtotime($allShopList->approved_data)) }}</td>
                             <td>
-                                @if($allShopList->is_approved)
-                                    <span class="badge badge-success">Approved</span>
+                                @if($allShopList->is_deleted==0)
+                                    <span class="badge badge-success">Active</span>
                                 @else
                                     <span class="badge badge-danger">Not Approved</span>
                                 @endif
@@ -49,11 +49,11 @@
                                         Action List
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item"
-                                           href="{{route('shop.inactive',['shop_id'=>$allShopList->id])}}">Inactive</a>
                                         <span
                                             onclick="serviceCharge({{$allShopList->product_charge_rate ? $allShopList->product_charge_rate:$sellRate}},'{{$allShopList->id}}')"
                                             style="cursor: pointer" class="dropdown-item">Service Charge</span>
+                                        <a class="dropdown-item text-danger"
+                                           href="{{route('shop.inactive',['shop_id'=>$allShopList->id])}}" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
                                     </div>
 
                                 </div>

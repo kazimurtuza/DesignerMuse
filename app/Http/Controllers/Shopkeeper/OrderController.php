@@ -202,7 +202,8 @@ class OrderController extends Controller
     public function orderStatusUpdate(Request $request)
     {
         ShopOrder::where('id', $request->order_id)->update(['status' => $request->status]);
-        return redirect()->back()->with('success', 'successfully customer status updated');
+        $msg = languageGet() == 'en' ? 'successfully Order status updated' : 'تم تحديث حالة الطلب بنجاح';
+        return redirect()->back()->with('success', $msg);
     }
 
     public function getOrderDetails(Request $request)

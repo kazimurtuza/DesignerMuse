@@ -47,6 +47,8 @@
                                         <span
                                             onclick="serviceCharge('{{$user->project_charge_rate?$user->project_charge_rate:$projectRate}}','{{$user->meeting_charge_rate?$user->meeting_charge_rate:$meetingRate}}','{{$user->id}}')"
                                             style="cursor: pointer" class="dropdown-item">Service Charge</span>
+                                        <span> &nbsp;&nbsp;&nbsp;&nbsp; <a class="text-danger"  onclick="return confirm('Are you sure you want to delete this user?');" href="{{route('admin.designer.delete',['designer_id'=>$user->id])}}">Delete</a></span>
+
                                     </div>
 
                                 </div>

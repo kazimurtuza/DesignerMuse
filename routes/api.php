@@ -28,7 +28,7 @@ Route::middleware(['auth:sanctum', 'type.generalUser'])->group(function () {
     Route::get('get/user/order/details', [\App\Http\Controllers\Api\GeneralUser\Order\ShopOrderController::class, 'orderDetails']);
     //    Shop Product purchase
 
-   //    Meeting List
+    //    Meeting List
 
     Route::get('user/meeting/list', [\App\Http\Controllers\Api\UserMeetingController::class, 'meetingList']);
     Route::get('user/old/meeting/list', [\App\Http\Controllers\Api\UserMeetingController::class, 'oldMeetingList']);
@@ -228,11 +228,14 @@ Route::post('meeting/after/payment/result/store', [\App\Http\Controllers\Api\Api
 Route::post('milestone/after/payment/result/store', [\App\Http\Controllers\Api\ApiAfterPaymentController::class, 'milestonePaymentSuccess']);
 
 
-
 Route::post('notification/token/store', [\App\Http\Controllers\Api\ApiNotificationController::class, 'notificationStore']);
 Route::post('notification/token/delete', [\App\Http\Controllers\Api\ApiNotificationController::class, 'notificationTokenDelete']);
 
 Route::get('how/it/work', [\App\Http\Controllers\Api\ApiPageController::class, 'howItWork']);
+Route::get('about-us', [\App\Http\Controllers\Api\ApiPageController::class, 'aboutUs']);
+
+Route::get('privacy/policy', [\App\Http\Controllers\Api\TermsAndPolicyController::class, 'privacyPolicy']);
+Route::get('terms/condition', [\App\Http\Controllers\Api\TermsAndPolicyController::class, 'terms']);
 
 
 
