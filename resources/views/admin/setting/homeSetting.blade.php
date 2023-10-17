@@ -19,6 +19,7 @@
                 <th scope="col">Get it now Arabic</th>
                 <th scope="col">Learn More Link</th>
                 <th scope="col">Get it Now Link</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -34,6 +35,14 @@
                 <td>{{$list->get_it_now_ar}}</td>
                 <td>{{$list->learn_more_link}}</td>
                 <td>{{$list->get_it_now_link}}</td>
+                <td><div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Option
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{{route('page.top.item.delete',['id'=>$list->id])}}">Delete</a>
+                        </div>
+                    </div></td>
             </tr>
             @endforeach
             </tbody>

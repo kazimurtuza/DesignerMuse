@@ -16,6 +16,9 @@ class AdminProjectResource extends JsonResource
     public function toArray($request)
     {
         $language = Session::get('language');
+        if($request->lang){
+            $language=$request->lang?$request->lang:'ar';
+        }
         if ($language == 'en') {
             return [
                 'id' => $this->id,

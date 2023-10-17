@@ -70,13 +70,19 @@ Route::group(['middleware' => 'adminAuthCheck'], function() {
 
 
     Route::post('admin/home/top-bar/setting/store', [\App\Http\Controllers\Admin\SettingController::class, 'homeSettingTopBarStore'])->name('admin.home.top-bar.setting.store');
+    Route::get('page/top/item/delete', [\App\Http\Controllers\Admin\SettingController::class, 'topItemDelete'])->name('page.top.item.delete');
 
     Route::get('admin/how/we/work/set', [\App\Http\Controllers\Admin\SettingController::class, 'howWork'])->name('admin.we.work');
     Route::post('admin/how/it/work/store', [\App\Http\Controllers\Admin\SettingController::class, 'howWorkStore'])->name('how.it.work.store');
     Route::get('privacy/condition', [\App\Http\Controllers\Admin\SettingController::class, 'privacyCondition'])->name('privacy.condition');
     Route::post('privacy/condition/store', [\App\Http\Controllers\Admin\SettingController::class, 'privacyConditionStore'])->name('privacy.condition.store');
+
     Route::post('admin/create/project/list', [\App\Http\Controllers\Admin\AboutOusController::class, 'createProject'])->name('admin.project.store');
     Route::post('admin/our/member', [\App\Http\Controllers\Admin\AboutOusController::class, 'createMember'])->name('admin.member.store');
+    Route::get('our/member/deleter', [\App\Http\Controllers\Admin\AboutOusController::class, 'deleteMember'])->name('our.member.delete');
+    Route::get('admin/project/delete', [\App\Http\Controllers\Admin\AboutOusController::class, 'adminProjectDelete'])->name('admin.project.delete');
+
+
     Route::post('admin/about/ous/store', [\App\Http\Controllers\Admin\AboutOusController::class, 'aboutOusStore'])->name('admin.about.ous.store');
     Route::get('admin/about/ous/set', [\App\Http\Controllers\Admin\AboutOusController::class, 'aboutOus'])->name('admin.about.ous');
 
