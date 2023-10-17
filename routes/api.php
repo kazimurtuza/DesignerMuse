@@ -237,6 +237,9 @@ Route::get('about-us', [\App\Http\Controllers\Api\ApiPageController::class, 'abo
 Route::get('privacy/policy', [\App\Http\Controllers\Api\TermsAndPolicyController::class, 'privacyPolicy']);
 Route::get('terms/condition', [\App\Http\Controllers\Api\TermsAndPolicyController::class, 'terms']);
 
+Route::get('team/member/list', [\App\Http\Controllers\Api\ApiPageController::class, 'memberList']);
+Route::get('admin/project/list', [\App\Http\Controllers\Api\ApiPageController::class, 'adminProjectList']);
+
 
 
 

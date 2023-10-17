@@ -35,6 +35,10 @@ class AboutOusController extends Controller
         $project->save();
         return redirect()->back()->with('success', 'Successfully Saved');
     }
+    public function adminProjectDelete(Request $request){
+        AdminProjectList::where('id',$request->id)->delete();
+        return redirect()->back()->with('success', 'Project deleted ');
+    }
 
     public function createMember(Request $request)
     {
@@ -52,6 +56,11 @@ class AboutOusController extends Controller
         $member->status = 1;
         $member->save();
         return redirect()->back()->with('success', 'Successfully Saved');
+    }
+
+    public function deleteMember(Request $request){
+        TeamMemberList::where('id',$request->id)->delete();
+        return redirect()->back()->with('success', 'Successfully Member info Deleted');
     }
 
 

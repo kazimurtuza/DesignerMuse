@@ -338,4 +338,11 @@ class SettingController extends Controller
         }
     }
 
+
+    public function topItemDelete(Request $request){
+           HomePageTopBare::where('id',$request->id)->delete();
+           return redirect()->back()->with('success','Successfully Deleted item');
+
+    }
+
 }

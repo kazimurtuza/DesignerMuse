@@ -26,7 +26,7 @@ class ApiDesignerMeetingController extends Controller
     public function meetingTimeEdit(Request $request){
         $scheduleDetail= DesignerServiceTime::find($request->service_time_id);
         $designerId=auth()->user()->id;
-        $bookedSlot=DesignerAppointmentList::where('designer_id',$designerId)->where('service_time_id',$request->service_time_id)->pluck('time_slot_id');
+        $bookedSlot=DesignerAppointmentList::where('designer_id',$designerId)->where('service_time_id',$request->service_time_id)->where('payment_status',1)->pluck('time_slot_id');
         $activeTimeRange= $scheduleDetail->slot_duration;
         $activeSlot=$scheduleDetail->active_slot_id;
         $slotList=TimeSlot::where('duration_minutes',$scheduleDetail->slot_duration)->get();

@@ -8,7 +8,7 @@
     </section>
     <section class="designers-grid">
         <div class="container">
-            <h2 class="designers-grid__title">Explore Designers</h2>
+            <h2 class="designers-grid__title">{{languageGet()=='en'?'Explore Designers':'اكتشف المصممين'}}</h2>
             <div class="grid-wrapper">
                 @foreach($designerList as $designer)
                     <div class="gird-item">

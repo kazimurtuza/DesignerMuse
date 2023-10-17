@@ -134,6 +134,7 @@
                         <th scope="col">Title Arabic</th>
                         <th scope="col">Shot Info English</th>
                         <th scope="col">Shot Info Arabic</th>
+                        <th scope="col">Option</th>
 
                     </tr>
                     </thead>
@@ -147,6 +148,14 @@
                             <td>{{$projectData->title_ar}}</td>
                             <td>{{$projectData->about_en}}</td>
                             <td>{{$projectData->about_ar}}</td>
+                            <td><div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Option
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="{{route('admin.project.delete',['id'=>$projectData->id])}}">Delete</a>
+                                    </div>
+                                </div></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -175,6 +184,8 @@
                         <th scope="col">Facebook</th>
                         <th scope="col">Twitter</th>
                         <th scope="col">Instagram</th>
+                        <th scope="col">Action</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -189,6 +200,14 @@
                             <td>{{$memberData->face_book}}</td>
                             <td>{{$memberData->twitter}}</td>
                             <td>{{$memberData->instagram}}</td>
+                            <td><div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Option
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="{{route('our.member.delete',['id'=>$memberData->id])}}">Delete</a>
+                                    </div>
+                                </div></td>
                         </tr>
                     @endforeach
 

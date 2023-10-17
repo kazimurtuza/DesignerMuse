@@ -21,6 +21,7 @@ class DesignerController extends Controller
 
     public function profileSetting()
     {
+
         $userId = $designer = Auth::guard('designer')->user()->id;
         $profile = DesignerProfile::where('designer_id', $userId)->first();
         $projects = DesignerPortfolio::where('designer_id', $userId)->paginate(6);
