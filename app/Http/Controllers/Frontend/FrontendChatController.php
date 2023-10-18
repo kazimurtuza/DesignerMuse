@@ -96,4 +96,24 @@ class FrontendChatController extends Controller
         return $chat;
     }
 
+    public function unseenCatGet(Request $request){
+        $totalUnseen=0;
+        $meetingTotalUnseen=0;
+
+        if($request->is_client){
+            $totalUnseen=DesignerChat::where('seller_id',$request->id)->where('seen_status',0)->count();
+            $meetingTotalUnseen=DesignerChat::where('seller_id',$request->id)->where('seen_status',0)->where('meeting_id',$request->meeting_id)->count();
+        }else{
+            $totalUnseen=DesignerChat::where('customer_id',$request->id)->where('seen_status',0)->count();
+            $meetingTotalUnseen=DesignerChat::where('customer_id',$request->id)->where('seen_status',0)->where('meeting_id',$request->meeting_id)->count();
+        }
+
+        $data=[
+            'totalUnseen'=>$totalUnseen,
+            'meetingTotalUnseen'=>$meetingTotalUnseen,
+        ];
+        return response()->json($data);
+
+    }
+
 }

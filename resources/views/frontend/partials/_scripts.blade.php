@@ -1,5 +1,7 @@
 <script src="{{asset('assets/frontend')}}/js/jquery-3.3.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 <script src="{{asset('assets/frontend')}}/js/jquery.magnific-popup.min.js"></script>
 <script src="{{asset('assets/frontend')}}/js/slick.min.js"></script>
 <script src="{{asset('assets/frontend')}}/js/index.js"></script>
@@ -7,12 +9,75 @@
 <script src="https://kit.fontawesome.com/29ad4efa11.js" crossorigin="anonymous"></script>
 
 
-{{--<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>--}}
+{{--socket--}}
+<script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+        integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+        crossorigin="anonymous"></script>
+
 
 <script>
-    function language(){
-       $('#language').click();
+    {{--socket--}}
+    var socket;
+    $(function () {
+        let ip_address = 'https://chat-whjg.onrender.com';
+        socket = io(ip_address, {transports: ['websocket']});
+
+        @if(Auth::guard('designer')->user()||Auth::user())
+        socket.on('sendChatToClient', (message) => {
+            let is_client = message.is_sender_client;
+            let id = is_client ? message.seller_id : message.customer_id;
+            let meeting_id = message.meeting_id;
+            let sound=1;
+            unseenMessage(is_client, id, meeting_id,sound)
+        });
+        @endif
+    });
+    @if(Auth::guard('designer')->user())
+    let designer_id = {{Auth::guard('designer')->user()->id}};
+    let sound=0;
+    unseenMessage(1,designer_id, 0,sound);
+    @endif
+    @if(Auth::user())
+    let user_id = {{Auth::user()->id}};
+    let sound=0;
+    unseenMessage(0,user_id,0,sound);
+    @endif
+    var soundData = document.getElementById("tune");
+
+    function unseenMessage(is_client, id, meeting_id,sound) {
+        $.ajax({
+            url: "{{route('get.unseen.message')}}",
+            type: "get",
+            data: {
+                is_client: is_client,
+                id: id,
+                meeting_id: meeting_id,
+            },
+            success: function (response) {
+                $('.cat-item').html(response.totalUnseen);
+                if(sound){
+                    soundData.play();
+                }
+
+            },
+            error: function (xhr) {
+                //Do Something to handle error
+            }
+        });
     }
+
+
+
+
+
+    {{--socket--}}
+
+
+
+    function language() {
+        $('#language').click();
+    }
+
     @if (Session::has('success'))
     toastr.success($('#successmsg').val())
     @endif
@@ -24,7 +89,6 @@
     // swal("My title", "My description", "success");
 
 </script>
-
 
 
 <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
@@ -40,6 +104,7 @@
     };
     firebase.initializeApp(firebaseConfig);
     const messaging = firebase.messaging();
+
     function startFCM() {
         messaging
             .requestPermission()
@@ -71,8 +136,9 @@
             alert(error);
         });
     }
+
     messaging.onMessage(function (payload) {
-      console.log(payload.data)
+        console.log(payload.data)
         const title = payload.notification.title;
         const options = {
             body: payload.notification.body,

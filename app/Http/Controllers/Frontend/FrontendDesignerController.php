@@ -40,7 +40,7 @@ class FrontendDesignerController extends Controller
         $education = DesignerEducation::where('designer_id', $userId)->get();
          $projects = DesignerPortfolio::where('designer_id', $userId)->orderBy('id', 'desc')->paginate(6);
 //         dd($projects);
-        $ratingList = DesignerRatingReview::where('designer_id', $userId)->orderBy('id', 'desc')->take(5)->get();
+        $ratingList = DesignerRatingReview::where('designer_id', $userId)->orderBy('id', 'desc')->paginate(5);
 
         return view('frontend.designer.designerProfile')->with(compact('profile', 'experience', 'education', 'projects', 'designerInfo', 'ratingList'));;
     }
