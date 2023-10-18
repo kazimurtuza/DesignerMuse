@@ -50,25 +50,6 @@
                         </a>
                         @endforeach
 
-{{--                        <div--}}
-{{--                            class="user-chat"--}}
-{{--                            data-username="Jorge Harrinson"--}}
-{{--                        >--}}
-{{--                            <div class="user-chat-img">--}}
-{{--                                <img--}}
-{{--                                    src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"--}}
-{{--                                    alt=""--}}
-{{--                                />--}}
-{{--                                <div class="online"></div>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="user-chat-text">--}}
-{{--                                <p class="mt-0 mb-0">--}}
-{{--                                    <strong>Jorge Harrinson</strong>--}}
-{{--                                </p>--}}
-{{--                                <small>Hi, how are you?</small>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
 
                     </div>
                 </div>
@@ -133,22 +114,18 @@
 @endsection
 @section('js_plugins')
     {{--<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>--}}
-    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
-            integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
-            crossorigin="anonymous"></script>
+
+{{--    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"--}}
+{{--            integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"--}}
+{{--            crossorigin="anonymous"></script>--}}
 @endsection
 @section('js')
 
     <script>
-        var socket;
+        // var socket;
         $(function () {
-            // let ip_address = '127.0.0.1';
-            // let socket_port = '3000';
-            // let socket = io(ip_address + ':' + socket_port);
-            //
-
-            let ip_address = 'https://chat-whjg.onrender.com';
-            socket = io(ip_address, { transports: ['websocket'] });
+            // let ip_address = 'https://chat-whjg.onrender.com';
+            // socket = io(ip_address, { transports: ['websocket'] });
 
             let chatInput = $('#chatInput');
 

@@ -20,6 +20,13 @@
 
 <!-- Header -->
 <header class="header">
+    <div style="display: none">
+        <audio controls id="tune">
+            <source src="{{asset('sound/tune.mp3')}}" type="audio/ogg">
+        </audio>
+    </div>
+
+
     <div class="header__container container">
         <div class="header__logo">
             <a href="{{route('home')}}"><img src="{{asset('assets/frontend')}}/img/logo.png" alt=""/></a>
@@ -48,7 +55,7 @@
 
                 @if(\Illuminate\Support\Facades\Auth::user() ||Auth::guard('designer')->user())
                     <li><a href="{{route('all.chat.list')}}"> {{languageGet()=='en'?'Chat':'محادثة'}}</a>
-                        <span class="cat-item">0</span>
+                        <span class="cat-item" id="cat-item">0</span>
                     </li>
                 @endif
                 <li>
