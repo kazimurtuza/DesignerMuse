@@ -12,13 +12,16 @@ use App\Models\PrivacyAndTerm;
 use App\Models\Shopkeeper;
 use Illuminate\Http\Request;
 use Image;
+use PhpParser\Node\Expr\Array_;
 
 class SettingController extends Controller
 {
     public function chargeRateSetting()
     {
+        $common_data = new Array_();
+        $common_data->title ="Service Charge Rate Setting";
         $settingInfo = AdminSetting::first();
-        return view('admin.setting.chargeRateSetting')->with(compact('settingInfo'));
+        return view('admin.setting.chargeRateSetting')->with(compact('settingInfo','common_data'));
     }
 
     public function chargeRateStore(Request $request)
@@ -38,9 +41,11 @@ class SettingController extends Controller
 
     public function homeSetting()
     {
+        $common_data = new Array_();
+        $common_data->title ="Home Page Setting";
         $settings = HomePage::first();
         $topBarList = HomePageTopBare::orderBy('id', 'desc')->paginate(3);
-        return view('admin.setting.homeSetting')->with(compact('settings', 'topBarList'));
+        return view('admin.setting.homeSetting')->with(compact('settings', 'topBarList','common_data'));
     }
 
     public function homeSettingTopBarStore(Request $request)
@@ -192,12 +197,16 @@ class SettingController extends Controller
 
     public function howWork(Request $request)
     {
+        $common_data = new Array_();
+        $common_data->title ="How We Work";
         $howWork=HowItWork::where('type',$request->type)->first();
-        return view('admin.setting.howWeWorks')->with(compact('howWork'));
+        return view('admin.setting.howWeWorks')->with(compact('howWork','common_data'));
     }
 
     public function privacyCondition()
     {
+        $common_data = new Array_();
+        $common_data->title ="Privacy policy and terms and conditions";
         $info = PrivacyAndTerm::first();
         return view('admin.setting.privacyCondition')->with(compact('info'));
     }

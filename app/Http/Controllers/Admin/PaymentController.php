@@ -25,20 +25,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cart;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Expr\Array_;
 
 class PaymentController extends Controller
 {
     public function pendingWithdrawalList()
     {
+        $common_data = new Array_();
+        $common_data->title ="Pending Withdrawal List";
         $withdrawalList = Withdrawal::where('status', 0)->get();
 
-        return view('admin.payment.pendingWithdrawalList')->with(compact('withdrawalList'));
+        return view('admin.payment.pendingWithdrawalList')->with(compact('withdrawalList','common_data'));
     }
 
     public function completedWithdrawalList()
     {
+        $common_data = new Array_();
+        $common_data->title ="completed Withdrawal List";
         $withdrawalList = Withdrawal::where('status', 1)->get();
-        return view('admin.payment.completedWithdrawalList')->with(compact('withdrawalList'));
+        return view('admin.payment.completedWithdrawalList')->with(compact('withdrawalList','common_data'));
 
     }
 

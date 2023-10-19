@@ -76,13 +76,6 @@
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
 
-                        <a href="{{route('admin.shop.pending.shop.list')}}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Pending Shop List</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-
                         <a href="{{route('shop.active.list')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Active Shop List</p>
@@ -93,6 +86,13 @@
                         <a href="{{route('admin.shop.order.list')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Shop Order List</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+
+                        <a href="{{route('admin.shop.pending.shop.list')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Inactive  Shop List</p>
                         </a>
                     </li>
 

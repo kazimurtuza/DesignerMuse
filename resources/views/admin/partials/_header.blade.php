@@ -1,4 +1,5 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -11,6 +12,16 @@
 {{--            <a href="#" class="nav-link">Contact</a>--}}
 {{--        </li>--}}
     </ul>
+    <div class="position-relative search-bar-box">
+        @if( isset($common_data->title) )
+            <h5 class="card-title top-title-txt">
+                <strong> {{$common_data->title}}</strong>
+            </h5>
+        @endif
+
+        <span class="position-absolute top-50 search-close translate-middle-y"><i class='bx bx-x'></i></span>
+    </div>
+
 
 
     <!-- Right navbar links -->

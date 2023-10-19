@@ -14,13 +14,16 @@ use Faker\Core\Color;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use PhpMyAdmin\Config\Settings;
+use PhpParser\Node\Expr\Array_;
 
 class ShopController extends Controller
 {
     public function colorSetting()
     {
+        $common_data = new Array_();
+        $common_data->title ="Product Color List";
         $color = ProductColor::get();
-        return view('admin.shop.color_list')->with(compact('color'));
+        return view('admin.shop.color_list')->with(compact('color','common_data'));
     }
 
     public function colorStore(Request $request)
@@ -46,8 +49,10 @@ class ShopController extends Controller
 
     public function productCategoryList()
     {
+        $common_data = new Array_();
+        $common_data->title ="Product Category List";
         $category = ProductCategory::get();
-        return view('admin.shop.product_category')->with(compact('category'));
+        return view('admin.shop.product_category')->with(compact('category','common_data'));
     }
 
     public function productCategoryStore(Request $request)
@@ -74,12 +79,17 @@ class ShopController extends Controller
 
     public function deletedShopList()
     {
+        $common_data = new Array_();
+        $common_data->title ="Inactive Shop List";
         $shopList = Shopkeeper::where('is_deleted', 1)->get();
-        return view('admin.shop.pending_shop_list')->with(compact('shopList'));
+
+        return view('admin.shop.pending_shop_list')->with(compact('shopList','common_data'));
     }
 
     public function ShopActiveList()
     {
+        $common_data = new Array_();
+        $common_data->title ="Active Shop List";
         $shopList = Shopkeeper::where('is_deleted', 0)->get();
         $setting = AdminSetting::first();
         $sellRate = null;
@@ -87,7 +97,7 @@ class ShopController extends Controller
             $sellRate = $setting->product_charge_rate;
         }
 
-        return view('admin.shop.active_shop_list')->with(compact('shopList', 'sellRate'));
+        return view('admin.shop.active_shop_list')->with(compact('shopList', 'sellRate','common_data'));
     }
 
     public function approveShopRequest(Request $request)
@@ -118,6 +128,12 @@ class ShopController extends Controller
         $shop->is_deleted = 1;
         $shop->save();
         return redirect()->back()->with('success', 'Successfully Shop Deactivated');
+    }
+    public function shopActive(Request $request){
+        $shop = Shopkeeper::find($request->shop_id);
+        $shop->is_deleted = 0;
+        $shop->save();
+        return redirect()->back()->with('success', 'Successfully Shop Activated');
     }
 
     public function serviceChargeUpdate(Request $request)
