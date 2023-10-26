@@ -17,6 +17,8 @@ class SupportController extends Controller
        $suppoert->sender_email=$request->sender_email;
        $suppoert->sender_message=$request->sender_message;
        $suppoert->save();
+
+
        return redirect()->back()->with('success','Successfully Message send');
     }
 

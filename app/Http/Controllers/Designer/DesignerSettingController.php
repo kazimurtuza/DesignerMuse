@@ -124,9 +124,9 @@ class DesignerSettingController extends Controller
         if (isset($request->active_time_schedule)) {
             $service->active_time_schedule = $request->active_time_schedule;
         } else {
-            $service->call_rate = $request->call_rate;
-            $service->video_rate = $request->video_rate;
-            $service->online_rate = $request->online_rate;
+            $service->call_rate = $request->call_rate??0;
+            $service->video_rate = $request->video_rate??0;
+            $service->online_rate = $request->online_rate??0;
 
         }
         $service->save();

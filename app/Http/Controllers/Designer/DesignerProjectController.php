@@ -91,9 +91,8 @@ class DesignerProjectController extends Controller
         }
 
         $token = NotificationDeviceToken::where('user_type','generalUser')->where('user_id', $info->client_id)->pluck('token');
-
-        $title = "Designer Muse Project Agreement Created";
-        $body = $info->title."Agreement Created";
+        $title ="Designer Muse Project Agreement Created".' ID:#'.$info->meetingInfo->id_no;
+        $body = $info->title." Agreement Created";
 
         sendNotification($title, $body, $token);
 

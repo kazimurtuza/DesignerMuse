@@ -143,11 +143,17 @@
                             </div>
                         </div>
                         <div class="card_price-btn">
+                            @if(\Illuminate\Support\Facades\Auth::user())
                             <a class="btn" href="{{route('shop.product.details',['product_id'=>$product->id])}}">Add to Cart</a>
                             <a class="btn" href="{{route('shop.product.wish.add',['product_id'=>$product->id])}}">Wish</a>
-                            @if($product->ar_img)
-                            <a class="btn" href="{{route('shop.product.ar.add',['product_id'=>$product->id])}}">Ar</a>
+                                @if($product->ar_img)
+                                    <a class="btn" href="{{route('shop.product.ar.add',['product_id'=>$product->id])}}">Ar</a>
+                                @endif
+                            @else
+                                <a class="btn" onclick="toastr.error('Login first')" >Add to Cart</a>
+                                <a class="btn" onclick="toastr.error('Login first')" >Wish</a>
                             @endif
+
                             <span>{{$product->price}}</span>
 
                         </div>

@@ -15,7 +15,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3"> {{languageGet()=='en'?'Call Rate':'سعر المكالمة'}}</span>
                         </div>
-                        <input type="number" class="form-control" name="call_rate" value="{{$designerInfo?$designerInfo->call_rate:''}}" id="basic-url" aria-describedby="basic-addon3" required>
+                        <input type="number" class="form-control" name="call_rate" value="{{$designerInfo?$designerInfo->call_rate:''}}" id="basic-url" aria-describedby="basic-addon3" >
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -23,7 +23,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3"> {{languageGet()=='en'?'Video Rate':'معدل الفيديو'}}</span>
                         </div>
-                        <input type="number" class="form-control" id="basic-url" name="video_rate" value="{{$designerInfo?$designerInfo->video_rate:''}}"  aria-describedby="basic-addon3" required>
+                        <input type="number" class="form-control" id="basic-url" name="video_rate" value="{{$designerInfo?$designerInfo->video_rate:''}}"  aria-describedby="basic-addon3" >
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -31,7 +31,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3"> {{languageGet()=='en'?'Online Rate':'سعر الانترنت'}}</span>
                         </div>
-                        <input type="nubmer" class="form-control" name="online_rate" id="basic-url" value="{{$designerInfo?$designerInfo->online_rate:''}}" aria-describedby="basic-addon3" required>
+                        <input type="nubmer" class="form-control" name="online_rate" id="basic-url" value="{{$designerInfo?$designerInfo->online_rate:''}}" aria-describedby="basic-addon3" >
                     </div>
                 </div>
                 <div class="col-sm-6">
