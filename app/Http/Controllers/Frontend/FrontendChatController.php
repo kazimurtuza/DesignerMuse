@@ -97,9 +97,9 @@ class FrontendChatController extends Controller
         $chat->save();
 
         //Notification
-        $token ='driR0krOWKB7JC64bziotV:APA91bFuLzoekfyDIbZhawZqDAAqn61I8-lDmrsCglQUh1ewE9OMyJYDrRfbSiVd2wGznz2ypppTU0vdAVrlyt883kye-cTjSHlEXuI0t6M3fo6REm7JcOdvNb7mZHTwVaXGEYEZBIh9';
-        $title = "dd";
-        $body = "dd";
+        $token ="driR0krOWKB7JC64bziotV:APA91bFuLzoekfyDIbZhawZqDAAqn61I8-lDmrsCglQUh1ewE9OMyJYDrRfbSiVd2wGznz2ypppTU0vdAVrlyt883kye-cTjSHlEXuI0t6M3fo6REm7JcOdvNb7mZHTwVaXGEYEZBIh9";
+        $title = "dd sdf";
+        $body = "dd body";
         sendNotification($title, $body, $token);
 
         return $chat;
