@@ -240,6 +240,11 @@ Route::get('terms/condition', [\App\Http\Controllers\Api\TermsAndPolicyControlle
 Route::get('team/member/list', [\App\Http\Controllers\Api\ApiPageController::class, 'memberList']);
 Route::get('admin/project/list', [\App\Http\Controllers\Api\ApiPageController::class, 'adminProjectList']);
 
+//Notification
+Route::get('get/unseen/notification/number', [\App\Http\Controllers\Api\NotificationController::class, 'unseenNotificationNumber']);
+Route::get('all/notification/seen', [\App\Http\Controllers\Api\NotificationController::class, 'setAllNotificationSeen']);
+Route::get('clear/all/notification', [\App\Http\Controllers\Api\NotificationController::class, 'clearAllNotification']);
+Route::post('notification/store', [\App\Http\Controllers\Api\NotificationController::class, 'notificationStore']);
 
 
 

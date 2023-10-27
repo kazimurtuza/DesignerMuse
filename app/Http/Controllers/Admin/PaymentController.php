@@ -84,7 +84,6 @@ class PaymentController extends Controller
                 $designerId = $appointment->designer_id;
 
                 //Notification
-
                 $token = NotificationDeviceToken::where('user_type','designer')->where('user_id', $designerId)->pluck('token');
 
                 $title = "Designer Muse New Meeting";
@@ -209,10 +208,8 @@ class PaymentController extends Controller
                 $shopIdList = ShopOrder::where('order_id', $orderId)->where('payment_status', 1)->get()->pluck('shop_id');
 
                 $token = NotificationDeviceToken::where('user_type','shopKeeper')->whereIn('user_id', $shopIdList)->pluck('token');
-
                 $title = "Designer Muse New Order";
                 $body = "A new order has been created";
-
                 sendNotification($title, $body, $token);
 
                 //Notification

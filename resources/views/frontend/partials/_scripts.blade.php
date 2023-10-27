@@ -113,7 +113,7 @@
                 return messaging.getToken()
             })
             .then(function (response) {
-                alert(response);
+                // alert(response);
                 console.log(response)
                 $.ajaxSetup({
                     headers: {
