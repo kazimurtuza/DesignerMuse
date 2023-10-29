@@ -5,6 +5,21 @@
     border-top: 1px solid #dddddd;
     border-bottom: 1px solid #dddddd;
 }
+.unseen-count{
+    position: absolute;
+    top: -9px;
+    left: -9px;
+    background: #f3534b;
+    height: 23px;
+    width: 23px;
+    display: flex;
+    justify-content: center;
+    border-radius: 60%;
+    color: white;
+    font-size: 15px;
+    align-items: center;
+    font-weight: 800;
+}
 
 .text-center {
     text-align: center;

@@ -20,6 +20,17 @@ class DesignerAppointmentList extends Model
         return $this->belongsTo(User::class,'user_id','id');
     }
 
+    function clientUnseenMessage(){
+        return $this->hasMany(DesignerChat::class,'meeting_id','id')
+                     ->where('is_sender_client',0)
+                     ->where('seen_status',0);
+    }
+    function designerUnseenMessage(){
+        return $this->hasMany(DesignerChat::class,'meeting_id','id')
+                     ->where('is_sender_client',1)
+                     ->where('seen_status',0);
+    }
+
 
 
 

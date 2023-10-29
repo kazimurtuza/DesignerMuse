@@ -48,6 +48,8 @@ class FrontendChatController extends Controller
             $meetingList = DesignerAppointmentList::where('designer_id', $designer->id)->where('payment_status', 1)->get();
         }
 
+        DesignerChat::where('meeting_id',$request->meeting_id)->where('is_sender_client',!$is_sender_client)->update(['seen_status'=>1]);
+
 
         $date = Carbon::now();
 
