@@ -24,7 +24,7 @@ function baseUrl(){
 //    return 'http://127.0.0.1:8000';
     return 'https://designermusekuwait.com';
 }
- function sendNotification($title,$body,$tokenList)
+ function sendNotification($title,$body,$tokenList,$dataInfo=[])
 {
     $url = 'https://fcm.googleapis.com/fcm/send';
 
@@ -32,12 +32,14 @@ function baseUrl(){
 
     $serverKey = 'AAAAt8rfTjQ:APA91bF_W12e3gWL_YU0QNAYEQUb_yVJTEvt3ZFszKfuXIsq2fiKPlW-pEPxyGA2E-xN2nXkQPYpeKymRRfkMLaZ6GU5M7nB_I68YAh_O6N4ZRbVb3DbyW6RfN1GoxiBPW2gwVAq06xr'; // ADD SERVER KEY HERE PROVIDED BY FCM
 
+
     $data = [
         "registration_ids" => $FcmToken,
         "notification" => [
             "title" => $title,
             "body" => $body,
         ],
+        "data" =>$dataInfo,
     ];
     $encodedData = json_encode($data);
 

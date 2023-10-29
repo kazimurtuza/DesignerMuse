@@ -37,7 +37,6 @@ Route::get('frontend/user/mail/verification', [UserController::class, 'userRegis
 //Route::get('shopkeeper/dashboard',[ShopController::class, 'shopHome'])->name('shopkeeper.index');
 
 
-
 //registration
 
 Route::group(['middleware' => 'generalUserAuthCheck'], function () {
@@ -117,9 +116,9 @@ Route::get('language/set', [\App\Http\Controllers\Frontend\LanguageController::c
 
 //pages
 Route::get('terms-condition', [\App\Http\Controllers\Frontend\WebTermsAndConditionController::class, 'termsCondition'])->name('terms.condition');
-Route::get('privacy-policy', [\App\Http\Controllers\Frontend\WebTermsAndConditionController::class,'privacyPolicy'])->name('privacy.policy');
+Route::get('privacy-policy', [\App\Http\Controllers\Frontend\WebTermsAndConditionController::class, 'privacyPolicy'])->name('privacy.policy');
 
-Route::get('get/unseen/message', [\App\Http\Controllers\Frontend\FrontendChatController::class,'unseenCatGet'])->name('get.unseen.message');
+Route::get('get/unseen/message', [\App\Http\Controllers\Frontend\FrontendChatController::class, 'unseenCatGet'])->name('get.unseen.message');
 
 
 

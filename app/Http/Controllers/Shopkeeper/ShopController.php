@@ -18,7 +18,7 @@ class ShopController extends Controller
         return view('shopkeeper.index');
     }
     public function shopList(){
-        $shopList=Shopkeeper::with('details')->where('is_authentic',1)->where('is_approved',1)->paginate(12);
+        $shopList=Shopkeeper::with('details')->where('is_authentic',1)->where('is_deleted',0)->paginate(12);
         return view('frontend.shop.shopList')->with(compact('shopList'));
     }
 

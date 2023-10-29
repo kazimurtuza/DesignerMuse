@@ -111,10 +111,7 @@ class ProjectController extends Controller
         $body = $project->title . "  project created";
 
         sendNotification($title, $body, $token);
-
         Notification::create(['user_type' => 2, 'user_id' => $project->designer_id, 'title' => $title, 'body' => $body]);
-
-
         return redirect()->intended('user/project/list')->with('success', 'successfully Project created');
 
     }

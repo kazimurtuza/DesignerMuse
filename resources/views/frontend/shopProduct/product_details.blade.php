@@ -161,6 +161,7 @@
                     <div>
 
 
+                        @if(\Illuminate\Support\Facades\Auth::user())
                         <form action="{{route('user.cart.add')}}" method="get" id="addtocart">
                             <input type="hidden" name="product_id" value="{{$product->id}}">
                             <input type="hidden" name="shop_id" value="{{$product->user_id}}">
@@ -168,8 +169,11 @@
                             <input type="hidden" name="qty" id="qty" value="1">
                             <button type="submit" class="btn">Add to Cart</button>
                         </form>
+                        @else
+                            <button  onclick="toastr.error('Login first')" class="btn">Add to Cart</button>
+                        @endif
                         @if($productDetails->is_variant==0)
-                            <p class="price">$ <span id="productPrice">{{$productDetails->price}}</span></p>
+                            <p class="price">$<span id="productPrice">{{$productDetails->price}}</span></p>
                         @elseif($productDetails->is_variant==1)
                             @if($maxPrice==$minPrice)
                                 <p class="price">$ <span id="productPrice">{{$maxPrice}}</span></p>

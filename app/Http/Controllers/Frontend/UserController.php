@@ -165,7 +165,6 @@ class UserController extends Controller
                 return redirect()->intended('/')->with('success', 'Successfully Login');
             }
             return redirect()->back()->with('error', 'Email or password is incorrect');
-
         }
         if ($request->user_type == 'designer') {
             $findDesigner = Designer::where('is_authentic', 1)->where('email', $request->email)->where('is_deleted',0)->first();
@@ -183,9 +182,9 @@ class UserController extends Controller
         }
 
         if ($request->user_type == 'shopkeeper') {
-            $userNotApproved = Shopkeeper::where('is_authentic', 1)->where('is_approved',0)->where('email', $request->email)->where('is_deleted',0)->first();
+            $userNotApproved = Shopkeeper::where('is_authentic', 1)->where('is_approved',0)->where('email', $request->email)->where('is_deleted',1)->first();
             if($userNotApproved){
-                return redirect()->back()->with('error', 'Your Shop activation request has been sent.Wait for administrator permission');
+                return redirect()->back()->with('error', 'Your Shop has been deactivated contact admin to activate');
             }
 
             $findUser = Shopkeeper::where('is_authentic', 1)->where('is_approved',1)->where('is_deleted',0)->where('email', $request->email)->first();
@@ -270,9 +269,7 @@ class UserController extends Controller
         Mail::to($request->email)->send(new ForgotPassword($details));
         return Redirect::back()->with('success','Successfully sent mail to reset password');
 
-
-//        Mail::to($shop->email)->send(new ShopApproved($details));
-
+        //Mail::to($shop->email)->send(new ShopApproved($details));
 
     }
     public function resetPassword(Request $request){
@@ -295,8 +292,6 @@ class UserController extends Controller
             }
             $userInfo->password=Hash::make($request->password);
             $userInfo->save();
-
-
             return Redirect::intended('/')->with('success','Your password has been successfully updated');
 
         }else{

@@ -69,7 +69,7 @@
     </section>
 
     <!-- Appointment Type -->
-
+    @if($designerServiceRate->online_rate>0||$designerServiceRate->video_rate>0||$designerServiceRate->call_rate>0)
     <section class="choose-appointment-type">
         <div class="container form">
             <h2 class="title">Choose type of appointment</h2>
@@ -77,7 +77,7 @@
 
             <div class="type-row">
 
-
+                @if($designerServiceRate->call_rate>0)
                 <input name="type" value="voice" type="radio" onclick="serviceType('voice')" id="voice" />
                 <label for="voice">
                     <span class="left">
@@ -90,7 +90,9 @@
                     </span>
                     <span class="right"> ${{$designerServiceRate?$designerServiceRate->call_rate:''}} </span>
                 </label>
+                @endif
 
+                @if($designerServiceRate->video_rate>0)
                 <input type="radio" onclick="serviceType('video')" name="type" id="video" />
                 <label for="video">
                     <span class="left">
@@ -103,7 +105,9 @@
                     </span>
                     <span class="right"> ${{$designerServiceRate?$designerServiceRate->video_rate:''}} </span>
                 </label>
+                @endif
             </div>
+            @if($designerServiceRate->online_rate>0)
             <div>
                 <input type="radio" checked name="type" id="visit" />
                 <label class="office-visit" for="visit">
@@ -118,10 +122,13 @@
                     <span class="right"> ${{$designerServiceRate?$designerServiceRate->online_rate:''}} </span>
                 </label>
             </div>
+            @endif
             <input class="terms-conditon-check" type="checkbox" name="" onclick="serviceType('office')" id="accept-terms" />
+
             <label for="accept-terms">Accepting the terms and conditions</label><input type="submit" value="Accept & Pay" />
         </div>
     </section>
+    @endif
 
 </form>
 

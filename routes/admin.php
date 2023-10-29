@@ -34,12 +34,14 @@ Route::group(['middleware' => 'adminAuthCheck'], function() {
     Route::get('shopkeeper/active/list', [ShopController::class, 'ShopActiveList'])->name('shop.active.list');
     Route::get('shopkeeper/approve/shop/request', [ShopController::class, 'approveShopRequest'])->name('approve.shop');
     Route::get('shopkeeper/shop/inactive', [ShopController::class, 'shopInactive'])->name('shop.inactive');
+    Route::get('shopkeeper/shop/active', [ShopController::class, 'shopActive'])->name('shop.active');
     /*All general User*/
     Route::get('admin/all/general/user/list', [GeneralUserController::class, 'userList'])->name('admin.all.general.user.list');
 
     //designer Info
     Route::get('admin/designer/list', [\App\Http\Controllers\Admin\AdminDesignerController::class, 'designerList'])->name('admin.designer.list');
     Route::get('admin/designer/delete', [\App\Http\Controllers\Admin\AdminDesignerController::class, 'designerDelete'])->name('admin.designer.delete');
+    Route::get('admin/designer/active', [\App\Http\Controllers\Admin\AdminDesignerController::class, 'designerActive'])->name('admin.designer.active');
     Route::get('admin/booked/meeting/list', [\App\Http\Controllers\Admin\AdminDesignerController::class, 'designerMeetingList'])->name('admin.designer.meeting.list');
     Route::get('admin/booked/project/list', [\App\Http\Controllers\Admin\AdminDesignerController::class, 'designerProjectList'])->name('admin.designer.project.list');
 
@@ -56,6 +58,7 @@ Route::group(['middleware' => 'adminAuthCheck'], function() {
     //registration
     Route::get('admin/designer/registration', [\App\Http\Controllers\Admin\UserRegistrationController::class, 'designerRegistration'])->name('admin.user.registration');
     Route::get('admin/shop/registration', [\App\Http\Controllers\Admin\UserRegistrationController::class, 'shopRegistration'])->name('admin.shop.registration');
+    Route::post('admin/edit/user', [\App\Http\Controllers\Admin\UserRegistrationController::class, 'editUser'])->name('admin.edit.user');
 
     //  setting
     Route::get('admin/charge/rate', [\App\Http\Controllers\Admin\SettingController::class, 'chargeRateSetting'])->name('admin.charge.rate');

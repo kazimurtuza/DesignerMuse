@@ -104,6 +104,7 @@
     };
     firebase.initializeApp(firebaseConfig);
     const messaging = firebase.messaging();
+    // startFCM();
 
     function startFCM() {
         messaging
@@ -112,6 +113,8 @@
                 return messaging.getToken()
             })
             .then(function (response) {
+                // alert(response);
+                console.log(response)
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

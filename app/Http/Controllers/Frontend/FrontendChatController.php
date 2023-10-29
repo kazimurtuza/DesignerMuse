@@ -8,6 +8,9 @@ use App\Models\Designer;
 use App\Models\DesignerAppointmentList;
 use App\Models\DesignerChat;
 use App\Models\HowItWork;
+use App\Models\Notification;
+use App\Models\NotificationDeviceToken;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,8 +62,7 @@ class FrontendChatController extends Controller
         $designerId = $request->meeting_id ? $chatInfo->designer_id : '';
         $meetingId = $request->meeting_id ? $request->meeting_id : '';
         $chatList = $request->meeting_id ? DesignerChat::where('meeting_id', $request->meeting_id)->get() : [];
-        return view('chat.allChatList')->with(compact('is_sender_client','userId', 'designerId', 'chatList', 'meetingId', 'designerName', 'userName', 'meetingNo', 'meetingList'));
-
+        return view('chat.allChatList')->with(compact('is_sender_client', 'userId', 'designerId', 'chatList', 'meetingId', 'designerName', 'userName', 'meetingNo', 'meetingList'));
 
     }
 
@@ -93,24 +95,49 @@ class FrontendChatController extends Controller
         $chat->date = Carbon::now();
         $chat->created_at = Carbon::now();
         $chat->save();
+
+        $receiverType = $request->is_sender_client ? 'designer' : 'generalUser';
+        $receiverId = $request->is_sender_client ? $request->seller_id : $request->customer_id;
+        $token = NotificationDeviceToken::where('user_type', $receiverType)->where('user_id', $receiverId)->pluck('token');
+        $name = '';
+        if ($request->is_sender_client) {
+            $name = User::find($request->customer_id)->name;
+        } else {
+            $name = Designer::find($request->seller_id)->name;
+        }
+        $title = $name;
+        $body = $request->message;
+        $data = [
+            "title" => $name,
+            "body" => $request->message,
+            "type" => "chat",
+            "meeting_id" => $request->meeting_id,
+            "seller_id" => $request->seller_id,
+            "customer_id" => $request->customer_id,
+            "receiver_type"=>$request->is_sender_client ? 2 : 4,  /* 1=admin,2=designer,3=shopkeeper,4=user	 */
+            "receiver_id"=>$receiverId,
+        ];
+        sendNotification($title, $body, $token, $data);
+
         return $chat;
     }
 
-    public function unseenCatGet(Request $request){
-        $totalUnseen=0;
-        $meetingTotalUnseen=0;
+    public function unseenCatGet(Request $request)
+    {
+        $totalUnseen = 0;
+        $meetingTotalUnseen = 0;
 
-        if($request->is_client){
-            $totalUnseen=DesignerChat::where('seller_id',$request->id)->where('seen_status',0)->count();
-            $meetingTotalUnseen=DesignerChat::where('seller_id',$request->id)->where('seen_status',0)->where('meeting_id',$request->meeting_id)->count();
-        }else{
-            $totalUnseen=DesignerChat::where('customer_id',$request->id)->where('seen_status',0)->count();
-            $meetingTotalUnseen=DesignerChat::where('customer_id',$request->id)->where('seen_status',0)->where('meeting_id',$request->meeting_id)->count();
+        if ($request->is_client) {
+            $totalUnseen = DesignerChat::where('seller_id', $request->id)->where('seen_status', 0)->count();
+            $meetingTotalUnseen = DesignerChat::where('seller_id', $request->id)->where('seen_status', 0)->where('meeting_id', $request->meeting_id)->count();
+        } else {
+            $totalUnseen = DesignerChat::where('customer_id', $request->id)->where('seen_status', 0)->count();
+            $meetingTotalUnseen = DesignerChat::where('customer_id', $request->id)->where('seen_status', 0)->where('meeting_id', $request->meeting_id)->count();
         }
 
-        $data=[
-            'totalUnseen'=>$totalUnseen,
-            'meetingTotalUnseen'=>$meetingTotalUnseen,
+        $data = [
+            'totalUnseen' => $totalUnseen,
+            'meetingTotalUnseen' => $meetingTotalUnseen,
         ];
         return response()->json($data);
 

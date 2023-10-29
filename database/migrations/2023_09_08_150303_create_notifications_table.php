@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('user_id');
             $table->text('title');
             $table->text('body');
+            $table->tinyInteger('is_seen')->default(0);
             $table->date('date')->nullable();
             $table->timestamps();
         });

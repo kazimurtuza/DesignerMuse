@@ -18,6 +18,7 @@
                         <th>Name</th>
                         <th>ID</th>
                         <th>Email</th>
+                        <th>Status</th>
                         <th class="action-width">Action</th>
                     </tr>
                     </thead>
@@ -33,13 +34,29 @@
                             </td>
                             <td>{{$user->email}}</td>
                             <td>
+                                @if($user->is_deleted)
+                                    <span class="badge badge-danger">Inactive</span>
+                                @else
+                                    <span class="badge badge-success">Active</span>
+                                @endif
+
+                            </td>
+                            <td>
                                 <div class="dropdown dropstyle">
                                     <button class="btn btn-secondary dropdown-toggle dropbtnstyle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Action List
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Edit</a>
+                                        <a class="dropdown-item" style="cursor: pointer" onclick="editDesigner('{{$user->name}}','{{$user->email}}','{{$user->id}}')">Edit </a>
+                                        @if($user->is_deleted)
+                                            <a class="dropdown-item"  onclick="return confirm('Are you sure you want to delete this user?');" href="{{route('admin.designer.active',['designer_id'=>$user->id])}}">Active</a>
+                                        @else
+                                            <a class="dropdown-item"  onclick="return confirm('Are you sure you want to active this user?');" href="{{route('admin.designer.delete',['designer_id'=>$user->id])}}">Delete</a>
+
+                                        @endif
                                     </div>
+
+
                                 </div>
                             </td>
                         </tr>
@@ -69,21 +86,43 @@
                         </button>
                     </div>
                     <div class="modal-body">
-{{--                        <select class="form-control"  name="user_type" id="" required>--}}
-{{--                            <option value="">Select User Type</option>--}}
-{{--                            <option value="general_user">General User</option>--}}
-{{--                            <option value="designer">Designer</option>--}}
-{{--                            <option value="shopkeeper">Shop</option>--}}
-{{--                        </select>--}}
-
                         <input required type="hidden" class="form-control" name="user_type" value="designer" />
-
                         <input required type="text" class="form-control" name="name" placeholder="Name" />
                         <br>
                         <input required type="email" class="form-control" name="email" placeholder="Email" />
                         <br>
-                        <input required type="password" class="form-control" name="password" placeholder="Password" />
+                        <input required type="password" class="form-control" name="password" minlength="6" placeholder="Password" />
 
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editDesigner" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form method="post" action="{{route('admin.edit.user')}}">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Designer</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input required type="hidden" class="form-control" id="id" name="id"  />
+                        <input required type="hidden" class="form-control" name="user_type" value="designer" />
+                        <input required type="text" class="form-control" id="name" name="name" placeholder="Name" />
+                        <br>
+                        <input required type="email" class="form-control" id="email" name="email" placeholder="Email" />
+                        <br>
+                        <input  type="password" class="form-control" id="" name="password" minlength="6" placeholder="Password" />
 
                     </div>
                     <div class="modal-footer">
@@ -177,6 +216,13 @@
             $("#colorName").val(colorList.name);
             $("#colorCode").val(colorList.color_code);
         }
+
+        function editDesigner(name,email,id){
+           $('#id').val(id)
+           $('#name').val(name)
+           $('#email').val(email)
+           $('#editDesigner').modal('show');
+        }
     </script>
 
 
@@ -196,5 +242,8 @@
                 "responsive": true,
             });
         });
+
+
+
     </script>
 @endsection

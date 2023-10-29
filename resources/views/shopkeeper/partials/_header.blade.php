@@ -6,7 +6,7 @@
               <strong> {{$common_data->title}}</strong>
                 </h5>
         @endif
-{{--                            <input type="text" class="form-control search-control" placeholder="Type to search..."> <span class="position-absolute top-50 search-show translate-middle-y"><i class='bx bx-search'></i></span>--}}
+
         <span class="position-absolute top-50 search-close translate-middle-y"><i class='bx bx-x'></i></span>
     </div>
 

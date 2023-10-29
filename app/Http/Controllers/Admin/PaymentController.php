@@ -10,6 +10,7 @@ use App\Mail\UserMailVerification;
 use App\Models\Admin;
 use App\Models\Designer;
 use App\Models\DesignerAppointmentList;
+use App\Models\DesignerProject;
 use App\Models\DesignerProjectMilestonePayment;
 use App\Models\Notification;
 use App\Models\NotificationDeviceToken;
@@ -25,20 +26,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cart;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Expr\Array_;
 
 class PaymentController extends Controller
 {
     public function pendingWithdrawalList()
     {
+        $common_data = new Array_();
+        $common_data->title ="Pending Withdrawal List";
         $withdrawalList = Withdrawal::where('status', 0)->get();
 
-        return view('admin.payment.pendingWithdrawalList')->with(compact('withdrawalList'));
+        return view('admin.payment.pendingWithdrawalList')->with(compact('withdrawalList','common_data'));
     }
 
     public function completedWithdrawalList()
     {
+        $common_data = new Array_();
+        $common_data->title ="completed Withdrawal List";
         $withdrawalList = Withdrawal::where('status', 1)->get();
-        return view('admin.payment.completedWithdrawalList')->with(compact('withdrawalList'));
+        return view('admin.payment.completedWithdrawalList')->with(compact('withdrawalList','common_data'));
 
     }
 
@@ -78,7 +84,6 @@ class PaymentController extends Controller
                 $designerId = $appointment->designer_id;
 
                 //Notification
-
                 $token = NotificationDeviceToken::where('user_type','designer')->where('user_id', $designerId)->pluck('token');
 
                 $title = "Designer Muse New Meeting";
@@ -105,7 +110,7 @@ class PaymentController extends Controller
             }
             if ($request->type == 'project') {
                 $paymentId = $request->OrderID;
-                 $paymentInfo = Payment::where('id', $paymentId)->first();
+                $paymentInfo = Payment::where('id', $paymentId)->first();
                 $paymentInfo->trn_id = $request->TranID;
                 $paymentInfo->payment_status = 1;
                 $paymentInfo->payment_id = $request->PaymentID;
@@ -124,14 +129,18 @@ class PaymentController extends Controller
                 $milestone->save();
                 $projectId = $paymentInfo->project_id;
                 $designerId = $paymentInfo->designer_id;
+
+                $project=DesignerProject::find($projectId);
+                $projectSi=$project->meetingInfo->id_no;
+                $totalPaid=$project->total_paid+$paymentInfo->total_amount;
+                $project->total_paid=$totalPaid;
+                $project->save();
                 //Notification
-
-
                 $token = NotificationDeviceToken::where('user_type','designer')->where('user_id', $designerId)->pluck('token');
                 $adminToken = NotificationDeviceToken::where('user_type','admin')->pluck('token');
 
                 $title = "Designer Muse New Project Milestone Payment";
-                $body = "A new Project Milestone Payment Completed";
+                $body = "Project Id:#".$projectSi." Milestone $".$paymentInfo->total_amount."Payment Completed ";
 
                 sendNotification($title, $body, $token);
                 sendNotification($title, $body, $adminToken);
@@ -199,10 +208,8 @@ class PaymentController extends Controller
                 $shopIdList = ShopOrder::where('order_id', $orderId)->where('payment_status', 1)->get()->pluck('shop_id');
 
                 $token = NotificationDeviceToken::where('user_type','shopKeeper')->whereIn('user_id', $shopIdList)->pluck('token');
-
                 $title = "Designer Muse New Order";
                 $body = "A new order has been created";
-
                 sendNotification($title, $body, $token);
 
                 //Notification
