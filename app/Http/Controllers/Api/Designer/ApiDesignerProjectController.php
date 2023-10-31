@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Designer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProjectDetailsResource;
+use App\Http\Resources\ProjectResource;
 use App\Models\DesignerAppointmentList;
 use App\Models\DesignerProject;
 use App\Models\DesignerProjectFile;
@@ -16,7 +17,8 @@ class ApiDesignerProjectController extends Controller
     public function projectList()
     {
         $designerId = auth()->user()->id;
-        $project = DesignerProject::where('designer_id', $designerId)->orderBy('id', 'desc')->paginate();
+//        $project =DesignerProject::where('designer_id', $designerId)->orderBy('id', 'desc')->paginate(10);
+    $project =ProjectResource::collection(DesignerProject::where('designer_id', $designerId)->orderBy('id', 'desc')->paginate(10)) ;
         return response()->json($project);
     }
 
@@ -25,7 +27,6 @@ class ApiDesignerProjectController extends Controller
         $designerId = auth()->user()->id;
         $project = new ProjectDetailsResource(DesignerProject::where('designer_id', $designerId)->where('id', $request->project_id)->first());
         return response()->json($project);
-
 
     }
     public function userProjectDetails(Request $request)

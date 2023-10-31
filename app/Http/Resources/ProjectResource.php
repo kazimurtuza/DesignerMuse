@@ -15,8 +15,13 @@ class ProjectResource extends JsonResource
     public function toArray($request)
     {
         return [
+
+
             'id'=>$this->id,
             'title'=>$this->title,
+            'code'=>$this->meetingInfo->id_no,
+            'client_name'=>$this->client->name,
+            'designer_name'=>$this->designer->name,
             'agreement_file'=>$this->agreement_file,
             'agreement_file_name'=>$this->agreement_file_name,
             'agreement_accepted'=>$this->agreement_accepted,

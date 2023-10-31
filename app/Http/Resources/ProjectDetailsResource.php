@@ -17,6 +17,9 @@ class ProjectDetailsResource extends JsonResource
         return [
             'id'=>$this->id,
             'title'=>$this->title,
+            'code'=>$this->meetingInfo->id_no,
+            'client_name'=>$this->client->name,
+            'designer_name'=>$this->designer->name,
             'agreement_details'=>$this->agreement_details,
             'agreement_file_name'=>$this->agreement_file_name,
             'designer_project_comment'=>$this->designer_project_comment,

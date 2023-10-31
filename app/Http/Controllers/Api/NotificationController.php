@@ -46,7 +46,7 @@ class NotificationController extends Controller
             'user_type' => 'required',
             'user_id' => 'required',
         ]);
-        Notification::where('user_type', $request->user_type)->where('user_id', $request->user_id)->where('is_seen', 0)->update(['is_seen' => 0]);
+        Notification::where('user_type', $request->user_type)->where('user_id', $request->user_id)->where('is_seen', 0)->update(['is_seen' => 1]);
         $data = [
             'status' => 200,
             'message' => '',
@@ -60,7 +60,7 @@ class NotificationController extends Controller
             'user_type' => 'required',
             'user_id' => 'required',
         ]);
-        Notification::where('user_type', $request->user_type)->where('user_id', $request->user_id)->where('is_seen', 0)->delete();
+        Notification::where('user_type', $request->user_type)->where('user_id', $request->user_id)->delete();
         $data = [
             'status' => 200,
             'message' => 'Successfully Cleared All notification',

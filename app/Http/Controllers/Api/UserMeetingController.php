@@ -151,7 +151,7 @@ class UserMeetingController extends Controller
     public function meetingList()
     {
         $user_id = auth('sanctum')->user()->id;
-        return MeetingResource::collection(DesignerAppointmentList::where('user_id', $user_id)->paginate(10));
+        return MeetingResource::collection(DesignerAppointmentList::where('user_id', $user_id)->where('payment_status',1)->paginate(10));
     }
 
     public function meetingStatusUpdate(Request $request)
@@ -171,13 +171,13 @@ class UserMeetingController extends Controller
     public function oldMeetingList()
     {
         $user_id = auth('sanctum')->user()->id;
-        return MeetingResource::collection(DesignerAppointmentList::where('user_id', $user_id)->where('status', '>', 0)->orderBy('id', 'desc')->paginate(10));
+        return MeetingResource::collection(DesignerAppointmentList::where('user_id', $user_id)->where('payment_status',1)->where('status', '>', 0)->orderBy('id', 'desc')->paginate(10));
     }
 
     public function pendingMeetingList()
     {
         $user_id = auth('sanctum')->user()->id;
-        return MeetingResource::collection(DesignerAppointmentList::where('user_id', $user_id)->where('status', '=', 0)->orderBy('id', 'desc')->paginate(10));
+        return MeetingResource::collection(DesignerAppointmentList::where('user_id', $user_id)->where('payment_status',1)->where('status', '=', 0)->orderBy('id', 'desc')->paginate(10));
 
     }
 
