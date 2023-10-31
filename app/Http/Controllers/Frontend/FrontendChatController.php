@@ -41,12 +41,13 @@ class FrontendChatController extends Controller
         $meetingList = [];
         if ($user) {
             $is_sender_client = 1;
-            $meetingList = DesignerAppointmentList::where('user_id', $user->id)->where('payment_status', 1)->get();
+            $meetingList = DesignerAppointmentList::where('user_id', $user->id)->with('clientUnseenMessage')->where('payment_status', 1)->get();
         }
         if ($designer) {
             $is_sender_client = 0;
-            $meetingList = DesignerAppointmentList::where('designer_id', $designer->id)->where('payment_status', 1)->get();
+            $meetingList = DesignerAppointmentList::where('designer_id', $designer->id)->with('designerUnseenMessage')->where('payment_status', 1)->get();
         }
+//        return $meetingList;
 
         DesignerChat::where('meeting_id',$request->meeting_id)->where('is_sender_client',!$is_sender_client)->update(['seen_status'=>1]);
 

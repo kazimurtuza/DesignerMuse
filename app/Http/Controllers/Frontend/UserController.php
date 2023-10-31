@@ -158,7 +158,10 @@ class UserController extends Controller
     public function loginUser(Request $request)
     {
         if ($request->user_type == 'general_user') {
-            $user = User::where('email', $request->email)->where('is_deleted',0)->first();
+             $user = User::where('email', $request->email)->where('is_deleted',0)->first();
+            if($user && $user->is_authentic==0){
+                return redirect()->back()->with('error', 'Your email verification did not complete. Please verify your mail first');
+            }
             if ($user && Hash::check($request->password,$user->password)) {
                 Auth::login($user);
                 $this->deviceTokenStore($user->user_type,$user->id,$request->device_token);

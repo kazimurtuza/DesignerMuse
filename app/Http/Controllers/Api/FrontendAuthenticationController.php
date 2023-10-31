@@ -22,7 +22,6 @@ class FrontendAuthenticationController extends Controller
 
     public function generalUserLogin(Request $request)
     {
-
         $request->validate([
             'email' => 'required',
             'password' => 'required',
@@ -37,6 +36,14 @@ class FrontendAuthenticationController extends Controller
             ];
             return response()->json($data, 401);
 
+        }
+        if($user->is_authentic==0){
+            $data = [
+                'status' => 401,
+                'message' => 'Your email verification did not complete. Please verify your mail first',
+                'data' => 'error',
+            ];
+            return response()->json($data, 401);
         }
 
         if (!$user || !Hash::check($request->password, $user->password)) {
@@ -117,7 +124,6 @@ class FrontendAuthenticationController extends Controller
             'otp_code' => $otp,
             'user_id' => $user->id,
             'name' => $request->name,
-
         ];
         Mail::to($email)->send(new OtpMail($details));
 
@@ -178,6 +184,32 @@ class FrontendAuthenticationController extends Controller
 
         }
     }
+
+    public function mailVerifyUsingOtpCode(Request $request){
+        $email = $request->mail;
+        $otp = $request->otp_code;
+        $user = User::where('email', $email)->where('otp_code', $otp)->first();
+        if($user){
+            $user->is_authentic=1;
+            $user->save();
+            $data = [
+                'status' => 200,
+                'message' => 'Successfully your mail verification completed',
+            ];
+            return response()->json($data, 403);
+
+        }else{
+            $data = [
+                'status' => 403,
+                'message' => 'your otp is incorrect',
+                'otp' => $otp,
+            ];
+            return response()->json($data, 403);
+        }
+    }
+
+
+
 
 
     public function resetPassword(Request $request)
@@ -258,15 +290,29 @@ class FrontendAuthenticationController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
         $user->id_no = 10000 + $user->id;
+        $otp = rand(123127, 787999);
+        $user->otp_code = $otp;
+        $user->otp_created_at = Carbon::now();
         $user->save();
+//        $details = [
+//            'user_type' => $request->user_type,
+//            'title' => 'Mail from Registration',
+//            'user_id' => $user->id,
+//            'name' => $request->name,
+//
+//        ];
+//        Mail::to($request->email)->send(new UserMailVerification($details));
+
+
         $details = [
-            'user_type' => $request->user_type,
-            'title' => 'Mail from Registration',
+            'user_type' => $user->user_type,
+            'otp_code' => $otp,
             'user_id' => $user->id,
             'name' => $request->name,
-
         ];
-        Mail::to($request->email)->send(new UserMailVerification($details));
+        Mail::to($request->email)->send(new OtpMail($details));
+
+
 
         $data = [
             'status' => 200,
