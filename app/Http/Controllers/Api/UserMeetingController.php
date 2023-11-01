@@ -79,7 +79,6 @@ class UserMeetingController extends Controller
             $appointment->save();
             $appointment->id_no = 10000 + $appointment->id;
             $appointment->save();
-
             $payment = new Payment();
             $payment->sector_type = 0;  /*0=designer 1=shop*/
             $payment->payment_for = 1;   /* 0=shop 1=meeting 2=project*/
@@ -152,6 +151,11 @@ class UserMeetingController extends Controller
     {
         $user_id = auth('sanctum')->user()->id;
         return MeetingResource::collection(DesignerAppointmentList::where('user_id', $user_id)->where('payment_status',1)->paginate(10));
+    }
+    public function newMeetingList()
+    {
+        $user_id = auth('sanctum')->user()->id;
+        return MeetingResource::collection(DesignerAppointmentList::where('user_id', $user_id)->where('status',0)->where('payment_status',1)->paginate(10));
     }
 
     public function meetingStatusUpdate(Request $request)

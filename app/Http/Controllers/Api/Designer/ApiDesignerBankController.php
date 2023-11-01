@@ -40,22 +40,25 @@ class ApiDesignerBankController extends Controller
        return response()->json($data);
    }
 
-   public function balanceInfo(){
-       $designer_id = auth()->user()->id;
-       $totalCashIn = Payment::where('sector_type', 1)->where('designer_id', $designer_id)->sum('total_amount');
-       $totalServiceCharge=Payment::where('sector_type', 1)->where('designer_id', $designer_id)->sum('service_charge_amount');
-       $allWithdrawal = Withdrawal::where('sector_type', 1)->where('designer_id', $designer_id)->get();
-       $totalCashOut = $allWithdrawal->sum('withdrawal_amount');
-       $totalCompletedWithdrawal = Withdrawal::where('sector_type', 1)->where('status', 1)->where('designer_id', $designer_id)->sum('withdrawal_amount');
-       $availableBalance = $totalCashIn - $totalCashOut-$totalServiceCharge;
+    public function balanceInfo(){
+        $designer_id = auth()->user()->id;
+        $totalCashIn = Payment::where('sector_type', 0)->where('designer_id', $designer_id)->where('payment_status',1)->sum('total_amount');
+        $totalServiceCharge=Payment::where('sector_type', 0)->where('designer_id', $designer_id)->where('payment_status',1)->sum('service_charge_amount');
+        $allWithdrawal = Withdrawal::where('sector_type', 0)->where('designer_id', $designer_id)->get();
+        $totalCashOut = $allWithdrawal->sum('withdrawal_amount');
+        $totalCompletedWithdrawal = Withdrawal::where('sector_type', 1)->where('status', 1)->where('designer_id', $designer_id)->sum('withdrawal_amount');
+        $totalWithdrawalRequest = Withdrawal::where('sector_type', 1)->where('designer_id', $designer_id)->sum('withdrawal_amount');
+        $availableBalance = $totalCashIn - $totalWithdrawalRequest-$totalServiceCharge;
 
         $data = [
-           'status' => 200,
-           'availableBalance' => $availableBalance,
-           'totalCompletedWithdrawal' => $totalCompletedWithdrawal,
-       ];
-       return response()->json($data);
+            'status' => 200,
+            'availableBalance' => number_format($availableBalance, 2),
+            'totalCompletedWithdrawal' => number_format($totalCompletedWithdrawal, 2),
+        ];
+        return response()->json($data);
 
-   }
+    }
+
+
 
 }

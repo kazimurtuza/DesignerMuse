@@ -18,8 +18,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('frontend/user/login', [UserController::class, 'userLogin'])->name('frontend.user.login');
 Route::get('frontend/user/registration', [UserController::class, 'userRegistration'])->name('frontend.user.registration');
@@ -27,7 +25,6 @@ Route::get('frontend/user/forgot/password', [UserController::class, 'forgotPassw
 Route::get('frontend/user/reset/mail/send', [UserController::class, 'resetMailSend'])->name('frontend.reset.password.mail.send');
 Route::get('user/reset/password', [UserController::class, 'resetPassword'])->name('user.reset.password');
 Route::post('user/update/user/password', [UserController::class, 'updateUserPassword'])->name('frontend.update.user.password');
-
 
 Route::post('frontend/user/registration/store', [UserController::class, 'userRegistrationStore'])->name('admin.registration.store');
 Route::post('frontend/user/login/check', [UserController::class, 'loginUser'])->name('admin.user.login');

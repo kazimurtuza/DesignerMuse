@@ -32,25 +32,22 @@ class FrontendAuthenticationController extends Controller
             $data = [
                 'status' => 401,
                 'message' => 'Invalid email address',
-                'data' => 'error',
             ];
             return response()->json($data, 401);
 
         }
-        if($user->is_authentic==0){
+        if ($user->is_authentic == 0) {
             $data = [
                 'status' => 401,
                 'message' => 'Your email verification did not complete. Please verify your mail first',
-                'data' => 'error',
             ];
-            return response()->json($data, 401);
+            return response()->json($data, 200);
         }
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             $data = [
                 'status' => 401,
                 'message' => 'Invalid Password',
-                'data' => 'error',
             ];
             return response()->json($data, 401);
         }
@@ -64,18 +61,53 @@ class FrontendAuthenticationController extends Controller
         return response($response, 201);
     }
 
+    public function registrationOtpGet(Request $request)
+    {
+        $email = $request->mail;
+        $user = User::where('email', $email)->first();
+        if(!$user){
+            $data = [
+                'status' => 401,
+                'message' => "invalid mail",
+
+            ];
+            return response()->json($data, 200);
+        }
+        $otp = rand(123127, 787999);
+        $user->otp_code = $otp;
+        $user->otp_created_at = Carbon::now();
+        $user->save();
+
+
+        $details = [
+            'user_type' => "general_user",
+            'otp_code' => $otp,
+            'user_id' => $user->id,
+            'name' => $user->name,
+        ];
+
+        Mail::to($user->email)->send(new OtpMail($details));
+
+        $data = [
+            'status' => 200,
+            'message' => 'successfully Otp  send to' . ' ' . $email,
+            'otp' => $otp,
+        ];
+        return response()->json($data, 200);
+    }
+
     public function otpGet(Request $request)
     {
         $email = $request->mail;
         $info = 0;
         if ($request->user_type == 'general_user') {
             $user = User::where('email', $email)->first();
-            if($user){
+            if ($user) {
                 $otp = rand(123127, 787999);
                 $user->otp_code = $otp;
                 $user->otp_created_at = Carbon::now();
                 $user->save();
-            }else{
+            } else {
                 $data = [
                     'status' => 400,
                     'message' => 'invalid Mail',
@@ -87,13 +119,12 @@ class FrontendAuthenticationController extends Controller
         }
         if ($request->user_type == 'designer') {
             $user = Designer::where('email', $email)->first();
-            if($user){
+            if ($user) {
                 $otp = rand(123127, 787999);
                 $user->otp_code = $otp;
                 $user->otp_created_at = Carbon::now();
                 $user->save();
-            }
-            else{
+            } else {
                 $data = [
                     'status' => 400,
                     'message' => 'invalid Mail',
@@ -104,12 +135,12 @@ class FrontendAuthenticationController extends Controller
         }
         if ($request->user_type == 'shopkeeper') {
             $user = Shopkeeper::where('email', $email)->first();
-            if($user){
+            if ($user) {
                 $otp = rand(123127, 787999);
                 $user->otp_code = $otp;
                 $user->otp_created_at = Carbon::now();
                 $user->save();
-            }else{
+            } else {
                 $data = [
                     'status' => 400,
                     'message' => 'invalid Mail',
@@ -160,7 +191,7 @@ class FrontendAuthenticationController extends Controller
             if ($minute <= 5) {
                 $data = [
                     'status' => 200,
-                    'message' => 'your otp is available',
+                    'message' => 'your otp varification successfull',
                     'otp' => $otp,
                 ];
                 return response()->json($data, 200);
@@ -185,20 +216,23 @@ class FrontendAuthenticationController extends Controller
         }
     }
 
-    public function mailVerifyUsingOtpCode(Request $request){
+    public function mailVerifyUsingOtpCode(Request $request)
+    {
         $email = $request->mail;
         $otp = $request->otp_code;
         $user = User::where('email', $email)->where('otp_code', $otp)->first();
-        if($user){
-            $user->is_authentic=1;
+        if ($user) {
+            $user->is_authentic = 1;
             $user->save();
-            $data = [
-                'status' => 200,
-                'message' => 'Successfully your mail verification completed',
-            ];
-            return response()->json($data, 403);
 
-        }else{
+            $token = $user->createToken('mobile', ['role:generalUser'])->plainTextToken;
+            $response = [
+                'user' => $user,
+                'token' => $token,
+            ];
+            return response($response, 201);
+
+        } else {
             $data = [
                 'status' => 403,
                 'message' => 'your otp is incorrect',
@@ -207,9 +241,6 @@ class FrontendAuthenticationController extends Controller
             return response()->json($data, 403);
         }
     }
-
-
-
 
 
     public function resetPassword(Request $request)
@@ -311,7 +342,6 @@ class FrontendAuthenticationController extends Controller
             'name' => $request->name,
         ];
         Mail::to($request->email)->send(new OtpMail($details));
-
 
 
         $data = [

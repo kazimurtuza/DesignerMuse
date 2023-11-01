@@ -32,9 +32,10 @@ class ApiDesignerWithdrawal extends Controller
         $bankId=$request->bank_id;
         $bankInfo=BankAccount::find($bankId);
         $designer_id = auth()->user()->id;
-        $totalCashIn = Payment::where('sector_type', 1)->where('designer_id', $designer_id)->sum('total_amount');
+        $totalCashIn = Payment::where('sector_type', 0)->where('designer_id', $designer_id)->where('payment_status',1)->sum('total_amount');
+        $totalServiceCharge=Payment::where('sector_type', 0)->where('designer_id', $designer_id)->where('payment_status',1)->sum('service_charge_amount');
         $totalCashOut = Withdrawal::where('sector_type', 1)->where('designer_id', $designer_id)->sum('withdrawal_amount');
-        $availableBalance = $totalCashIn - $totalCashOut;
+        $availableBalance = $totalCashIn-$totalServiceCharge-$totalCashOut;
         if ($request->balance > $availableBalance) {
             $data = [
                 'status' => 400,
