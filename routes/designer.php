@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\AuthenticationController;
 use App\Http\Controllers\Designer\DesignerController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\GeneralUser\GeneralUserController;
-use App\Http\Controllers\Shopkeeper\ShopController;
+use App\Http\Controllers\ShopKeeper\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*

@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\AuthenticationController;
 use App\Http\Controllers\Designer\DesignerController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\GeneralUser\GeneralUserController;
-use App\Http\Controllers\Shopkeeper\ShopController;
+use App\Http\Controllers\ShopKeeper\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -74,7 +74,7 @@ Route::group(['middleware' => 'generalUserAuthCheck'], function () {
 
     //general user
     Route::get('user/shop/cart/add', [\App\Http\Controllers\GeneralUser\ShopCartController::class, 'addToCart'])->name('user.cart.add');
-    Route::post('user/shop/customer', [\App\Http\Controllers\Shopkeeper\OrderController::class, 'Order'])->name('user.cart.customer');
+    Route::post('user/shop/customer', [\App\Http\Controllers\ShopKeeper\OrderController::class, 'Order'])->name('user.cart.customer');
 
     //log out
     Route::get('frontend/user/logout', [UserController::class, 'userLogout'])->name('frontend.user.logout');

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Shopkeeper\ProductController;
+use App\Http\Controllers\ShopKeeper\ProductController;
 use App\Http\Resources\OrderDetailsResource;
 use App\Http\Resources\PopularProductResource;
 use App\Http\Resources\ShopProductResource;

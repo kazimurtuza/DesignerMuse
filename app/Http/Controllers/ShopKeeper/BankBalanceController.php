@@ -48,7 +48,7 @@ class BankBalanceController extends Controller
         $withdrawal = Withdrawal::where('sector_type', 2)->where('shopkeeper_id', $shop_id)->orderBy('id', 'desc')->take(5)->get();
         $allWithdrawal = Withdrawal::where('sector_type', 2)->where('shopkeeper_id', $shop_id)->get();
         $totalCashOut = $allWithdrawal->sum('withdrawal_amount');
-        $totalCompletedWithdrawal = Withdrawal::where('sector_type', 2)->where('status', 1)->where('designer_id', $shop_id)->sum('withdrawal_amount');
+        $totalCompletedWithdrawal = Withdrawal::where('sector_type', 2)->where('status', 1)->where('shopkeeper_id', $shop_id)->sum('withdrawal_amount');
         $availableBalance = $totalCashIn - $totalCashOut-$totalServiceCharge;
         $bankList = BankAccount::where('user_id', $shop_id)->where('sector', 2)->get();
         return view('shopkeeper.bankBalance.balanceWithdrawal')->with(compact('availableBalance', 'totalCompletedWithdrawal', 'withdrawal', 'bankList','common_data'));
