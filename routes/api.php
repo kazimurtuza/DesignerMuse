@@ -31,6 +31,7 @@ Route::middleware(['auth:sanctum', 'type.generalUser'])->group(function () {
     //    Meeting List
 
     Route::get('user/meeting/list', [\App\Http\Controllers\Api\UserMeetingController::class, 'meetingList']);
+    Route::get('user/new/meeting/list', [\App\Http\Controllers\Api\UserMeetingController::class, 'newMeetingList']);
     Route::get('user/old/meeting/list', [\App\Http\Controllers\Api\UserMeetingController::class, 'oldMeetingList']);
     Route::get('user/pending/meeting/list', [\App\Http\Controllers\Api\UserMeetingController::class, 'pendingMeetingList']);
     Route::get('user/meeting/status/update', [\App\Http\Controllers\Api\UserMeetingController::class, 'meetingStatusUpdate']);
@@ -187,12 +188,14 @@ Route::get('frontend/shop/rating/review/list', [\App\Http\Controllers\Api\Fronte
 
 //user Registration login
 Route::post('frontend/user/registration', [\App\Http\Controllers\Api\FrontendAuthenticationController::class, 'userRegistration']);
+Route::post('mail/verification', [\App\Http\Controllers\Api\FrontendAuthenticationController::class, 'mailVerifyUsingOtpCode']);
+Route::post('get/registration/otp', [\App\Http\Controllers\Api\FrontendAuthenticationController::class, 'registrationOtpGet']);
 Route::post('frontend/user/login', [\App\Http\Controllers\Api\FrontendAuthenticationController::class, 'generalUserLogin']);
 Route::get('frontend/user/isLogin', [\App\Http\Controllers\Api\FrontendAuthenticationController::class, 'getToken']);
 
 //forget password
-Route::get('reset/password/opt/get', [\App\Http\Controllers\Api\FrontendAuthenticationController::class, 'otpGet']);
-Route::get('reset/password/opt/check', [\App\Http\Controllers\Api\FrontendAuthenticationController::class, 'checkOtpCode']);
+Route::post('reset/password/opt/get', [\App\Http\Controllers\Api\FrontendAuthenticationController::class, 'otpGet']);
+Route::post('reset/password/opt/check', [\App\Http\Controllers\Api\FrontendAuthenticationController::class, 'checkOtpCode']);
 Route::post('reset/password/store', [\App\Http\Controllers\Api\FrontendAuthenticationController::class, 'resetPassword']);
 
 //Designer Registration login
@@ -242,7 +245,7 @@ Route::get('admin/project/list', [\App\Http\Controllers\Api\ApiPageController::c
 
 //Notification
 Route::get('get/unseen/notification/number', [\App\Http\Controllers\Api\NotificationController::class, 'unseenNotificationNumber']);
-Route::get('all/notification/seen', [\App\Http\Controllers\Api\NotificationController::class, 'setAllNotificationSeen']);
+Route::post('all/notification/seen', [\App\Http\Controllers\Api\NotificationController::class, 'setAllNotificationSeen']);
 Route::get('clear/all/notification', [\App\Http\Controllers\Api\NotificationController::class, 'clearAllNotification']);
 Route::post('notification/store', [\App\Http\Controllers\Api\NotificationController::class, 'notificationStore']);
 

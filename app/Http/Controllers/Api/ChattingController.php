@@ -26,13 +26,13 @@ class ChattingController extends Controller
         $chat->save();
 //       Notification
         $receiverType = $request->is_sender_client ? 'designer' : 'generalUser';
-        $receiverId = $request->is_sender_client ? $request->seller_id : $request->customer_id;
+        $receiverId = $request->is_sender_client ? $request->designer_id : $request->customer_id;
         $token = NotificationDeviceToken::where('user_type', $receiverType)->where('user_id', $receiverId)->pluck('token');
         $name = '';
         if ($request->is_sender_client) {
             $name = User::find($request->customer_id)->name;
         } else {
-            $name = Designer::find($request->seller_id)->name;
+            $name = Designer::find($request->designer_id)->name;
         }
         $title = $name;
         $body = $request->message;
@@ -41,7 +41,7 @@ class ChattingController extends Controller
             "body" => $request->message,
             "type" => "chat",
             "meeting_id" => $request->meeting_id,
-            "seller_id" => $request->seller_id,
+            "seller_id" => $request->designer_id,
             "customer_id" => $request->customer_id,
             "receiver_type"=>$request->is_sender_client ? 2 : 4,  /* 1=admin,2=designer,3=shopkeeper,4=user	*/
             "receiver_id"=>$receiverId,
@@ -50,7 +50,7 @@ class ChattingController extends Controller
         return $chat;
     }
     public function getChatData(Request $request){
-       return DesignerChat::where('meeting_id',$request->meeting_id)->get();
+        return DesignerChat::where('meeting_id',$request->meeting_id)->get();
 
     }
 }

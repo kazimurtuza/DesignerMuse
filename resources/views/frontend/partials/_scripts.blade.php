@@ -38,7 +38,7 @@
     unseenMessage(1,designer_id, 0,sound);
     @endif
     @if(Auth::user())
-    let user_id = {{Auth::user()->id}};
+    var user_id = {{Auth::user()->id}};
     let sound=0;
     unseenMessage(0,user_id,0,sound);
     @endif
