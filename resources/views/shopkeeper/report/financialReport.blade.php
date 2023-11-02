@@ -8,7 +8,7 @@
         {{--            </div>--}}
         <!-- /.card-header -->
             <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
+                <tfooter id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
                         <th>{{languageGet()=='en'?'SI':'رقم الهوية'}}</th>
@@ -34,8 +34,10 @@
                     @endforeach
 
                     </tbody>
-
-                </table>
+                </tfooter>
+                <td colspan="6"></td>
+                <td >50</td>
+                </tfooter>
             </div>
             <!-- /.card-body -->
         </div>

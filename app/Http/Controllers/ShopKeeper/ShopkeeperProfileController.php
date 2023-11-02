@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Shopkeeper;
+namespace App\Http\Controllers\ShopKeeper;
 
 use App\Http\Controllers\Controller;
 use App\Models\ShopkeeperDetails;

@@ -41,9 +41,9 @@
                             </td>
 
                             @if($data->sector_type==1)
-                                <td>{{$data->designerInfo->name}}</td>
+                                <td>{{$data->designerInfo?$data->designerInfo->name:'-'}}</td>
                             @elseif($data->sector_type==2)
-                                <td>{{$data->shopKeeper->name}}</td>
+                                <td>{{$data->shopKeeper?$data->shopKeeper->name:'-'}}</td>
                             @endif
 
                             @if($data->sector_type==1)
@@ -53,9 +53,9 @@
                             @endif
 
                             @if($data->sector_type==1)
-                                <td>{{$data->designerInfo->id_no}}</td>
+                                <td>{{$data->designerInfo?$data->designerInfo->id_no:'-'}}</td>
                             @elseif($data->sector_type==2)
-                                <td>{{$data->shopKeeper->id_no}}</td>
+                                <td>{{$data->shopKeeper?$data->shopKeeper->id_no:'-'}}</td>
                             @endif
                             <td>
                                 @if($data->status==1)

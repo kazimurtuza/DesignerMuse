@@ -4,12 +4,12 @@ use App\Http\Controllers\Admin\AuthenticationController;
 use App\Http\Controllers\Designer\designerController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\GeneralUser\GeneralUserController;
-use App\Http\Controllers\Shopkeeper\AdminPanelController;
-use App\Http\Controllers\Shopkeeper\AuthController;
-use App\Http\Controllers\Shopkeeper\OrderController;
-use App\Http\Controllers\Shopkeeper\ProductController;
+use App\Http\Controllers\ShopKeeper\AdminPanelController;
+use App\Http\Controllers\ShopKeeper\AuthController;
+use App\Http\Controllers\ShopKeeper\OrderController;
+use App\Http\Controllers\ShopKeeper\ProductController;
 use App\Http\Controllers\ShopKeeper\ProfileController;
-use App\Http\Controllers\Shopkeeper\ShopController;
+use App\Http\Controllers\ShopKeeper\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,8 +28,8 @@ Route::group(['middleware' => 'shopAuthCheck'], function () {
     Route::get('shopkeeper/product', [ProductController::class, 'addProduct'])->name('shopkeeper.product.add');
     Route::post('shopkeeper/add/shop/product', [ProductController::class, 'productStore'])->name('add.shop.product');
     Route::get('shopkeeper/product/list', [ProductController::class, 'productList'])->name('shopkeeper.product.list');
-    Route::get('shopkeeper/profile/setting', [\App\Http\Controllers\Shopkeeper\ShopkeeperProfileController::class, 'profileSetting'])->name('shopkeeper.profile.setting');
-    Route::post('user/profile/store', [\App\Http\Controllers\Shopkeeper\ShopkeeperProfileController::class, 'profileStore'])->name('user.profile.store');
+    Route::get('shopkeeper/profile/setting', [\App\Http\Controllers\ShopKeeper\ShopkeeperProfileController::class, 'profileSetting'])->name('shopkeeper.profile.setting');
+    Route::post('user/profile/store', [\App\Http\Controllers\ShopKeeper\ShopkeeperProfileController::class, 'profileStore'])->name('user.profile.store');
     Route::get('user/shopkeeper/logout', [AuthController::class, 'shopkeeperLogout'])->name('shopkeeper.admin.logout');
 
     Route::get('shopkeeper/pending/customer', [OrderController::class, 'shopkeeperPendingOrder'])->name('shopkeeper.pending.customer');
@@ -45,8 +45,8 @@ Route::group(['middleware' => 'shopAuthCheck'], function () {
     Route::post('shopkeeper/bank/store', [\App\Http\Controllers\ShopKeeper\BankBalanceController::class, 'bankAccountStore'])->name('shopkeeper.bank.store');
     Route::get('shopkeeper/balance', [\App\Http\Controllers\ShopKeeper\BankBalanceController::class, 'bankBalance'])->name('shopkeeper.balance');
     Route::post('shopkeeper/balance/withdrawal', [\App\Http\Controllers\ShopKeeper\BankBalanceController::class, 'withdrawalRequest'])->name('shopkeeper.balance.withdrawal');
-    Route::get('shopkeeper/report/report', [\App\Http\Controllers\Shopkeeper\ReportController::class, 'financialReport'])->name('shopkeeper.financial.report');
-    Route::get('shopkeeper/withdrawal/list', [\App\Http\Controllers\Shopkeeper\ReportController::class, 'withdrawalList'])->name('shopkeeper.withdrawal.list');
+    Route::get('shopkeeper/report/report', [\App\Http\Controllers\ShopKeeper\ReportController::class, 'financialReport'])->name('shopkeeper.financial.report');
+    Route::get('shopkeeper/withdrawal/list', [\App\Http\Controllers\ShopKeeper\ReportController::class, 'withdrawalList'])->name('shopkeeper.withdrawal.list');
 
 //    Bank Balance
 
