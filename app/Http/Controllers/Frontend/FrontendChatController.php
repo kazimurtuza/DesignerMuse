@@ -47,11 +47,8 @@ class FrontendChatController extends Controller
             $is_sender_client = 0;
             $meetingList = DesignerAppointmentList::where('designer_id', $designer->id)->with('designerUnseenMessage')->where('payment_status', 1)->get();
         }
-//        return $meetingList;
-
+//      return $meetingList;
         DesignerChat::where('meeting_id',$request->meeting_id)->where('is_sender_client',!$is_sender_client)->update(['seen_status'=>1]);
-
-
         $date = Carbon::now();
 
         if ($request->meeting_id) {
@@ -99,50 +96,51 @@ class FrontendChatController extends Controller
         $chat->created_at = Carbon::now();
         $chat->save();
 
-        $receiverType = $request->is_sender_client ? 'designer' : 'generalUser';
-        $receiverId = $request->is_sender_client ? $request->seller_id : $request->customer_id;
-        $token = NotificationDeviceToken::where('user_type', $receiverType)->where('user_id', $receiverId)->pluck('token');
-        $name = '';
-        if ($request->is_sender_client) {
-            $name = User::find($request->customer_id)->name;
-        } else {
-            $name = Designer::find($request->seller_id)->name;
-        }
-        $title = $name;
-        $body = $request->message;
-        $data = [
-            "title" => $name,
-            "body" => $request->message,
-            "type" => "chat",
-            "meeting_id" => $request->meeting_id,
-            "seller_id" => $request->seller_id,
-            "customer_id" => $request->customer_id,
-            "receiver_type"=>$request->is_sender_client ? 2 : 4,  /* 1=admin,2=designer,3=shopkeeper,4=user	 */
-            "receiver_id"=>$receiverId,
-        ];
-        sendNotification($title, $body, $token, $data);
+//        $receiverType = $request->is_sender_client ? 'designer' : 'generalUser';
+//        $receiverId = $request->is_sender_client ? $request->seller_id : $request->customer_id;
+//        $token = NotificationDeviceToken::where('user_type', $receiverType)->where('user_id', $receiverId)->pluck('token');
+//        $name = '';
+//        if ($request->is_sender_client) {
+//            $name = User::find($request->customer_id)->name;
+//        } else {
+//            $name = Designer::find($request->seller_id)->name;
+//        }
+//        $title = $name;
+//        $body = $request->message;
+//        $data = [
+//            "title" => $name,
+//            "body" => $request->message,
+//            "type" => "chat",
+//            "meeting_id" => $request->meeting_id,
+//            "seller_id" => $request->seller_id,
+//            "customer_id" => $request->customer_id,
+//            "receiver_type"=>$request->is_sender_client ? 2 : 4,  /* 1=admin,2=designer,3=shopkeeper,4=user	 */
+//            "receiver_id"=>$receiverId,
+//        ];
+//        sendNotification($title, $body, $token, $data);
 
         return $chat;
     }
 
     public function unseenCatGet(Request $request)
     {
-        $totalUnseen = 0;
-        $meetingTotalUnseen = 0;
+        $user_type = $request->user_type;
+        $user_id = $request->id;
 
-        if ($request->is_client) {
-            $totalUnseen = DesignerChat::where('seller_id', $request->id)->where('seen_status', 0)->count();
-            $meetingTotalUnseen = DesignerChat::where('seller_id', $request->id)->where('seen_status', 0)->where('meeting_id', $request->meeting_id)->count();
-        } else {
-            $totalUnseen = DesignerChat::where('customer_id', $request->id)->where('seen_status', 0)->count();
-            $meetingTotalUnseen = DesignerChat::where('customer_id', $request->id)->where('seen_status', 0)->where('meeting_id', $request->meeting_id)->count();
+        if ($user_type == 'designer') {
+            $count = DesignerChat::where("is_sender_client", 1)->where('seller_id', $user_id)->where('seen_status', 0)->count();
+        }
+        if ($user_type == 'generalUser') {
+            $count = DesignerChat::where("is_sender_client", 0)->where('customer_id', $user_id)->where('seen_status', 0)->count();
         }
 
+
         $data = [
-            'totalUnseen' => $totalUnseen,
-            'meetingTotalUnseen' => $meetingTotalUnseen,
+            'totalUnseen' => $count,
+            'meetingTotalUnseen' => 0,
         ];
         return response()->json($data);
+
 
     }
 

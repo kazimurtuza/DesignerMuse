@@ -14,9 +14,20 @@ class MeetingResource extends JsonResource
      */
     public function toArray($request)
     {
+        $user_type = auth('sanctum')->user()->user_type;
+        $unseen_message_count = 0;
+        if ($user_type == 'generalUser') {
+            $unseen_message_count = $this->clientUnseenMessage->count();
+        }
+        if ($user_type == 'designer') {
+            $unseen_message_count = $this->designerUnseenMessage->count();
+        }
+
+
         return [
             "id" => $this->id,
             "id_no" => $this->id_no,
+            "unseen_message" => $unseen_message_count,
             "service_time_id" => $this->service_time_id,
             "time_details" => $this->timeInfo,
             "designer_info" => $this->designer,

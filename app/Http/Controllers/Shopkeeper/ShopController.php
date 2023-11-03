@@ -43,8 +43,8 @@ class ShopController extends Controller
         $minPrice= $productDetails->colorVariant->min('price');
         $maxPrice= $productDetails->colorVariant->max('price');
         $related_products= ShopProduct::with('productImage')->with('colorVariant')->whereNotIn('id', [$product_id])->where('category_id',$category)->where('user_id',$user_id)->inRandomOrder()->limit(6)->get();
-//         dd($related_products);
-        return view('frontend.shopProduct.product_details')->with(compact('productDetails','related_products','product','minPrice','maxPrice','isVariant'));
+        $shopRating=ShopProductRatingReview::where('product_id',$request->product_id)->orderBy('id','desc')->paginate(10);
+        return view('frontend.shopProduct.product_details')->with(compact('productDetails','related_products','product','minPrice','maxPrice','isVariant','shopRating'));
 
     }
 

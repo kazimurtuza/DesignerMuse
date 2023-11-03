@@ -34,9 +34,7 @@ class ProjectController extends Controller
         $info =$project= DesignerProject::find($request->project_id);
         $project->project_status=2;
         $project->save();
-
         $user_id = Auth::user()->id;
-
         if ($request->rating) {
             $designerId = $info->designer_id;
             $designer = new DesignerRatingReview();
@@ -57,6 +55,12 @@ class ProjectController extends Controller
             $designerInfo->rating = $avgRating;
             $designerInfo->save();
         }
+
+        $token = NotificationDeviceToken::where('user_type', 'designer')->where('user_id', $project->designer_id)->pluck('token');
+        $title = "Designer Muse a new project created";
+        $body = $project->title . "  project created";
+        sendNotification($title, $body, $token);
+        Notification::create(['user_type' => 2, 'user_id' => $project->designer_id, 'title' => $title, 'body' => $body]);
 
         return redirect()->back()->with('success', 'Successfully Project Completed');
     }
@@ -106,12 +110,11 @@ class ProjectController extends Controller
         }
 
         $token = NotificationDeviceToken::where('user_type', 'designer')->where('user_id', $project->designer_id)->pluck('token');
-
         $title = "Designer Muse a new project created";
         $body = $project->title . "  project created";
-
         sendNotification($title, $body, $token);
         Notification::create(['user_type' => 2, 'user_id' => $project->designer_id, 'title' => $title, 'body' => $body]);
+
         return redirect()->intended('user/project/list')->with('success', 'successfully Project created');
 
     }

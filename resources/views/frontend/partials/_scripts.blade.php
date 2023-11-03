@@ -28,32 +28,36 @@
             let id = is_client ? message.seller_id : message.customer_id;
             let meeting_id = message.meeting_id;
             let sound=1;
-            unseenMessage(is_client, id, meeting_id,sound)
+            let user_type = is_client?'designer':'generalUser';
+            unseenMessage(user_type, id, 0,sound)
         });
         @endif
     });
     @if(Auth::guard('designer')->user())
     let designer_id = {{Auth::guard('designer')->user()->id}};
+    let user_type = "{{Auth::guard('designer')->user()->user_type}}";
     let sound=0;
-    unseenMessage(1,designer_id, 0,sound);
+    unseenMessage(user_type,designer_id, 0,sound);
     @endif
     @if(Auth::user())
     var user_id = {{Auth::user()->id}};
+    let user_type = "{{Auth::user()->user_type}}";
     let sound=0;
-    unseenMessage(0,user_id,0,sound);
+    unseenMessage(user_type,user_id,0,sound);
     @endif
     var soundData = document.getElementById("tune");
 
-    function unseenMessage(is_client, id, meeting_id,sound) {
+    function unseenMessage(user_type, id, meeting_id,sound) {
         $.ajax({
             url: "{{route('get.unseen.message')}}",
             type: "get",
             data: {
-                is_client: is_client,
+                user_type: user_type,
                 id: id,
                 meeting_id: meeting_id,
             },
             success: function (response) {
+                console.log(response);
                 $('.cat-item').html(response.totalUnseen);
                 if(sound){
                     soundData.play();

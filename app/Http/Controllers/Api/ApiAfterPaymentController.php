@@ -47,7 +47,7 @@ class ApiAfterPaymentController extends Controller
             $title = "Designer Muse New Meeting";
             $body = "A new Meeting has been created";
 
-            $token = NotificationDeviceToken::where('user_type','designer')->where('user_id', $designerId)->pluck('token');
+            $token = NotificationDeviceToken::where('user_type', 'designer')->where('user_id', $designerId)->pluck('token');
             sendNotification($title, $body, $token);
             Notification::create(['user_type' => 2, 'user_id' => $designerId, 'title' => $title, 'body' => $body]);
 
@@ -70,16 +70,15 @@ class ApiAfterPaymentController extends Controller
             //mail
 
 
-        }else{
+        } else {
             $data = [
                 'status' => 400,
                 'message' => "Payment uncompleted",
             ];
             return response()->json($data);
         }
-
-
     }
+
     public function milestonePaymentSuccess(Request $request)
     {
         if ($request->result == 'CAPTURED') {
@@ -108,9 +107,8 @@ class ApiAfterPaymentController extends Controller
 
             $title = "Designer Muse New Project Milestone Payment";
             $body = "A new Project Milestone Payment Completed";
-
-            $token = NotificationDeviceToken::where('user_type','designer')->where('user_id', $designerId)->pluck('token');
-            $tokenAdmin = NotificationDeviceToken::where('user_type','admin')->pluck('token');
+            $token = NotificationDeviceToken::where('user_type', 'designer')->where('user_id', $designerId)->pluck('token');
+            $tokenAdmin = NotificationDeviceToken::where('user_type', 'admin')->pluck('token');
 
             sendNotification($title, $body, $token);
             sendNotification($title, $body, $tokenAdmin);
@@ -138,16 +136,13 @@ class ApiAfterPaymentController extends Controller
                     Mail::to($adminList->email)->send(new ProjectMilestoneMail($details));
                 }
             }
-
             $data = [
                 'status' => 200,
                 'message' => "Successfully Payment Completed",
             ];
             return response()->json($data);
             //mail
-
-
-        }else{
+        } else {
             $data = [
                 'status' => 400,
                 'message' => "Payment uncompleted",
