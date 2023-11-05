@@ -48,7 +48,7 @@ class FrontendChatController extends Controller
             $meetingList = DesignerAppointmentList::where('designer_id', $designer->id)->with('designerUnseenMessage')->where('payment_status', 1)->get();
         }
 //      return $meetingList;
-        DesignerChat::where('meeting_id',$request->meeting_id)->where('is_sender_client',!$is_sender_client)->update(['seen_status'=>1]);
+        DesignerChat::where('meeting_id', $request->meeting_id)->where('is_sender_client', !$is_sender_client)->update(['seen_status' => 1]);
         $date = Carbon::now();
 
         if ($request->meeting_id) {
@@ -64,6 +64,30 @@ class FrontendChatController extends Controller
         $chatList = $request->meeting_id ? DesignerChat::where('meeting_id', $request->meeting_id)->get() : [];
         return view('chat.allChatList')->with(compact('is_sender_client', 'userId', 'designerId', 'chatList', 'meetingId', 'designerName', 'userName', 'meetingNo', 'meetingList'));
 
+    }
+
+    public function getChatUserList(Request $request)
+    {
+
+        $designer = Auth::guard('designer')->user();
+        $user = Auth::user();
+        $meetingList = [];
+        if ($user) {
+            $is_sender_client = 1;
+            $meetingList = DesignerAppointmentList::where('user_id', $user->id)->with('clientUnseenMessage')->where('payment_status', 1)->get();
+        }
+        if ($designer) {
+            $is_sender_client = 0;
+            $meetingList = DesignerAppointmentList::where('designer_id', $designer->id)->with('designerUnseenMessage')->where('payment_status', 1)->get();
+        }
+        $meetingId = $request->meeting_id ? $request->meeting_id : '';
+        return view('chat._chatUserList')->with(compact("meetingList","is_sender_client","meetingId"))->render();
+
+    }
+
+    public function messageSeen(Request $request){
+        DesignerChat::where('seen_status',0)->where("meeting_id",$request->meeting_id)->where('is_sender_client',$request->is_sender_client)->update(['seen_status'=>1]);
+        return $request->is_sender_client;
     }
 
 
