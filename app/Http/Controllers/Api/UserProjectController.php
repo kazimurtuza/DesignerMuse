@@ -119,6 +119,16 @@ class UserProjectController extends Controller
             $designerInfo->save();
         }
 
+
+        $token = NotificationDeviceToken::where('user_type', 'generalUser')->where('user_id',$project->client_id)->pluck('token');
+
+        $title = "Designer Muse New Project  Completed";
+        $body = $project->title . "  Project  Completed";
+
+        sendNotification($title, $body, $token);
+
+        Notification::create(['user_type' => 4, 'user_id' =>$project->client_id, 'title' => $title, 'body' => $body]);
+
         $data = [
             'status' => 200,
             'message' => 'Successfully Project Project Completed',
@@ -341,7 +351,7 @@ class UserProjectController extends Controller
 
         sendNotification($title, $body, $token);
 
-        Notification::create(['user_type' => 2, 'user_id' => $info->client_id, 'title' => $title, 'body' => $body]);
+        Notification::create(['user_type' => 4, 'user_id' => $info->client_id, 'title' => $title, 'body' => $body]);
 
 
         $data = [
@@ -378,6 +388,12 @@ class UserProjectController extends Controller
 
             }
         }
+
+
+
+
+
+
 
         $data = [
             'status' => 200,

@@ -33,18 +33,18 @@ class PaymentController extends Controller
     public function pendingWithdrawalList()
     {
         $common_data = new Array_();
-        $common_data->title ="Pending Withdrawal List";
+        $common_data->title = "Pending Withdrawal List";
         $withdrawalList = Withdrawal::where('status', 0)->get();
 
-        return view('admin.payment.pendingWithdrawalList')->with(compact('withdrawalList','common_data'));
+        return view('admin.payment.pendingWithdrawalList')->with(compact('withdrawalList', 'common_data'));
     }
 
     public function completedWithdrawalList()
     {
         $common_data = new Array_();
-        $common_data->title ="completed Withdrawal List";
+        $common_data->title = "completed Withdrawal List";
         $withdrawalList = Withdrawal::where('status', 1)->get();
-        return view('admin.payment.completedWithdrawalList')->with(compact('withdrawalList','common_data'));
+        return view('admin.payment.completedWithdrawalList')->with(compact('withdrawalList', 'common_data'));
 
     }
 
@@ -84,7 +84,7 @@ class PaymentController extends Controller
                 $designerId = $appointment->designer_id;
 
                 //Notification
-                $token = NotificationDeviceToken::where('user_type','designer')->where('user_id', $designerId)->pluck('token');
+                $token = NotificationDeviceToken::where('user_type', 'designer')->where('user_id', $designerId)->pluck('token');
 
                 $title = "Designer Muse New Meeting";
                 $body = "A new Meeting has been created";
@@ -130,17 +130,17 @@ class PaymentController extends Controller
                 $projectId = $paymentInfo->project_id;
                 $designerId = $paymentInfo->designer_id;
 
-                $project=DesignerProject::find($projectId);
-                $projectSi=$project->meetingInfo->id_no;
-                $totalPaid=$project->total_paid+$paymentInfo->total_amount;
-                $project->total_paid=$totalPaid;
+                $project = DesignerProject::find($projectId);
+                $projectSi = $project->meetingInfo->id_no;
+                $totalPaid = $project->total_paid + $paymentInfo->total_amount;
+                $project->total_paid = $totalPaid;
                 $project->save();
                 //Notification
-                $token = NotificationDeviceToken::where('user_type','designer')->where('user_id', $designerId)->pluck('token');
-                $adminToken = NotificationDeviceToken::where('user_type','admin')->pluck('token');
+                $token = NotificationDeviceToken::where('user_type', 'designer')->where('user_id', $designerId)->pluck('token');
+                $adminToken = NotificationDeviceToken::where('user_type', 'admin')->pluck('token');
 
                 $title = "Designer Muse New Project Milestone Payment";
-                $body = "Project Id:#".$projectSi." Milestone $".$paymentInfo->total_amount."Payment Completed ";
+                $body = "Project Id:#" . $projectSi . " Milestone $" . $paymentInfo->total_amount . "Payment Completed ";
 
                 sendNotification($title, $body, $token);
                 sendNotification($title, $body, $adminToken);
@@ -169,11 +169,7 @@ class PaymentController extends Controller
                         Mail::to($adminList->email)->send(new ProjectMilestoneMail($details));
                     }
                 }
-
-
                 //mail
-
-
                 return redirect()->intended('user/project/details?project_id=' . $projectId)->with('success', 'Successfully payment completed');
 
             }
@@ -207,7 +203,7 @@ class PaymentController extends Controller
                 //Notification
                 $shopIdList = ShopOrder::where('order_id', $orderId)->where('payment_status', 1)->get()->pluck('shop_id');
 
-                $token = NotificationDeviceToken::where('user_type','shopKeeper')->whereIn('user_id', $shopIdList)->pluck('token');
+                $token = NotificationDeviceToken::where('user_type', 'shopKeeper')->whereIn('user_id', $shopIdList)->pluck('token');
                 $title = "Designer Muse New Order";
                 $body = "A new order has been created";
                 sendNotification($title, $body, $token);
@@ -237,7 +233,7 @@ class PaymentController extends Controller
         } else {
             if ($request->type == 'meeting') {
                 $paymentId = $request->OrderID;
-                $paymentInfo = Payment::where('id',$paymentId)->first();
+                $paymentInfo = Payment::where('id', $paymentId)->first();
                 $appointment = DesignerAppointmentList::find($paymentInfo->meeting_id);
                 $appointment->delete();
                 $paymentInfo->delete();
@@ -246,9 +242,6 @@ class PaymentController extends Controller
         }
 
     }
-
-
-
 
 
 }

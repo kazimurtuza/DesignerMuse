@@ -12,18 +12,18 @@
                         <h4 class="text-center">Designer Muse</h4>
                     </div>
 
-                    <div class="search-user mt-30">
-                        <input
-                                id="search-input"
-                                type="text"
-                                placeholder="Search..."
-                                name="search"
-                                class="search"
-                        />
-                        <span>
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </span>
-                    </div>
+{{--                    <div class="search-user mt-30">--}}
+{{--                        <input--}}
+{{--                                id="search-input"--}}
+{{--                                type="text"--}}
+{{--                                placeholder="Search..."--}}
+{{--                                name="search"--}}
+{{--                                class="search"--}}
+{{--                        />--}}
+{{--                        <span>--}}
+{{--                                <i class="fa-solid fa-magnifying-glass"></i>--}}
+{{--                            </span>--}}
+{{--                    </div>--}}
                     <?php $userType = \Illuminate\Support\Facades\Auth::user()?'generalUser':'designer' ?>
 
                     <div class="list-search-user-chat mt-20">
@@ -44,7 +44,7 @@
                                             src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                                             alt=""
                                     />
-                                    <div class="offline"></div>
+{{--                                    <div class="offline"></div>--}}
                                 </div>
 
                                 <div class="user-chat-text">
@@ -76,15 +76,15 @@
                                 alt=""
                         />
                         <div class="message-user-profile">
-                            <p class="mt-0 mb-0 text-white">
+                            <p class="mt-0 mb-0 text-white mt-3">
                                 <strong>{{$designerName}}</strong>
                                 &nbsp; <strong>ID-{{$meetingNo}}</strong>
                             </p>
-                            <small class="text-white"
-                            ><p class="offline mt-0 mb-0"></p>
-                                Offline
-                            </small
-                            >
+{{--                            <small class="text-white"--}}
+{{--                            ><p class="offline mt-0 mb-0"></p>--}}
+{{--                                Offline--}}
+{{--                            </small--}}
+{{--                            >--}}
                         </div>
                     </div>
                     <div class="body-chat-message-user" id="chatField">

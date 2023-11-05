@@ -79,7 +79,7 @@ Route::middleware(['auth:sanctum', 'type.designer'])->group(function () {
 //    profile add  update
     Route::post('login/designer/profile/add/update', [\App\Http\Controllers\Api\Designer\ApiDesignerController::class, 'profileDataStore']);
 
-//    portfolio store
+//  portfolio store
     Route::post('login/designer/portfolio/add', [\App\Http\Controllers\Api\Designer\ApiDesignerController::class, 'profileProjectAdd']);
     Route::post('login/designer/portfolio/edit', [\App\Http\Controllers\Api\Designer\ApiDesignerController::class, 'projectItemEdit']);
 
@@ -249,7 +249,8 @@ Route::post('all/notification/seen', [\App\Http\Controllers\Api\NotificationCont
 Route::get('clear/all/notification', [\App\Http\Controllers\Api\NotificationController::class, 'clearAllNotification']);
 Route::post('notification/store', [\App\Http\Controllers\Api\NotificationController::class, 'notificationStore']);
 
-
+Route::get('count/unseen/message', [\App\Http\Controllers\Api\ChattingController::class, 'unseenMessageCount']);
+Route::get('seen/message', [\App\Http\Controllers\Api\ChattingController::class, 'seenMessage']);
 
 
 
