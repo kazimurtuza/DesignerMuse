@@ -96,7 +96,7 @@ class DesignerProjectController extends Controller
 
         sendNotification($title, $body, $token);
 
-        Notification::create(['user_type' => 2, 'user_id' => $info->client_id, 'title' => $title, 'body' => $body]);
+        Notification::create(['user_type' => 4, 'user_id' => $info->client_id, 'title' => $title, 'body' => $body]);
 
 
         return redirect()->intended('designer/project/list')->with('success','Successfully Project Agreement Saved');

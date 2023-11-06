@@ -10,12 +10,12 @@
 
     <!-- product slider -->
     <section class="product-slider-wrapper">
-        <div class="container">
+        <div class="container portfolio-blog ">
             <div class="product-slider">
                 @foreach($productDetails->productImage as $productImg)
                     <div class="slider__item">
                         @if($productImg->image)
-                        <img class="details-productImg" src="{{asset($productImg->image)}}" alt=""/>
+                            <img class="details-productImg" src="{{asset($productImg->image)}}" alt=""/>
                         @else
                             <img class="details-productImg" src="{{asset('img/no_img.jpg')}}" alt=""/>
                         @endif
@@ -36,7 +36,7 @@
 
     <!-- Product Info -->
     <section class="product-info">
-        <div class="container">
+        <div class="container portfolio-blog">
             <div class="row">
                 <div class="col col-lg-6">
                     <div>
@@ -162,15 +162,15 @@
 
 
                         @if(\Illuminate\Support\Facades\Auth::user())
-                        <form action="{{route('user.cart.add')}}" method="get" id="addtocart">
-                            <input type="hidden" name="product_id" value="{{$product->id}}">
-                            <input type="hidden" name="shop_id" value="{{$product->user_id}}">
-                            <input type="hidden" name="variant_id" class="variant_id">
-                            <input type="hidden" name="qty" id="qty" value="1">
-                            <button type="submit" class="btn">Add to Cart</button>
-                        </form>
+                            <form action="{{route('user.cart.add')}}" method="get" id="addtocart">
+                                <input type="hidden" name="product_id" value="{{$product->id}}">
+                                <input type="hidden" name="shop_id" value="{{$product->user_id}}">
+                                <input type="hidden" name="variant_id" class="variant_id">
+                                <input type="hidden" name="qty" id="qty" value="1">
+                                <button type="submit" class="btn">Add to Cart</button>
+                            </form>
                         @else
-                            <button  onclick="toastr.error('Login first')" class="btn">Add to Cart</button>
+                            <button onclick="toastr.error('Login first')" class="btn">Add to Cart</button>
                         @endif
                         @if($productDetails->is_variant==0)
                             <p class="price">$<span id="productPrice">{{$productDetails->price}}</span></p>
@@ -178,7 +178,8 @@
                             @if($maxPrice==$minPrice)
                                 <p class="price">$ <span id="productPrice">{{$maxPrice}}</span></p>
                             @else
-                                <p class="price">$ <span id="productPrice">{{ round($minPrice) }}-${{ round($maxPrice)}}</span></p>
+                                <p class="price">$ <span
+                                        id="productPrice">{{ round($minPrice) }}-${{ round($maxPrice)}}</span></p>
                             @endif
                         @endif
                     </div>
@@ -190,7 +191,8 @@
                             @foreach($productDetails->colorVariant as $colorList)
                                 <div class="color-1">
                                     <input type="radio" checked name="color" id="color{{$colorList->id}}"/>
-                                    <label for="color{{$colorList->id}}" onclick="changePrice({{$colorList->price}},{{$colorList->id}})"
+                                    <label for="color{{$colorList->id}}"
+                                           onclick="changePrice({{$colorList->price}},{{$colorList->id}})"
                                            style="background-color: {{$colorList->colorCode->color_code}}"></label>
                                 </div>
                             @endforeach
@@ -200,7 +202,7 @@
                     <div class="quantity">
                         <p>Quantity</p>
                         <div class="quantity-wrapper">
-                        <button
+                            <button
                                 class="quantity-decrease quantitye-btn bottom-spacing"
                                 type="button"
                                 onclick="getQty()"
@@ -227,7 +229,7 @@
 
     <!-- Accordion -->
     <div class="accordion">
-        <div class="container">
+        <div class="container portfolio-blog">
             <div class="accordion__wrapper">
                 <div class="accordion__item">
                     <div class="content">
@@ -295,8 +297,144 @@
                     </div>
                 </div>
             </div>
+            <div class="portfolio-blog">
+                <div class="container about-user">
+                    <div class="portfolio-header">
+                        <h3 class="title">Reviews</h3>
+                    </div>
+                    @foreach($shopRating as $review)
+                        <div class="review-item" >
+                            <div class="ratting-wrapper">
+                                <div class="ratting">
+                    <span>
+                      <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                      >
+                        <path
+                            d="M12,1.5l3.09,6.3,6.91,1,-5,4.87,1.18,6.88,-6.18,-3.25,-6.18,3.25,1.18,-6.88,-5-4.87,6.91,-1Z"
+                        ></path>
+                      </svg>
+                    </span>
+                                    <span>
+                      <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                      >
+                        <path
+                            d="M12,1.5l3.09,6.3,6.91,1,-5,4.87,1.18,6.88,-6.18,-3.25,-6.18,3.25,1.18,-6.88,-5-4.87,6.91,-1Z"
+                        ></path>
+                      </svg>
+                    </span>
+                                    <span>
+                      <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                      >
+                        <path
+                            d="M12,1.5l3.09,6.3,6.91,1,-5,4.87,1.18,6.88,-6.18,-3.25,-6.18,3.25,1.18,-6.88,-5-4.87,6.91,-1Z"
+                        ></path>
+                      </svg>
+                    </span>
+                                    <span>
+                      <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                      >
+                        <path
+                            d="M12,1.5l3.09,6.3,6.91,1,-5,4.87,1.18,6.88,-6.18,-3.25,-6.18,3.25,1.18,-6.88,-5-4.87,6.91,-1Z"
+                        ></path>
+                      </svg>
+                    </span>
+                                    <span>
+                      <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                      >
+                        <path
+                            d="M12,1.5l3.09,6.3,6.91,1,-5,4.87,1.18,6.88,-6.18,-3.25,-6.18,3.25,1.18,-6.88,-5-4.87,6.91,-1Z"
+                        ></path>
+                      </svg>
+                    </span>
+                                </div>
+                                @php $retPrc=($review->rating*100)/5; @endphp
+                                <div class="ratting active-ratting" style="width: {{$retPrc}}%">
+                    <span>
+                      <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                      >
+                        <path
+                            d="M12,1.5l3.09,6.3,6.91,1,-5,4.87,1.18,6.88,-6.18,-3.25,-6.18,3.25,1.18,-6.88,-5-4.87,6.91,-1Z"
+                        ></path>
+                      </svg>
+                    </span>
+                                    <span>
+                      <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                      >
+                        <path
+                            d="M12,1.5l3.09,6.3,6.91,1,-5,4.87,1.18,6.88,-6.18,-3.25,-6.18,3.25,1.18,-6.88,-5-4.87,6.91,-1Z"
+                        ></path>
+                      </svg>
+                    </span>
+                                    <span>
+                      <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                      >
+                        <path
+                            d="M12,1.5l3.09,6.3,6.91,1,-5,4.87,1.18,6.88,-6.18,-3.25,-6.18,3.25,1.18,-6.88,-5-4.87,6.91,-1Z"
+                        ></path>
+                      </svg>
+                    </span>
+                                    <span>
+                      <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                      >
+                        <path
+                            d="M12,1.5l3.09,6.3,6.91,1,-5,4.87,1.18,6.88,-6.18,-3.25,-6.18,3.25,1.18,-6.88,-5-4.87,6.91,-1Z"
+                        ></path>
+                      </svg>
+                    </span>
+                                    <span>
+                      <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                      >
+                        <path
+                            d="M12,1.5l3.09,6.3,6.91,1,-5,4.87,1.18,6.88,-6.18,-3.25,-6.18,3.25,1.18,-6.88,-5-4.87,6.91,-1Z"
+                        ></path>
+                      </svg>
+                    </span>
+                                </div>
+                            </div>
+                            <p>{{$review->review}}</p>
+                            <p>{{$review->clientInfo->name}}
+                                <span>{{ date('d-m-Y',strtotime($review->created_at))}}</span></p>
+                        </div>
+                    @endforeach
+
+                    {{ $shopRating->links() }}
+                </div>
+            </div>
         </div>
+
     </div>
+
+
 
     <!-- Related Products -->
     <section class="related-products">
@@ -377,7 +515,8 @@
                       </svg>
                     </span>
                                     </div>
-                                    <div class="ratting active-ratting" style="width: 50%">
+                                    @php $retPrcInfo=($product->avg_rating*100)/5; @endphp
+                                    <div class="ratting active-ratting" style="width:{{$retPrcInfo}}%">
                     <span>
                       <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -439,12 +578,14 @@
                             <div class="card_price-btn">
                                 {{--<a class="btn" href="#">Add to Cart</a>--}}
                                 <div class="card_price-btn">
-                                    <a href="{{route('shop.product.details',['product_id'=>$product->id])}}" class="btn" @if(Auth::check()) @else onclick="firstLogin()" @endif >Add to Cart</a>
+                                    <a href="{{route('shop.product.details',['product_id'=>$product->id])}}" class="btn"
+                                       @if(Auth::check()) @else onclick="firstLogin()" @endif >Add to Cart </a>
 
 
                                 </div>
                                 @if($product->is_variant)
-                                    <p>${{round($product->colorVariant->min('price'))}}-${{round($product->colorVariant->max('price'))}}</p>
+                                    <p>${{round($product->colorVariant->min('price'))}}
+                                        -${{round($product->colorVariant->max('price'))}}</p>
                                 @else
                                     <p>$ {{$product->price}}</p>
                                 @endif
@@ -461,28 +602,27 @@
 @endsection
 @section('js')
     <script>
-        function changePrice(data,variantId) {
+        function changePrice(data, variantId) {
             $('#productPrice').html(data);
             $('.variant_id').val(variantId)
         }
 
-        function getQty(){
-            $qty=$('#quantity-no').val();
-            $total=parseFloat($qty)+parseFloat(1);
+        function getQty() {
+            $qty = $('#quantity-no').val();
+            $total = parseFloat($qty) + parseFloat(1);
             $('#qty').val($total);
 
         }
 
 
-
-        $("#addtocart").submit(function(e){
+        $("#addtocart").submit(function (e) {
             @if(!Auth::check())
             toastr.error("Please first login as a user");
             @endif
 
             @if($isVariant)
-            let variant_id= $('.variant_id').val();
-            if(!variant_id){
+            let variant_id = $('.variant_id').val();
+            if (!variant_id) {
                 toastr.error("Please first select a variant");
                 e.preventDefault()
             }

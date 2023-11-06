@@ -118,5 +118,8 @@ Route::get('privacy-policy', [\App\Http\Controllers\Frontend\WebTermsAndConditio
 Route::get('get/unseen/message', [\App\Http\Controllers\Frontend\FrontendChatController::class, 'unseenCatGet'])->name('get.unseen.message');
 
 
+Route::get('get/Catting/User/List', [\App\Http\Controllers\Frontend\FrontendChatController::class, 'getChatUserList']);
+Route::get('message/seen', [\App\Http\Controllers\Frontend\FrontendChatController::class, 'messageSeen'])->name('message.seen');
+
 
 

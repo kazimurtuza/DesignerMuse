@@ -17,6 +17,7 @@
 
 <script>
     {{--socket--}}
+        var logInUserType="{{Auth::user()?'generalUser':'designer'}}";
     var socket;
     $(function () {
         let ip_address = 'https://chat-whjg.onrender.com';
@@ -25,31 +26,42 @@
         @if(Auth::guard('designer')->user()||Auth::user())
         socket.on('sendChatToClient', (message) => {
             let is_client = message.is_sender_client;
+            let user_type = is_client?'designer':'generalUser';
+            if(user_type!=logInUserType) return false;
             let id = is_client ? message.seller_id : message.customer_id;
+            let login_user_id ="{{Auth::user()? Auth::user()->id :Auth::guard('designer')->user()->id}}";
+            if(id!=login_user_id) return false;
             let meeting_id = message.meeting_id;
             let sound=1;
-            unseenMessage(is_client, id, meeting_id,sound)
+            if(meeting_id=="{{request('meeting_id')}}"&& user_type==logInUserType){
+                messageSeen(meeting_id,is_client);
+            }else{
+                unseenMessage(user_type, id, 0,sound)
+            }
+
         });
         @endif
     });
     @if(Auth::guard('designer')->user())
-    let designer_id = {{Auth::guard('designer')->user()->id}};
+    let designer_id ="{{Auth::guard('designer')->user()->id}}";
+    let user_type = "{{Auth::guard('designer')->user()->user_type}}";
     let sound=0;
-    unseenMessage(1,designer_id, 0,sound);
+    unseenMessage(user_type,designer_id, 0,sound);
     @endif
     @if(Auth::user())
-    var user_id = {{Auth::user()->id}};
+    var user_id ="{{Auth::user()->id}}";
+    let user_type = "{{Auth::user()->user_type}}";
     let sound=0;
-    unseenMessage(0,user_id,0,sound);
+    unseenMessage(user_type,user_id,0,sound);
     @endif
     var soundData = document.getElementById("tune");
 
-    function unseenMessage(is_client, id, meeting_id,sound) {
+    function unseenMessage(user_type, id, meeting_id,sound) {
         $.ajax({
             url: "{{route('get.unseen.message')}}",
             type: "get",
             data: {
-                is_client: is_client,
+                user_type: user_type,
                 id: id,
                 meeting_id: meeting_id,
             },
@@ -58,6 +70,25 @@
                 if(sound){
                     soundData.play();
                 }
+                getUserList();
+
+            },
+            error: function (xhr) {
+                //Do Something to handle error
+            }
+        });
+    }
+
+    function messageSeen(meeting_id,is_sender_client) {
+        $.ajax({
+            url: "{{route('message.seen')}}",
+            type: "get",
+            data: {
+                is_sender_client: is_sender_client,
+                meeting_id: meeting_id,
+            },
+            success: function (response) {
+               console.log(response)
 
             },
             error: function (xhr) {
@@ -149,6 +180,22 @@
         };
         new Notification(title, options);
     });
+
+
+    function getUserList() {
+        $.ajax({
+            url: "{{url('get/Catting/User/List')}}",
+            type: "get",
+            data: {
+                meeting_id:"{{request('meeting_id')}}",
+            },
+            success: function(response) {
+                $("#meetingList").html(response);
+            },
+            error: function(xhr) {
+                //Do Something to handle error
+            }});
+    }
 </script>
 
 @yield('js_plugins')
